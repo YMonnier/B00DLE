@@ -1,2 +1,34 @@
 # B00DLE
-B00DLE Application 
+
+[![Java 8](https://img.shields.io/badge/Java-8-blue.svg?style=flat)](https://www.java.com/)
+[![Rails 5.0.0.1](https://img.shields.io/badge/Rails-5.0.0.1-red.svg?style=flat)](http://rubyonrails.org)
+
+B00DLE application... written in Java with a Rails API backend.
+
+[University of Toulon La Garde - France](http://www.univ-tln.fr) | Master in Computer Science
+
+Requirements
+------------
+#### Client
+* ...
+* ...
+
+#### Server
+* Ruby 2.2.0+
+* Rubygems
+* Bundler
+* Rails 5+
+
+
+Contributor
+------------
+* [@MaxenceVialla]()
+
+* [@stephenbellanger](https://github.com/stephenbellanger)
+
+* [@YMonnier](https://github.com/YMonnier)
+
+
+License
+-------
+B00DLE is available under the MIT license. See the [LICENSE](https://github.com/YMonnier/B00DLE/blob/master/LICENSE) file for more info.
