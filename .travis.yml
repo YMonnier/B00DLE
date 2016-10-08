@@ -4,4 +4,4 @@ rvm:
 before:
   - cd server/
 script:
-  - RAILS_ENV=test bundle exec rake --trace test
+  - RAILS_ENV=test && cd server && bundle exec rake --trace test
