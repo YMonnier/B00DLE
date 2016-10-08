@@ -2,7 +2,8 @@ class Administrator < ApplicationRecord
     #EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
     has_many :opinionPolls
     validates :name,
-            presence: true
+            presence: true,
+            allow_blank: false
     validates :email,
             presence: true,
             uniqueness: true,
