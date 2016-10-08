@@ -1,0 +1,7 @@
+language: ruby
+rvm:
+  - 2.3.1p112
+before:
+  - cd server/
+script:
+  - RAILS_ENV=test bundle exec rake --trace test
