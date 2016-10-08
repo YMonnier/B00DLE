@@ -2,6 +2,6 @@ language: ruby
 rvm:
   -  2.2.0
 before_script:
-  - cd server
+  - cd server && bundle install
 script:
   - RAILS_ENV=test bundle exec rake --trace test
