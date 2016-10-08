@@ -3,8 +3,8 @@ require 'test_helper'
 class AdministratorTest < ActiveSupport::TestCase
     test 'should not save admin without name, email and password' do
         admin = Administrator.new
-        puts admin.save
-        assert_not admin.save
+        puts admin.valid?
+        assert_not admin.valid?
     end
 
     test 'should save admin' do
@@ -19,7 +19,7 @@ class AdministratorTest < ActiveSupport::TestCase
         admin.password = password
         admin.password_confirmation = password_confirmation
 
-        assert admin.save
+        assert admin.valid?
     end
 
     test 'should not save admin without a valid email' do
@@ -34,7 +34,7 @@ class AdministratorTest < ActiveSupport::TestCase
         admin.password = password
         admin.password_confirmation = password_confirmation
 
-        assert_not admin.save
+        assert_not admin.valid?
     end
 
     test 'should not save admin without the same passwords(checking)' do
@@ -49,7 +49,7 @@ class AdministratorTest < ActiveSupport::TestCase
         admin.password = password
         admin.password_confirmation = password_confirmation
 
-        assert_not admin.save
+        assert_not admin.valid?
     end
 
     test 'should not save admin without an empty name' do
@@ -64,7 +64,7 @@ class AdministratorTest < ActiveSupport::TestCase
         admin.password = password
         admin.password_confirmation = password_confirmation
 
-        assert_not admin.save
+        assert_not admin.valid?
     end
 
 end
