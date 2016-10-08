@@ -1,13 +1,12 @@
 class Invitation < ApplicationRecord
-    EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
     has_one :opinionPoll
 
     validates :email,
             presence: true,
             uniqueness: true,
-            format: EMAIL_REGEX,
+            format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create },
             allow_blank: false
-            
+
     validates :opinion_poll_id,
             presence: true,
             numericality: true,
