@@ -10,6 +10,6 @@ class Administrator < ApplicationRecord
     validates :password, #password
                 presence: true,
                 length: { in: 8..72 },
-                confirmation: true #password_confirmation field
+                confirmation: true, #password_confirmation field
                 allow_blank: false
 end
