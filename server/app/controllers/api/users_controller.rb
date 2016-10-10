@@ -1,6 +1,7 @@
 class Api::UsersController < ApplicationController
+
   def create
-    render json: {
+    return render json: {
         succeed: false,
         message: 'password not the same'
     }, status: 400 if user_params[:password] != user_params[:password_confirmation]
@@ -9,19 +10,18 @@ class Api::UsersController < ApplicationController
     user.name = user_params[:name]
     user.email = user_params[:email]
     user.password = user_params[:password]
-    user
+
     if user.save
-      render json: {
+      return render json: {
           succeed: true,
           data: user
       }, status: 201
     else
-      render json: {
+      return render json: {
           succeed: false,
           message: user.errors
       }, status: 400
     end
-
   end
 
   private
