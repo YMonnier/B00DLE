@@ -1,36 +1,63 @@
 package com.univtln.b00dle.client.view;
 
+import com.univtln.b00dle.client.controller.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+
 public class MainApp extends Application {
 
-    private static final Logger log = LoggerFactory.getLogger(MainApp.class);
-
-    public static void main(String[] args) throws Exception {
-        launch(args);
+    @Override
+    public void start(Stage stage) throws Exception{
+        stage.setTitle("B00DLE");
+        stage.setScene(createScene(loadMainPane()));
+        stage.show();
     }
 
-    public void start(Stage stage) throws Exception {
-
-        log.info("Starting B00DLE application");
-
-        String fxmlFile = "/fxml/home.fxml";
-        log.debug("Loading FXML for main view from: {}", fxmlFile);
+    /**
+     * Loads the main fxml layout.
+     * Sets up the vista switching VistaNavigator.
+     * Loads the first vista into the fxml layout.
+     *
+     * @return the loaded pane.
+     * @throws IOException if the pane could not be loaded.
+     */
+    private Pane loadMainPane() throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
 
-        log.debug("Showing JFX scene");
-        Scene scene = new Scene(rootNode, 400, 200);
-        //scene.getStylesheets().add("/styles/styles.css");
+        Pane mainPane = (Pane) loader.load(getClass().getResourceAsStream(ViewNavigator.MAIN));
 
-        stage.setTitle("B00DLE");
-        stage.setScene(scene);
-        stage.show();
+        MainController mainController = loader.getController();
+
+        ViewNavigator.setMainController(mainController);
+        ViewNavigator.loadVista(ViewNavigator.HOME);
+
+        return mainPane;
+    }
+
+    /**
+     * Creates the main application scene.
+     *
+     * @param mainPane the main application layout.
+     *
+     * @return the created scene.
+     */
+    private Scene createScene(Pane mainPane) {
+        Scene scene = new Scene(mainPane);
+
+        //scene.getStylesheets().setAll(getClass().getResource("style.css").toExternalForm());
+
+        return scene;
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }

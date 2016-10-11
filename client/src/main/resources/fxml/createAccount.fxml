@@ -10,6 +10,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import org.tbee.javafx.scene.layout.fxml.MigPane?>
+<MigPane id="createAccount" fx:controller="com.univtln.b00dle.client.controller.HomeController"
+         styleClass="main-panel"
+         xmlns:fx="http://javafx.com/fxml">
+
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <top>
@@ -24,7 +29,7 @@
          <left>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@images/Logo_B00DLE.png" />
+                  <Image url="@../images/Logo_B00DLE.png"/>
                </image>
             </ImageView>
          </left>
@@ -55,3 +60,5 @@
       </VBox>
    </center>
 </BorderPane>
+
+</MigPane>

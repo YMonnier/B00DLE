@@ -1,34 +1,21 @@
 package com.univtln.b00dle.client.controller;
 
+import com.univtln.b00dle.client.view.ViewNavigator;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.awt.event.ActionEvent;
-import java.io.IOException;
 
 /**
  * Created by Stéphen on 11/10/2016.
  */
 public class HomeController {
 
-    private static final Logger log = LoggerFactory.getLogger(HelloController.class);
-
-    @FXML private TextField firstNameField;
-    @FXML private TextField lastNameField;
-    @FXML private Label messageLabel;
-
+    /**
+     * Event handler fired when the user requests a new vista.
+     *
+     * @param event the event that triggered the handler.
+     */
     @FXML
-    public void runCreateAccount() {
-        System.out.println("ok");
+    public void nextPane() {
+        ViewNavigator.loadVista(ViewNavigator.CREATE_ACCOUNT);
     }
 
 }
