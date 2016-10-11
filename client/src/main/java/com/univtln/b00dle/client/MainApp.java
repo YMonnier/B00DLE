@@ -18,7 +18,7 @@ public class MainApp extends Application {
 
     public void start(Stage stage) throws Exception {
 
-        log.info("Starting Hello JavaFX and Maven demonstration application");
+        /*log.info("Starting Hello JavaFX and Maven demonstration application");
 
         String fxmlFile = "/fxml/hello.fxml";
         log.debug("Loading FXML for main view from: {}", fxmlFile);
@@ -28,6 +28,21 @@ public class MainApp extends Application {
         log.debug("Showing JFX scene");
         Scene scene = new Scene(rootNode, 400, 200);
         scene.getStylesheets().add("/styles/styles.css");
+
+        stage.setTitle("Hello JavaFX and Maven");
+        stage.setScene(scene);
+        stage.show();*/
+
+        log.info("Starting Hello JavaFX and Maven demonstration application");
+
+        String fxmlFile = "/fxml/home.fxml";
+        log.debug("Loading FXML for main view from: {}", fxmlFile);
+        FXMLLoader loader = new FXMLLoader();
+        Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+
+        log.debug("Showing JFX scene");
+        Scene scene = new Scene(rootNode, 400, 200);
+        //scene.getStylesheets().add("/styles/styles.css");
 
         stage.setTitle("Hello JavaFX and Maven");
         stage.setScene(scene);
