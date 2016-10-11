@@ -1,4 +1,4 @@
-package com.univtln.b00dle.client;
+package com.univtln.b00dle.client.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

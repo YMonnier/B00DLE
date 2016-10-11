@@ -32,7 +32,7 @@
                 <version>8.1.5</version>
                 <configuration>
 
-                    <mainClass>com.univtln.b00dle.client.MainApp</mainClass>
+                    <mainClass>com.univtln.b00dle.client.view.MainApp</mainClass>
 
                     <!-- only required if signing the jar file -->
                     <keyStoreAlias>example-user</keyStoreAlias>
