@@ -5,3 +5,6 @@ before_script:
   - cd server && bundle install
 script:
   - RAILS_ENV=test bundle exec rake --trace test
+
+notifications:
+  slack: dptinfo-utln:NZHflf0BDPmm3euG5BCwbFYG
