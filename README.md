@@ -10,19 +10,19 @@ B00DLE application... written in Java with a Rails API backend.
 Requirements
 ------------
 #### Client
-* ...
-* ...
+* Java 8
+* JavaFX
+* Maven 3
 
 #### Server
 * Ruby 2.2.0+
-* Rubygems
-* Bundler
 * Rails 5+
+* RSpec
 
 
 Contributor
 ------------
-* [@MaxenceVialla]()
+* [@Maxence Vialla](https://github.com/maxencevialla)
 
 * [@stephenbellanger](https://github.com/stephenbellanger)
 
