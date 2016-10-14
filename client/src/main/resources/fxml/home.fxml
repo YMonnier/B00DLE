@@ -36,7 +36,7 @@
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField alignment="TOP_LEFT" prefHeight="31.0" prefWidth="200.0" text="Votre sondage..." />
+            <TextField alignment="TOP_LEFT" prefHeight="31.0" prefWidth="200.0" promptText="Votre sondage..." />
             <Button mnemonicParsing="false" text="Visualiser" />
          </children>
       </VBox>
