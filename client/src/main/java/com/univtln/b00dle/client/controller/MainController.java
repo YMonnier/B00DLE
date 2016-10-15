@@ -4,8 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
 
+//http://stackoverflow.com/questions/18619394/loading-new-fxml-in-the-same-scene
+
 /**
- * Main controller class for the entire layout.
+ * ExempleAddRowInTableView controller class for the entire layout.
  */
 public class MainController {
 

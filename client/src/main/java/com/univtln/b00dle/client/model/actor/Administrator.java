@@ -1,6 +1,6 @@
-package com.univtln.b00dle.client.model.pollManager.actor;
+package com.univtln.b00dle.client.model.actor;
 
-import com.univtln.b00dle.client.model.pollManager.poll.Poll;
+import com.univtln.b00dle.client.model.poll.Poll;
 
 import java.util.List;
 

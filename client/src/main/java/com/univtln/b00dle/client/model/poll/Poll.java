@@ -1,4 +1,4 @@
-package com.univtln.b00dle.client.model.pollManager.poll;
+package com.univtln.b00dle.client.model.poll;
 
 import java.util.List;
 
