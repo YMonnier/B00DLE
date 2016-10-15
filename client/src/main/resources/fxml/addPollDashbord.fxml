@@ -12,12 +12,13 @@
 <?import org.tbee.javafx.scene.layout.fxml.MigPane?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
 <MigPane id="addPollDashbord" fx:controller="com.univtln.b00dle.client.controller.DashbordController"
          styleClass="main-panel"
          xmlns:fx="http://javafx.com/fxml">
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
@@ -47,7 +48,8 @@
                   <HBox prefHeight="36.0" prefWidth="600.0">
                      <children>
                         <Label text="Date ... : " />
-                        <ComboBox prefWidth="150.0" />
+                        <DatePicker></DatePicker>
+
                         <Button mnemonicParsing="false" text="Add" />
                      </children>
                   </HBox>

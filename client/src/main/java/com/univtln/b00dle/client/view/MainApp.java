@@ -20,8 +20,8 @@ public class MainApp extends Application {
 
     /**
      * Loads the main fxml layout.
-     * Sets up the vista switching VistaNavigator.
-     * Loads the first vista into the fxml layout.
+     * Sets up the vista switching ViewNavigator.
+     * Load fxml file into main.fxml.
      *
      * @return the loaded pane.
      * @throws IOException if the pane could not be loaded.

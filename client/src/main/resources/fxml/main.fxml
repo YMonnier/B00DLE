@@ -4,8 +4,8 @@
 <?import javafx.scene.layout.*?>
 <?scenebuilder-stylesheet vista.css?>
 
-<VBox prefHeight="200.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.univtln.b00dle.client.controller.MainController">
+<VBox prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.univtln.b00dle.client.controller.MainController">
    <children>
-      <StackPane fx:id="vistaHolder" VBox.vgrow="ALWAYS" />
+      <StackPane fx:id="stackPane" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>

@@ -16,11 +16,12 @@
 
 <?import org.tbee.javafx.scene.layout.fxml.MigPane?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.Pane?>
 <MigPane id="dashbord" fx:controller="com.univtln.b00dle.client.controller.DashbordController"
          styleClass="main-panel"
          xmlns:fx="http://javafx.com/fxml">
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <BorderPane prefHeight="30.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <right>
@@ -56,7 +57,7 @@
       </BorderPane>
    </left>
    <center>
-
+      <Pane fx:id="pane"></Pane>
    </center>
 </BorderPane>
 

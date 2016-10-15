@@ -44,7 +44,7 @@
             </HBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Button mnemonicParsing="false" text="Envoyer" />
+                  <Button onAction="#sendMails" mnemonicParsing="false" text="Envoyer" />
                </children>
             </VBox>
          </children>

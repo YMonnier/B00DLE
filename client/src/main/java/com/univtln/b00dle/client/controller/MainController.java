@@ -3,25 +3,27 @@ package com.univtln.b00dle.client.controller;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 //http://stackoverflow.com/questions/18619394/loading-new-fxml-in-the-same-scene
 
 /**
- * ExempleAddRowInTableView controller class for the entire layout.
+ * MainController class for the entire layout.
  */
+
 public class MainController {
 
-    /** Holder of a switchable vista. */
+    /** Holder of a switchable FXML file. */
     @FXML
-    private StackPane vistaHolder;
+    private StackPane stackPane;
 
     /**
-     * Replaces the vista displayed in the vista holder with a new vista.
+     * Replaces the fxml file displayed in the fxml holder with a new view.
      *
-     * @param node the vista node to be swapped in.
+     * @param node the view node to be swapped in.
      */
-    public void setVista(Node node) {
-        vistaHolder.getChildren().setAll(node);
+    public void setStackPane(Node node) {
+        stackPane.getChildren().setAll(node);
     }
 
 }

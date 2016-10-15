@@ -13,16 +13,16 @@ public class Poll {
     private String place;
     private List<String> mails;
     private List<Date> dates;
-
-    private List<Response> reponses;
+    private List<Response> responses;
 
     public class Builder{
         private String link;
         private String name;
         private String description;
         private String place;
-        private List mails;
-        private List dates;
+        private List<String> mails;
+        private List<Date> dates;
+        private List<Response> responses;
 
         public Builder(String link, String name, String description, String place, List<String> mails, List<Date> dates) {
             this.link = link;
@@ -137,11 +137,8 @@ public class Poll {
         return dates;
     }
 
-    public List<Response> getReponses() {
-        return reponses;
+    public List<Response> getResponses() {
+        return responses;
     }
 
-    public void setReponses(List<Response> reponses) {
-        this.reponses = reponses;
-    }
 }

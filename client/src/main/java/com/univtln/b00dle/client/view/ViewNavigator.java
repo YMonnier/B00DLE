@@ -28,6 +28,7 @@ public class ViewNavigator {
     public static final String CREATE_ACCOUNT = "/fxml/createAccount.fxml";
     public static final String VIEW_POLL = "/fxml/viewPoll.fxml";
     public static final String DASHBORD = "/fxml/dashbord.fxml";
+    public static final String MAILS_DIALOG = "/fxml/dialogAddMails.fxml";
 
     /** The main application layout controller. */
     private static MainController mainController;
@@ -60,7 +61,7 @@ public class ViewNavigator {
      */
     public static void loadVista(String fxml) {
         try {
-            mainController.setVista(FXMLLoader.<Node>load(ViewNavigator.class.getResource(fxml)));
+            mainController.setStackPane(FXMLLoader.<Node>load(ViewNavigator.class.getResource(fxml)));
         } catch (IOException e) {
             e.printStackTrace();
         }
