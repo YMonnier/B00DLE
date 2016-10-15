@@ -17,19 +17,19 @@ public class Administrator {
         this.password = password;
     }
 
-    public void creerSondage(){
+    public void createPoll(Poll poll){
 
     }
 
-    public void cloturerSondage(){
+    public void fencePoll(Poll poll){
 
     }
 
-    public void modifierSondage(){
+    public void modifyPoll(Poll poll){
 
     }
 
-    public void envoyerSondage(Poll poll, List<String> mails){
+    public void sendPoll(Poll poll, List<String> mails){
 
     }
 

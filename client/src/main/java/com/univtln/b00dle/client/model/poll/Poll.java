@@ -11,8 +11,8 @@ public class Poll {
     private String name;
     private String description;
     private String place;
-    private List mails;
-    private List dates;
+    private List<String> mails;
+    private List<Date> dates;
 
     private List<Response> reponses;
 
@@ -24,7 +24,7 @@ public class Poll {
         private List mails;
         private List dates;
 
-        public Builder(String link, String name, String description, String place, List mails, List dates) {
+        public Builder(String link, String name, String description, String place, List<String> mails, List<Date> dates) {
             this.link = link;
             this.name = name;
             this.description = description;
@@ -53,12 +53,12 @@ public class Poll {
             return this;
         }
 
-        public Builder setMails(List mails) {
+        public Builder setMails(List<String> mails) {
             this.mails = mails;
             return this;
         }
 
-        public Builder setDates(List dates) {
+        public Builder setDates(List<Date> dates) {
             this.dates = dates;
             return this;
         }
@@ -68,17 +68,13 @@ public class Poll {
         }
     }
 
-    public Poll(String link, String name, String description, String place, List mails, List dates) {
+    public Poll(String link, String name, String description, String place, List<String> mails, List<Date> dates) {
         this.link = link;
         this.name = name;
         this.description = description;
         this.place = place;
         this.mails = mails;
         this.dates = dates;
-    }
-
-    public void faireChoixDates(){
-
     }
 
     @Override

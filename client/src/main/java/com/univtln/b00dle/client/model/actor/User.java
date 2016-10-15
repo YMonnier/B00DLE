@@ -13,19 +13,19 @@ public class User {
         this.MACAdresse = MACAdresse;
     }
 
-    public void repondre(Poll poll, String name){
+    public void answerPoll(Poll poll, String name){
 
     }
 
-    public void supprimerReponse(Poll poll){
+    public void removeResponse(Poll poll){
 
     }
 
-    public void consulter(Poll poll){
+    public void consultPoll(Poll poll){
 
     }
 
-    public void communiquer(String message){
+    public void communicate(String message){
 
     }
 
