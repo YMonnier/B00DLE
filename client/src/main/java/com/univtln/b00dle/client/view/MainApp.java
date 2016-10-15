@@ -3,12 +3,9 @@ package com.univtln.b00dle.client.view;
 import com.univtln.b00dle.client.controller.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
@@ -52,7 +49,7 @@ public class MainApp extends Application {
     private Scene createScene(Pane mainPane) {
         Scene scene = new Scene(mainPane);
 
-        //scene.getStylesheets().setAll(getClass().getResource("style.css").toExternalForm());
+        //scene.getStylesheets().setAll(getClass().getResource("main/resources/styles/homeStyle.css").toExternalForm());
 
         return scene;
     }

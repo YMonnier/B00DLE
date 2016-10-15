@@ -14,8 +14,12 @@ public class HomeController {
      * @param event the event that triggered the handler.
      */
     @FXML
-    public void nextPane() {
-        ViewNavigator.loadVista(ViewNavigator.CREATE_ACCOUNT);
+    public void nextPaneLogin() {
+        ViewNavigator.loadVista(ViewNavigator.LOGIN);
+    }
+
+    @FXML
+    public void nextPaneViewPoll(){ ViewNavigator.loadVista(ViewNavigator.VIEW_POLL);
     }
 
 }

@@ -23,7 +23,10 @@ public class ViewNavigator {
      */
     public static final String MAIN = "/fxml/main.fxml";
     public static final String HOME = "/fxml/home.fxml";
+    public static final String LOGIN = "/fxml/login.fxml";
     public static final String CREATE_ACCOUNT = "/fxml/createAccount.fxml";
+    public static final String VIEW_POLL = "/fxml/viewPoll.fxml";
+    public static final String DASHBORD = "/fxml/dashbord.fxml";
 
     /** The main application layout controller. */
     private static MainController mainController;
