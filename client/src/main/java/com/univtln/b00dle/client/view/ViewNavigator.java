@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 
 import java.io.IOException;
+import java.io.StringReader;
 
 /**
  * Created by Stéphen on 11/10/2016.

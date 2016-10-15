@@ -50,8 +50,8 @@
          <bottom>
             <VBox prefHeight="94.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField prefHeight="63.0" prefWidth="200.0" />
-                  <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" text="Button" />
+                  <TextField prefHeight="63.0" prefWidth="200.0" promptText="Votre message..." />
+                  <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" text="Envoyer" />
                </children>
             </VBox>
          </bottom>
