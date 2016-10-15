@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import org.tbee.javafx.scene.layout.fxml.MigPane?>
-<MigPane id="createAccount" fx:controller="com.univtln.b00dle.client.controller.HomeController"
+<MigPane id="createAccount" fx:controller="com.univtln.b00dle.client.controller.CreateAccountController"
          styleClass="main-panel"
          xmlns:fx="http://javafx.com/fxml">
 
@@ -22,7 +22,7 @@
          <right>
             <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="86.0" text="LOGIN" />
+                  <Button onAction="#nextPaneHome" mnemonicParsing="false" prefHeight="46.0" prefWidth="86.0" text="HOME" />
                </children>
             </HBox>
          </right>
