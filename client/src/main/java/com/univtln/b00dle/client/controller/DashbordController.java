@@ -25,4 +25,14 @@ public class DashbordController {
         ViewNavigator.loadVista(ViewNavigator.HOME);
     }
 
+    @FXML
+    public void addPoll(){
+        //Replace borderPane.setCenter() by empty poll template
+    }
+
+    @FXML
+    public void addMails(){
+        //Run popup to add mails
+    }
+
 }

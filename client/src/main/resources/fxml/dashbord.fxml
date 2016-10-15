@@ -46,7 +46,7 @@
             <HBox prefHeight="25.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <Label prefHeight="21.0" prefWidth="71.0" text="Sondages" />
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="Add" />
+                  <Button onAction="#addPoll" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="Add" />
                </children>
             </HBox>
          </top>
@@ -56,46 +56,7 @@
       </BorderPane>
    </left>
    <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <top>
-            <Label text="Nom du sondage" BorderPane.alignment="CENTER" />
-         </top>
-         <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label text="Nom" />
-                        <TextField />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label text="Description" />
-                        <TextField />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label text="Lieu" />
-                        <TextField />
-                     </children>
-                  </HBox>
-                  <TableView prefHeight="200.0" prefWidth="392.0">
-                    <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
-                    </columns>
-                  </TableView>
-               </children>
-               <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Valider modifications">
-                  <VBox.margin>
-                     <Insets top="20.0" />
-                  </VBox.margin>
-               </Button>
-            </VBox>
-         </center>
-      </BorderPane>
+
    </center>
 </BorderPane>
 
