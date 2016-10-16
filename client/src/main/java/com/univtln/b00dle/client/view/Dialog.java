@@ -16,10 +16,15 @@ public class Dialog {
     private static Stage stage;
 
     /**
-     * Create stage
+     * Create singleton Stage
      */
-    public static void build(){
-        stage = new Stage();
+    public static Stage build(){
+        if(stage == null) {
+            stage = new Stage();
+            return stage;
+        }
+        else
+            return stage;
     }
 
     public static Stage getStage(){
