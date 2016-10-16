@@ -18,9 +18,10 @@ public class Dialog {
     /**
      * Create singleton Stage
      */
-    public static Stage build(){
+    public static Stage build(String name){
         if(stage == null) {
             stage = new Stage();
+            stage.setTitle(name);
             return stage;
         }
         else

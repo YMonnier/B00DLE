@@ -22,32 +22,42 @@
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
-            <Label text="Création d'un sondage" BorderPane.alignment="CENTER" />
+            <Label text="Création d'un sondage" BorderPane.alignment="CENTER" >
+            <padding><Insets top="5" bottom="30"/></padding>
+            </Label>
          </top>
          <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <VBox BorderPane.alignment="CENTER" spacing="5">
                <children>
-                  <HBox prefHeight="49.0" prefWidth="600.0">
+                  <HBox prefHeight="200.0" prefWidth="600.0">
                      <children>
-                        <Label text="Nom" />
-                        <TextField />
+                        <Label text="Nom :" >
+                           <padding><Insets right="49"/></padding>
+                        </Label>
+                        <TextField prefHeight="100.0" prefWidth="400.0" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="79.0" prefWidth="600.0">
+                  <HBox prefHeight="200.0" prefWidth="600.0">
                      <children>
-                        <Label text="Description" />
-                        <TextField prefHeight="87.0" prefWidth="429.0" />
+                        <Label text="Description :" >
+                           <padding><Insets right="15"/></padding>
+                        </Label>
+                        <TextField prefHeight="300.0" prefWidth="400.0" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="52.0" prefWidth="600.0">
+                  <HBox prefHeight="200.0" prefWidth="600.0">
                      <children>
-                        <Label text="Lieu" />
-                        <TextField />
+                        <Label text="Lieu :" >
+                           <padding><Insets right="55"/></padding>
+                        </Label>
+                        <TextField prefHeight="100.0" prefWidth="400.0" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="36.0" prefWidth="600.0">
+                  <HBox prefHeight="36.0" prefWidth="600.0" spacing="5">
                      <children>
-                        <Label text="Date ... : " />
+                        <Label text="Date : " >
+                           <padding><Insets right="44"/></padding>
+                        </Label>
                         <DatePicker></DatePicker>
 
                         <Button mnemonicParsing="false" text="Add" />
@@ -59,12 +69,8 @@
                       <TableColumn prefWidth="75.0" text="C2" />
                     </columns>
                   </TableView>
+                  <Button onAction="#addMails" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Valider" />
                </children>
-               <Button onAction="#addMails" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Valider">
-                  <VBox.margin>
-                     <Insets top="20.0" />
-                  </VBox.margin>
-               </Button>
             </VBox>
          </center>
       </BorderPane>

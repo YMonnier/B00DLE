@@ -15,17 +15,19 @@
          styleClass="main-panel"
          xmlns:fx="http://javafx.com/fxml">
 
-<DialogPane prefHeight="138.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
-   <header>
-      <Label text="Ajouter des collaborateurs" />
-   </header>
+<DialogPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <content>
-      <VBox prefHeight="200.0" prefWidth="100.0">
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="5">
          <children>
             <HBox prefHeight="13.0" prefWidth="340.0">
                <children>
-                  <Label text="E-mail :" />
+                  <Label text="E-mail :" >
+                     <padding>
+                        <Insets right="80" />
+                     </padding>
+                  </Label>
                   <TextArea prefHeight="17.0" prefWidth="200.0" />
+                  <Button mnemonicParsing="false" text="Add" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
@@ -37,12 +39,12 @@
                   </VBox>
                   <VBox prefHeight="41.0" prefWidth="222.0">
                      <children>
-                        <ListView prefHeight="200.0" prefWidth="200.0" />
+                        <ListView prefHeight="600.0" prefWidth="200.0" />
                      </children>
                   </VBox>
                </children>
             </HBox>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="200.0" prefWidth="100.0" alignment="CENTER">
                <children>
                   <Button onAction="#sendMails" mnemonicParsing="false" text="Envoyer" />
                </children>

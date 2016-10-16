@@ -19,7 +19,8 @@ public class HomeController {
     }
 
     @FXML
-    public void nextPaneViewPoll(){ ViewNavigator.loadVista(ViewNavigator.VIEW_POLL);
+    public void nextPaneViewPoll(){
+        ViewNavigator.loadVista(ViewNavigator.VIEW_POLL);
     }
 
 }

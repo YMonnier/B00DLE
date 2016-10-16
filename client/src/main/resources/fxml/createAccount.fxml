@@ -37,10 +37,11 @@
    </top>
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <padding><Insets top="50" right="25" bottom="10" left="25"/></padding>
          <children>
             <Label text="Création d'un compte">
                <padding>
-                  <Insets bottom="20.0" top="20.0" />
+                  <Insets bottom="80.0" />
                </padding>
             </Label>
             <Label text="Nom" />

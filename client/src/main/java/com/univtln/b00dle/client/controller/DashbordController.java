@@ -36,6 +36,7 @@ public class DashbordController {
     @FXML
     public void addPoll() throws IOException {
         Pane newLoadedPane =  FXMLLoader.load(getClass().getResource("/fxml/addPollDashbord.fxml"));
+        pane.getChildren().clear();
         pane.getChildren().add(newLoadedPane);
     }
 
@@ -45,7 +46,7 @@ public class DashbordController {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(ViewNavigator.MAILS_DIALOG));
         Parent content = (Parent) loader.load();
-        Dialog.build();
+        Dialog.build("Ajouter collaborateurs");
         Dialog.getStage().setScene(new Scene(content));
         Dialog.getStage().show();
     }
