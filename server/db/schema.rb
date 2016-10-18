@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 500) do
+ActiveRecord::Schema.define(version: 600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answer_time_slots", id: false, force: :cascade do |t|
+    t.integer "answer_id"
+    t.integer "time_slot_id"
+    t.index ["answer_id"], name: "index_answer_time_slots_on_answer_id", using: :btree
+    t.index ["time_slot_id"], name: "index_answer_time_slots_on_time_slot_id", using: :btree
+  end
 
   create_table "answers", force: :cascade do |t|
     t.string   "name"
@@ -63,7 +70,6 @@ ActiveRecord::Schema.define(version: 500) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
-    t.string "api_key"
   end
 
   add_foreign_key "answers", "applications"
