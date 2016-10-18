@@ -40,13 +40,13 @@
             <Label text="Chat" BorderPane.alignment="CENTER" />
          </top>
          <center>
-            <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <ListView fx:id="chat" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </center>
          <bottom>
             <VBox prefHeight="94.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField prefHeight="63.0" prefWidth="200.0" promptText="Votre message..." />
-                  <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" text="Envoyer" />
+                  <TextField fx:id="chatMessageField" prefHeight="63.0" prefWidth="200.0" promptText="Votre message..." />
+                  <Button onAction="#addChatMessage" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" text="Envoyer" />
                </children>
             </VBox>
          </bottom>
@@ -55,7 +55,7 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="600.0" alignment="CENTER" spacing="5">
          <children>
-            <Label prefHeight="34.0" prefWidth="150.0" text="Nom du sondage">
+            <Label fx:id="name" prefHeight="34.0" prefWidth="150.0" text="Nom du sondage">
                <padding>
                   <Insets bottom="50"/>
                </padding>
@@ -67,7 +67,7 @@
                         <Insets right="5"/>
                      </padding>
                   </Label>
-                  <TextArea prefHeight="200.0" prefWidth="500.0" />
+                  <TextArea fx:id="description" prefHeight="200.0" prefWidth="500.0" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
@@ -77,7 +77,7 @@
                         <Insets right="52"/>
                      </padding>
                   </Label>
-                  <TextArea prefHeight="100.0" prefWidth="500.0" />
+                  <TextArea fx:id="place" prefHeight="100.0" prefWidth="500.0" />
                </children>
             </HBox>
             <TableView fx:id="tableViewResponsePoll" editable="true" prefHeight="200.0" prefWidth="200.0">

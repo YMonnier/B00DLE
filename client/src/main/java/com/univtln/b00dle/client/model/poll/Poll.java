@@ -1,5 +1,6 @@
 package com.univtln.b00dle.client.model.poll;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,6 +15,7 @@ public class Poll {
     private List<String> mails;
     private List<Date> dates;
     private List<Response> responses;
+    private List<String> chat = new ArrayList<String>();
 
     public class Builder{
         private String link;
@@ -68,11 +70,15 @@ public class Poll {
         }
     }
 
-    public Poll(String link, String name, String description, String place, List<String> mails, List<Date> dates) {
+    public Poll(String link, String name, String description, String place){
         this.link = link;
         this.name = name;
         this.description = description;
         this.place = place;
+    }
+
+    public Poll(String link, String name, String description, String place, List<String> mails, List<Date> dates) {
+        this(link, name, description, place);
         this.mails = mails;
         this.dates = dates;
     }
@@ -140,5 +146,7 @@ public class Poll {
     public List<Response> getResponses() {
         return responses;
     }
+
+    public List<String> getChat(){ return chat; }
 
 }
