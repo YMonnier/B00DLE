@@ -13,6 +13,10 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.DatePicker?>
+<?import jfxtras.scene.control.LocalDateTextField?>
+<?import jfxtras.scene.control.LocalDateTimePicker?>
+<?import javafx.scene.layout.TilePane?>
+<?import com.sun.javafx.scene.control.skin.TitledPaneSkin.TitleRegion?>
 <MigPane id="addPollDashbord" fx:controller="com.univtln.b00dle.client.controller.DashbordController"
          styleClass="main-panel"
          xmlns:fx="http://javafx.com/fxml">
@@ -32,7 +36,7 @@
                   <HBox prefHeight="200.0" prefWidth="600.0">
                      <children>
                         <Label text="Nom :" >
-                           <padding><Insets right="49"/></padding>
+                           <padding><Insets right="59"/></padding>
                         </Label>
                         <TextField prefHeight="100.0" prefWidth="400.0" />
                      </children>
@@ -48,18 +52,33 @@
                   <HBox prefHeight="200.0" prefWidth="600.0">
                      <children>
                         <Label text="Lieu :" >
-                           <padding><Insets right="55"/></padding>
+                           <padding><Insets right="63"/></padding>
                         </Label>
                         <TextField prefHeight="100.0" prefWidth="400.0" />
                      </children>
                   </HBox>
                   <HBox prefHeight="36.0" prefWidth="600.0" spacing="5">
                      <children>
-                        <Label text="Date : " >
-                           <padding><Insets right="44"/></padding>
+                        <Label text="Date de départ: " >
+                           <padding><Insets right="5"/></padding>
                         </Label>
-                        <DatePicker></DatePicker>
-
+                        <TextField prefHeight="100.0" prefWidth="100.0" promptText="jj/mm/aaaa"/>
+                        <Label text="Horaire de départ: " >
+                           <padding><Insets left="5"/></padding>
+                        </Label>
+                        <TextField prefHeight="100.0" prefWidth="80.0" promptText="mm/hh"/>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="36.0" prefWidth="600.0" spacing="5">
+                     <children>
+                        <Label text="Date de fin: " >
+                           <padding><Insets right="5"/></padding>
+                        </Label>
+                        <TextField prefHeight="100.0" prefWidth="100.0" promptText="jj/mm/aaaa"/>
+                        <Label text="Horaire de fin: " >
+                           <padding><Insets left="5"/></padding>
+                        </Label>
+                        <TextField prefHeight="100.0" prefWidth="80.0" promptText="mm/hh"/>
                         <Button mnemonicParsing="false" text="Add" />
                      </children>
                   </HBox>

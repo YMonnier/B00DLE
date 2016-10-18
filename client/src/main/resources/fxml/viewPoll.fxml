@@ -59,9 +59,9 @@
       </BorderPane>
    </left>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" alignment="CENTER" spacing="5">
+      <VBox prefHeight="200.0" prefWidth="600.0" alignment="CENTER" spacing="5">
          <children>
-            <Label prefHeight="34.0" prefWidth="103.0" text="Nom du sondage">
+            <Label prefHeight="34.0" prefWidth="150.0" text="Nom du sondage">
                <padding>
                   <Insets bottom="50"/>
                </padding>
@@ -80,7 +80,7 @@
                <children>
                   <Label text="Lieu : " >
                      <padding>
-                        <Insets right="45"/>
+                        <Insets right="52"/>
                      </padding>
                   </Label>
                   <TextArea prefHeight="100.0" prefWidth="500.0" />
