@@ -1,7 +1,9 @@
 package com.univtln.b00dle.client.controller;
 
 import com.univtln.b00dle.client.view.ViewNavigator;
+import com.univtln.b00dle.client.view.ViewPoll;
 import javafx.fxml.FXML;
+import javafx.stage.Stage;
 
 /**
  * Created by Stéphen on 11/10/2016.

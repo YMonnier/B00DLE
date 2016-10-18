@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-
-<?import org.tbee.javafx.scene.layout.fxml.MigPane?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
+<?import com.univtln.b00dle.client.model.poll.ResponseTest?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
-<MigPane id="sondagePane" fx:controller="com.univtln.b00dle.client.controller.PollController"
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import org.tbee.javafx.scene.layout.fxml.MigPane?>
+<MigPane id="sondagePane"  fx:controller="com.univtln.b00dle.client.controller.PollController"
          styleClass="main-panel"
          xmlns:fx="http://javafx.com/fxml">
 
@@ -88,9 +82,20 @@
             </HBox>
             <TableView prefHeight="200.0" prefWidth="200.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn prefWidth="75.0" text="C1" >
+                  <cellValueFactory><PropertyValueFactory property="rep" />
+                 </cellValueFactory>
+                 </TableColumn>
+                <TableColumn prefWidth="75.0" text="C2" >
+                   <cellValueFactory><PropertyValueFactory property="rep2" />
+                   </cellValueFactory>
+                </TableColumn>
               </columns>
+               <items>
+                  <FXCollections fx:factory="observableArrayList">
+                     <ResponseTest rep="OK" rep2="OK"/>
+                  </FXCollections>
+               </items>
             </TableView>
             <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Enregistrer">
                <VBox.margin>

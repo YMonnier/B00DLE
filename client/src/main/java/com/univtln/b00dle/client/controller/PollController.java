@@ -2,6 +2,8 @@ package com.univtln.b00dle.client.controller;
 
 import com.univtln.b00dle.client.view.ViewNavigator;
 import javafx.fxml.FXML;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TableView;
 
 /**
  * Created by Stéphen on 15/10/2016.
