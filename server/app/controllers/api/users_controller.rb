@@ -12,15 +12,10 @@ class Api::UsersController < ApplicationController
     user.password = user_params[:password]
 
     if user.save
-      return render json: {
-          succeed: true,
-          data: user
-      }, status: 201
+      created_request user
+
     else
-      return render json: {
-          succeed: false,
-          message: user.errors
-      }, status: 400
+      bad_request user.errors
     end
   end
 
