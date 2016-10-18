@@ -80,19 +80,21 @@
                   <TextArea prefHeight="100.0" prefWidth="500.0" />
                </children>
             </HBox>
-            <TableView prefHeight="200.0" prefWidth="200.0">
+            <TableView fx:id="tableViewResponsePoll" editable="true" prefHeight="200.0" prefWidth="200.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" >
+                <TableColumn fx:id="reponse" editable="true" prefWidth="75.0" text="C1" >
                   <cellValueFactory><PropertyValueFactory property="rep" />
                  </cellValueFactory>
                  </TableColumn>
-                <TableColumn prefWidth="75.0" text="C2" >
+                <TableColumn fx:id="reponse2" prefWidth="75.0" text="C2" >
                    <cellValueFactory><PropertyValueFactory property="rep2" />
                    </cellValueFactory>
                 </TableColumn>
               </columns>
                <items>
                   <FXCollections fx:factory="observableArrayList">
+                     <ResponseTest rep="OK" rep2="OK"/>
+                     <ResponseTest rep="OK" rep2="OK"/>
                      <ResponseTest rep="OK" rep2="OK"/>
                   </FXCollections>
                </items>
