@@ -1,4 +1,6 @@
-package com.univtln.b00dle.client.model.poll;
+package com.univtln.b00dle.client.model.boodle.poll;
+
+import com.univtln.b00dle.client.model.boodle.actor.Administrator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,7 @@ public class Poll {
     private List<Date> dates;
     private List<Response> responses;
     private List<String> chat = new ArrayList<String>();
+    private Administrator administrator;
 
     public class Builder{
         private String link;
@@ -25,14 +28,16 @@ public class Poll {
         private List<String> mails;
         private List<Date> dates;
         private List<Response> responses;
+        private Administrator administrator;
 
-        public Builder(String link, String name, String description, String place, List<String> mails, List<Date> dates) {
+        public Builder(String link, String name, String description, String place, Administrator administrator, List<String> mails, List<Date> dates) {
             this.link = link;
             this.name = name;
             this.description = description;
             this.place = place;
             this.mails = mails;
             this.dates = dates;
+            this.administrator = administrator;
         }
 
         public Builder setLink(String link) {
@@ -66,26 +71,27 @@ public class Poll {
         }
 
         public Poll build(){
-            return new Poll(link, name, description, place, mails, dates);
+            return new Poll(link, name, description, place, administrator, mails, dates);
         }
     }
 
-    public Poll(String link, String name, String description, String place){
+    public Poll(String link, String name, String description, String place, Administrator administrator){
         this.link = link;
         this.name = name;
         this.description = description;
         this.place = place;
+        this.administrator = administrator;
     }
 
-    public Poll(String link, String name, String description, String place, List<String> mails, List<Date> dates) {
-        this(link, name, description, place);
+    public Poll(String link, String name, String description, String place, Administrator administrator, List<String> mails, List<Date> dates) {
+        this(link, name, description, place, administrator);
         this.mails = mails;
         this.dates = dates;
     }
 
     @Override
     public String toString() {
-        return "Sondage " + link + " nom : " + name;
+        return name;
     }
 
     @Override
@@ -148,5 +154,9 @@ public class Poll {
     }
 
     public List<String> getChat(){ return chat; }
+
+    public Administrator getAdministrator(){
+        return administrator;
+    }
 
 }

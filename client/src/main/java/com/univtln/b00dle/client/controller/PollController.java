@@ -1,8 +1,9 @@
 package com.univtln.b00dle.client.controller;
 
 import com.univtln.b00dle.client.model.Model;
-import com.univtln.b00dle.client.model.poll.Poll;
-import com.univtln.b00dle.client.model.poll.ResponseTest;
+import com.univtln.b00dle.client.model.boodle.exception.PollNotFoundException;
+import com.univtln.b00dle.client.model.boodle.poll.Poll;
+import com.univtln.b00dle.client.model.boodle.poll.ResponseTest;
 import com.univtln.b00dle.client.view.ViewNavigator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,6 +37,9 @@ public class PollController{
     TextField chatMessageField;
 
     @FXML
+    TextField chatNameField;
+
+    @FXML
     TextArea description;
 
     @FXML
@@ -46,11 +50,7 @@ public class PollController{
 
     private Model model;
 
-    /**
-     * Event handler fired when the user requests a new vista.
-     *
-     * @param event the event that triggered the handler.
-     */
+    private String link;
 
     /** The constructor. The constructor is called before the initialize()
       * method.
@@ -61,12 +61,12 @@ public class PollController{
 
     @FXML
     public void nextPaneHome() {
-        ViewNavigator.loadVista(ViewNavigator.HOME);
+        ViewNavigator.loadFXMLFile(ViewNavigator.HOME);
     }
 
     @FXML
     public void nextPaneLogin(){
-        ViewNavigator.loadVista(ViewNavigator.LOGIN);
+        ViewNavigator.loadFXMLFile(ViewNavigator.LOGIN);
     }
 
     /**
@@ -74,10 +74,13 @@ public class PollController{
      */
     @FXML
     public void addChatMessage(){
+        String name = chatNameField.getText();
         String message = chatMessageField.getText();
-        model.addChatMessage("484f74", message);
-        ObservableList<String> listMessage = FXCollections.observableArrayList(model.getChatMessage("484f74"));
+        String chatMessage = name + " : " + message;
+        model.addChatMessage(link, chatMessage);
+        ObservableList<String> listMessage = FXCollections.observableArrayList(model.getChatMessage(link));
         chat.setItems(listMessage);
+        chatMessageField.setText("");
     }
 
     /**
@@ -87,11 +90,19 @@ public class PollController{
 
     @FXML
     public void initialize() {
+        //Get link poll
+        try {
+            this.link = HomeController.getLink();
+        } catch (PollNotFoundException e) {
+
+        }
+
+
         //Get chat message
-        List<String> listMessage = model.getChatMessage("484f74");
+        List<String> listMessage = model.getChatMessage(link);
 
         //Get and put all informations about poll and textArea become not editable
-        Poll poll = model.getPoll("484f74");
+        Poll poll = model.getPollByLink(link);
         name.setText(poll.getName());
         description.setText(poll.getDescription());
         description.setEditable(false);
@@ -100,7 +111,8 @@ public class PollController{
 
         //Rend le tableau editable
         tableViewResponsePoll.setEditable(true);
-        //Rend la colone response editable
+
+        //Rend la colonne response editable
         reponse.setCellFactory(TextFieldTableCell.<ResponseTest>forTableColumn());
         reponse2.setCellFactory(TextFieldTableCell.<ResponseTest>forTableColumn());
     }

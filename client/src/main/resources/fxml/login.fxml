@@ -40,7 +40,7 @@
                </padding>
             </Label>
             <Label text="E-mail" />
-            <TextField />
+            <TextField fx:id="mailField" />
             <Label text="Mot de passe" />
             <TextField />
             <Button onAction="#nextPaneDashbord" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Valider">

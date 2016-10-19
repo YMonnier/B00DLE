@@ -1,11 +1,15 @@
 package com.univtln.b00dle.client.controller;
 
+import com.univtln.b00dle.client.model.Model;
 import com.univtln.b00dle.client.view.Dialog;
 import com.univtln.b00dle.client.view.ViewNavigator;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -20,17 +24,27 @@ public class DashbordController {
     @FXML
     private Stage mailsDialog;
 
-    @FXML Pane pane;
+    @FXML
+    private Pane pane;
+
+    @FXML
+    private ListView listViewPoll;
+
+    private Model model;
+
+    public DashbordController(){
+        this.model = new Model();
+    }
 
     @FXML
     public void nextPaneHome() {
-        ViewNavigator.loadVista(ViewNavigator.HOME);
+        ViewNavigator.loadFXMLFile(ViewNavigator.HOME);
     }
 
     @FXML
     public void nextPaneLogout(){
         //Add logout in server
-        ViewNavigator.loadVista(ViewNavigator.HOME);
+        ViewNavigator.loadFXMLFile(ViewNavigator.HOME);
     }
 
     @FXML
@@ -57,6 +71,12 @@ public class DashbordController {
         //2. Add poll in list
         Dialog.getStage().close();
         //4. Display in modify template poll
+    }
+
+    @FXML
+    public void initialize(){
+        ObservableList<Object> listPoll = FXCollections.observableArrayList(model.getPoll(LoginController.getMail()));
+        listViewPoll.setItems(listPoll);
     }
 
 }

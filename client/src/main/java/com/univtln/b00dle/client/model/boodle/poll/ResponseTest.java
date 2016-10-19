@@ -1,4 +1,4 @@
-package com.univtln.b00dle.client.model.poll;
+package com.univtln.b00dle.client.model.boodle.poll;
 
 import javafx.beans.property.SimpleStringProperty;
 

@@ -1,7 +1,7 @@
 package com.univtln.b00dle.client.model;
 
-import com.univtln.b00dle.client.model.poll.Boodle;
-import com.univtln.b00dle.client.model.poll.Poll;
+import com.univtln.b00dle.client.model.boodle.Boodle;
+import com.univtln.b00dle.client.model.boodle.poll.Poll;
 
 import java.util.List;
 
@@ -24,7 +24,11 @@ public class Model {
         boodle.addChatMessage(link, message);
     }
 
-    public Poll getPoll(String link){
-        return boodle.getPoll(link);
+    public Poll getPollByLink(String link){
+        return boodle.getPollByLink(link);
+    }
+
+    public List<Poll> getPoll(String email){
+        return boodle.getPoll(email);
     }
 }

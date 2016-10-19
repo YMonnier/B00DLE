@@ -10,9 +10,9 @@ public class CreateAccountController {
 
     @FXML
     public void nextPaneHome() {
-        ViewNavigator.loadVista(ViewNavigator.HOME);
+        ViewNavigator.loadFXMLFile(ViewNavigator.HOME);
     }
 
     @FXML
-    public void nextPaneDashbord(){ ViewNavigator.loadVista(ViewNavigator.DASHBORD);}
+    public void nextPaneDashbord(){ ViewNavigator.loadFXMLFile(ViewNavigator.DASHBORD);}
 }

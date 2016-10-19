@@ -34,7 +34,7 @@ public class MainApp extends Application {
         MainController mainController = loader.getController();
 
         ViewNavigator.setMainController(mainController);
-        ViewNavigator.loadVista(ViewNavigator.HOME);
+        ViewNavigator.loadFXMLFile(ViewNavigator.HOME);
 
         return mainPane;
     }

@@ -35,7 +35,7 @@ public class ViewPoll extends Application {
         MainController mainController = loader.getController();
 
         ViewNavigator.setMainController(mainController);
-        ViewNavigator.loadVista(ViewNavigator.VIEW_POLL);
+        ViewNavigator.loadFXMLFile(ViewNavigator.VIEW_POLL);
 
         return mainPane;
     }

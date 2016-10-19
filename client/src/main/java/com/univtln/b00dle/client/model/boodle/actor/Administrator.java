@@ -1,6 +1,7 @@
-package com.univtln.b00dle.client.model.actor;
+package com.univtln.b00dle.client.model.boodle.actor;
 
-import com.univtln.b00dle.client.model.poll.Poll;
+import com.univtln.b00dle.client.model.boodle.Boodle;
+import com.univtln.b00dle.client.model.boodle.poll.Poll;
 
 import java.util.List;
 
@@ -17,16 +18,20 @@ public class Administrator {
         this.password = password;
     }
 
-    public void createPoll(Poll poll){
-
+    public void createPoll(Poll poll, Boodle boodle){
+        boodle.getListPoll().put(poll.getLink(), poll);
     }
 
-    public void fencePoll(Poll poll){
-
+    public void removePoll(Poll poll, Boodle boodle){
+        boodle.getListPoll().remove(poll);
     }
 
-    public void modifyPoll(Poll poll){
-
+    public void modifyPoll(Poll poll, Boodle boodle){
+        Poll ancienPoll = boodle.getPollByLink(poll.getLink());
+        ancienPoll.setDescription(poll.getDescription());
+        ancienPoll.setMails(poll.getMails());
+        ancienPoll.setName(poll.getName());
+        ancienPoll.setPlace(poll.getPlace());
     }
 
     public void sendPoll(Poll poll, List<String> mails){

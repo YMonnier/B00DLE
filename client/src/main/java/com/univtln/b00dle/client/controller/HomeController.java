@@ -1,28 +1,33 @@
 package com.univtln.b00dle.client.controller;
 
+import com.univtln.b00dle.client.model.boodle.exception.PollNotFoundException;
 import com.univtln.b00dle.client.view.ViewNavigator;
-import com.univtln.b00dle.client.view.ViewPoll;
 import javafx.fxml.FXML;
-import javafx.stage.Stage;
+import javafx.scene.control.TextField;
 
 /**
  * Created by Stéphen on 11/10/2016.
  */
 public class HomeController {
 
-    /**
-     * Event handler fired when the user requests a new vista.
-     *
-     * @param event the event that triggered the handler.
-     */
+    @FXML
+    TextField linkField;
+
+    private static String link;
+
     @FXML
     public void nextPaneLogin() {
-        ViewNavigator.loadVista(ViewNavigator.LOGIN);
+        ViewNavigator.loadFXMLFile(ViewNavigator.LOGIN);
     }
 
     @FXML
     public void nextPaneViewPoll(){
-        ViewNavigator.loadVista(ViewNavigator.VIEW_POLL);
+        this.link = linkField.getText();
+        ViewNavigator.loadFXMLFile(ViewNavigator.VIEW_POLL);
+    }
+
+    protected static String getLink() throws PollNotFoundException {
+        return link;
     }
 
 }

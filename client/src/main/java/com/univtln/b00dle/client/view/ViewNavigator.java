@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 
 import java.io.IOException;
-import java.io.StringReader;
 
 /**
  * Created by Stéphen on 11/10/2016.
@@ -59,7 +58,7 @@ public class ViewNavigator {
      *
      * @param fxml the fxml file to be loaded.
      */
-    public static void loadVista(String fxml) {
+    public static void loadFXMLFile(String fxml) {
         try {
             mainController.setStackPane(FXMLLoader.<Node>load(ViewNavigator.class.getResource(fxml)));
         } catch (IOException e) {

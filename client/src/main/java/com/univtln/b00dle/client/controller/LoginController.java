@@ -1,31 +1,48 @@
 package com.univtln.b00dle.client.controller;
 
+import com.univtln.b00dle.client.model.Model;
 import com.univtln.b00dle.client.view.ViewNavigator;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
 /**
  * Created by sbellange845 on 15/10/16.
  */
 public class LoginController {
 
-    /**
-     * Event handler fired when the user requests a new vista.
-     *
-     * @param event the event that triggered the handler.
-     */
+    protected static String mail;
+
+    @FXML
+    TextField mailField;
+
+    @FXML
+    ListView listViewPoll;
+
+    private Model model;
+
+    public LoginController(){
+        this.model = new Model();
+    }
+
     @FXML
     public void nextPaneCreateAccount() {
-        ViewNavigator.loadVista(ViewNavigator.CREATE_ACCOUNT);
+        ViewNavigator.loadFXMLFile(ViewNavigator.CREATE_ACCOUNT);
     }
 
     @FXML
     public void nextPaneHome() {
-        ViewNavigator.loadVista(ViewNavigator.HOME);
+        ViewNavigator.loadFXMLFile(ViewNavigator.HOME);
     }
 
     @FXML
     public void nextPaneDashbord() {
-        ViewNavigator.loadVista(ViewNavigator.DASHBORD);
+        this.mail = mailField.getText();
+        ViewNavigator.loadFXMLFile(ViewNavigator.DASHBORD);
+    }
+
+    public static String getMail(){
+        return mail;
     }
 
 }

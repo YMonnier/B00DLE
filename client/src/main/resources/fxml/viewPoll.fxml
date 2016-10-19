@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.univtln.b00dle.client.model.poll.ResponseTest?>
+<?import com.univtln.b00dle.client.model.boodle.poll.ResponseTest?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
@@ -45,6 +45,7 @@
          <bottom>
             <VBox prefHeight="94.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
+                  <TextField fx:id="chatNameField" prefHeight="63.0" prefWidth="200.0" promptText="Votre nom" />
                   <TextField fx:id="chatMessageField" prefHeight="63.0" prefWidth="200.0" promptText="Votre message..." />
                   <Button onAction="#addChatMessage" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" text="Envoyer" />
                </children>
