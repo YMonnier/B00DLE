@@ -15,4 +15,11 @@ class ApplicationController < ActionController::API
         data: object
     }, status: 201
   end
+
+  def ok_request object
+    return render json: {
+        succeed: true,
+        data: object
+    }, status: 200
+  end
 end
