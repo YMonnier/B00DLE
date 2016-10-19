@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 500) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "invitations", id: false, force: :cascade do |t|
+  create_table "invitations", force: :cascade do |t|
     t.integer  "opinion_poll_id"
     t.string   "email"
     t.datetime "created_at",      null: false
@@ -45,14 +45,15 @@ ActiveRecord::Schema.define(version: 500) do
     t.string   "description"
     t.string   "place"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.boolean  "close",       default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["user_id"], name: "index_opinion_polls_on_user_id", using: :btree
   end
 
   create_table "time_slots", force: :cascade do |t|
-    t.date     "from"
-    t.date     "to"
+    t.datetime "from"
+    t.datetime "to"
     t.integer  "opinion_poll_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
@@ -63,7 +64,6 @@ ActiveRecord::Schema.define(version: 500) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
-    t.string "api_key"
   end
 
   add_foreign_key "answers", "applications"
