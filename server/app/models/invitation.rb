@@ -1,5 +1,5 @@
 class Invitation < ApplicationRecord
-    has_one :opinionPoll
+    #has_one :opinionPoll
 
     validates :email,
             presence: true,
