@@ -3,6 +3,10 @@ module Request
     def json_response
       @json_response ||= JSON.parse(response.body, symbolize_names: true)
     end
+
+    def generate_token user
+      Knock::AuthToken.new(payload: { sub: user[:id] }).token
+    end
   end
 
   module HeadersHelpers
