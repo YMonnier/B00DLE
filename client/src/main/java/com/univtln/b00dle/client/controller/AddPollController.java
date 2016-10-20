@@ -6,9 +6,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.MapValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * Created by Stéphen on 20/10/2016.
@@ -23,6 +28,34 @@ public class AddPollController {
     @FXML
     private Stage mailsDialog;
 
+    @FXML
+    private TextField departureDateField;
+
+    @FXML
+    private TextField departureTimeField;
+
+    @FXML
+    private TextField endDateField;
+
+    @FXML
+    private TextField endTimeField;
+
+    @FXML
+    private TableView tableViewPoll;
+
+    @FXML
+    public void addDate(){
+        String departureDate = departureDateField.getText();
+        String departureTime = departureTimeField.getText();
+        String endDate = endDateField.getText();
+        String endTime = endTimeField.getText();
+        String newNameColumn = departureDate + " - " + departureTime + "/" + endDate + " - " + endTime;
+        TableColumn<Map, String> column = new TableColumn<>(newNameColumn);
+        column.setCellValueFactory(new MapValueFactory(newNameColumn));
+        column.setMinWidth(newNameColumn.length());
+        tableViewPoll.getColumns().add(column);
+    }
+
     /**
      * Run popup to add mails
      */
@@ -34,6 +67,11 @@ public class AddPollController {
         Dialog.build("Ajouter collaborateurs");
         Dialog.getStage().setScene(new Scene(content));
         Dialog.getStage().show();
+    }
+
+    @FXML
+    public void initialize(){
+        tableViewPoll.setEditable(true);
     }
 
 }

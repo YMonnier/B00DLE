@@ -57,11 +57,11 @@
                         <Label text="Date de départ: " >
                            <padding><Insets right="5"/></padding>
                         </Label>
-                        <TextField prefHeight="100.0" prefWidth="100.0" promptText="jj/mm/aaaa"/>
+                        <TextField fx:id="departureDateField" prefHeight="100.0" prefWidth="100.0" promptText="jj/mm/aaaa"/>
                         <Label text="Horaire de départ: " >
                            <padding><Insets left="5"/></padding>
                         </Label>
-                        <TextField prefHeight="100.0" prefWidth="80.0" promptText="mm/hh"/>
+                        <TextField fx:id="departureTimeField" prefHeight="100.0" prefWidth="80.0" promptText="mm/hh"/>
                      </children>
                   </HBox>
                   <HBox prefHeight="36.0" prefWidth="600.0" spacing="5">
@@ -69,20 +69,15 @@
                         <Label text="Date de fin: " >
                            <padding><Insets right="5"/></padding>
                         </Label>
-                        <TextField prefHeight="100.0" prefWidth="100.0" promptText="jj/mm/aaaa"/>
+                        <TextField fx:id="endDateField" prefHeight="100.0" prefWidth="100.0" promptText="jj/mm/aaaa"/>
                         <Label text="Horaire de fin: " >
                            <padding><Insets left="5"/></padding>
                         </Label>
-                        <TextField prefHeight="100.0" prefWidth="80.0" promptText="mm/hh"/>
-                        <Button mnemonicParsing="false" text="Add" />
+                        <TextField fx:id="endTimeField" prefHeight="100.0" prefWidth="80.0" promptText="mm/hh"/>
+                        <Button onAction="#addDate" mnemonicParsing="false" text="Add" />
                      </children>
                   </HBox>
-                  <TableView prefHeight="200.0" prefWidth="200.0">
-                    <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
-                    </columns>
-                  </TableView>
+                  <TableView fx:id="tableViewPoll" prefHeight="200.0" prefWidth="200.0" />
                   <Button onAction="#addMails" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Valider" />
                </children>
             </VBox>
