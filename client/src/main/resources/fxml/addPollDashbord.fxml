@@ -33,7 +33,7 @@
                         <Label text="Nom :" >
                            <padding><Insets right="59"/></padding>
                         </Label>
-                        <TextField prefHeight="100.0" prefWidth="400.0" />
+                        <TextField fx:id="namePollField" prefHeight="100.0" prefWidth="400.0" />
                      </children>
                   </HBox>
                   <HBox prefHeight="200.0" prefWidth="600.0">

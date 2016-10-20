@@ -16,11 +16,25 @@ import java.io.IOException;
  */
 public class MailsDialogController {
 
-    @FXML
-    ListView listViewMails;
+    /**
+     * Link into dialog and dashbord
+     */
+    private DashbordController dashbordController;
+
+    /**
+     * Variable FXML
+     * are instanciate when fxml file is load
+     */
 
     @FXML
-    TextField mailTextField;
+    private ListView listViewMails;
+
+    @FXML
+    private TextField mailTextField;
+
+    public MailsDialogController(){
+        this.dashbordController = new DashbordController();
+    }
 
     /**
      * Event add mails in ListView

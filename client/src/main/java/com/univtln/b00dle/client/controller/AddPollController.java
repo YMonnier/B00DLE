@@ -29,6 +29,9 @@ public class AddPollController {
     private Stage mailsDialog;
 
     @FXML
+    private TextField namePollField;
+
+    @FXML
     private TextField departureDateField;
 
     @FXML
@@ -72,9 +75,16 @@ public class AddPollController {
         Dialog.getStage().show();
     }
 
+    /**
+     * Event add poll in ListView
+     */
+    @FXML
+    public void addPollInListView(){
+
+    }
+
     @FXML
     public void initialize(){
         tableViewPoll.setEditable(true);
     }
-
 }

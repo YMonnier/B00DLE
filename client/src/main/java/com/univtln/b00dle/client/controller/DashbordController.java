@@ -1,8 +1,11 @@
 package com.univtln.b00dle.client.controller;
 
 import com.univtln.b00dle.client.model.Model;
+import com.univtln.b00dle.client.model.boodle.poll.Poll;
 import com.univtln.b00dle.client.view.Dialog;
 import com.univtln.b00dle.client.view.ViewNavigator;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -42,7 +45,7 @@ public class DashbordController {
      * ListView display poll who are create by administrator
      */
     @FXML
-    private ListView listViewPoll;
+    private ListView<Poll> listViewPoll;
 
     /**
      * Constructor
@@ -88,13 +91,13 @@ public class DashbordController {
      * @throws IOException
      */
     @FXML
-    public void addPollInformations() throws IOException {
+    public void addPollInformations(MouseEvent arg) throws IOException {
+        String link = listViewPoll.getSelectionModel().getSelectedItem().getLink();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(ViewNavigator.MODIFY_POLL));
-        ModifyPollController m = new ModifyPollController("test", "test", "test");
+        ModifyPollController m = new ModifyPollController(model.getPollByLink(link).getName(), model.getPollByLink(link).getDescription(), model.getPollByLink(link).getPlace());
         loader.setController(m);
         pane.getChildren().clear();
         pane.getChildren().add(loader.load());
-
     }
 
     /**
@@ -103,7 +106,7 @@ public class DashbordController {
      */
     @FXML
     public void initialize(){
-        ObservableList<Object> listPoll = FXCollections.observableArrayList(model.getPoll(LoginController.getMail()));
+        ObservableList<Poll> listPoll = FXCollections.observableArrayList(model.getPoll(LoginController.getMail()));
         listViewPoll.setItems(listPoll);
     }
 }
