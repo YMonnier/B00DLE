@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
@@ -60,12 +61,12 @@ public class DashbordController {
     }
 
     @FXML
-    public void addPollInformations(MouseEvent mouseEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        Pane newLoadedPane = loader.load(getClass().getResource(ViewNavigator.MODIFY_POLL));
+    public void addPollInformations() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(ViewNavigator.MODIFY_POLL));
+        ModifyPollController m = new ModifyPollController("test", "test", "test");
+        loader.setController(m);
         pane.getChildren().clear();
-        pane.getChildren().add(newLoadedPane);
-        //ModifyPollController controller = loader.<ModifyPollController>getController();
-        //controller.initData(customer);
+        pane.getChildren().add(loader.load());
+
     }
 }
