@@ -11,7 +11,7 @@
 <?import org.tbee.javafx.scene.layout.fxml.MigPane?>
 <?import javafx.geometry.Insets?>
 
-<MigPane id="dialogAddMails" fx:controller="com.univtln.b00dle.client.controller.DashbordController"
+<MigPane id="dialogAddMails" fx:controller="com.univtln.b00dle.client.controller.MailsDialogController"
          styleClass="main-panel"
          xmlns:fx="http://javafx.com/fxml">
 

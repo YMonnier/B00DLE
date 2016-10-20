@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -20,9 +21,6 @@ import java.io.IOException;
  */
 
 public class DashbordController {
-
-    @FXML
-    private Stage mailsDialog;
 
     @FXML
     private Pane pane;
@@ -49,28 +47,10 @@ public class DashbordController {
 
     @FXML
     public void addPoll() throws IOException {
-        Pane newLoadedPane =  FXMLLoader.load(getClass().getResource("/fxml/addPollDashbord.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        Pane newLoadedPane = loader.load(getClass().getResource(ViewNavigator.ADD_POLL));
         pane.getChildren().clear();
         pane.getChildren().add(newLoadedPane);
-    }
-
-    /** Run popup to add mails */
-    @FXML
-    public void addMails() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(ViewNavigator.MAILS_DIALOG));
-        Parent content = (Parent) loader.load();
-        Dialog.build("Ajouter collaborateurs");
-        Dialog.getStage().setScene(new Scene(content));
-        Dialog.getStage().show();
-    }
-
-    @FXML
-    public void sendMails() throws IOException {
-        //1. Send mails
-        //2. Add poll in list
-        Dialog.getStage().close();
-        //4. Display in modify template poll
     }
 
     @FXML
@@ -79,4 +59,13 @@ public class DashbordController {
         listViewPoll.setItems(listPoll);
     }
 
+    @FXML
+    public void addPollInformations(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        Pane newLoadedPane = loader.load(getClass().getResource(ViewNavigator.MODIFY_POLL));
+        pane.getChildren().clear();
+        pane.getChildren().add(newLoadedPane);
+        //ModifyPollController controller = loader.<ModifyPollController>getController();
+        //controller.initData(customer);
+    }
 }

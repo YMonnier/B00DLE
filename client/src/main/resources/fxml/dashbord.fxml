@@ -17,6 +17,7 @@
 <?import org.tbee.javafx.scene.layout.fxml.MigPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.AnchorPane?>
 <MigPane id="dashbord" fx:controller="com.univtln.b00dle.client.controller.DashbordController"
          styleClass="main-panel"
          xmlns:fx="http://javafx.com/fxml">
@@ -53,7 +54,7 @@
             </HBox>
          </top>
          <center>
-            <ListView fx:id="listViewPoll" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <ListView onMouseClicked="#addPollInformations" fx:id="listViewPoll" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </left>

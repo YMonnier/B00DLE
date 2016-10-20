@@ -11,13 +11,13 @@
 <?import org.tbee.javafx.scene.layout.fxml.MigPane?>
 <?import javafx.geometry.Insets?>
 
-<MigPane id="modifyPollDashbord" fx:controller="com.univtln.b00dle.client.controller.DashbordController"
+<MigPane id="modifyPollDashbord" fx:controller="com.univtln.b00dle.client.controller.ModifyPollController"
          styleClass="main-panel"
          xmlns:fx="http://javafx.com/fxml">
 
    <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
       <top>
-         <Label text="Nom du sondage" BorderPane.alignment="CENTER" />
+         <Label fx:id="namePoll" text="Nom du sondage" BorderPane.alignment="CENTER" />
       </top>
       <center>
          <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
@@ -31,13 +31,13 @@
                <HBox prefHeight="100.0" prefWidth="200.0">
                   <children>
                      <Label text="Description" />
-                     <TextField />
+                     <TextField fx:id="PollDescriptionField"/>
                   </children>
                </HBox>
                <HBox prefHeight="100.0" prefWidth="200.0">
                   <children>
                      <Label text="Lieu" />
-                     <TextField />
+                     <TextField fx:id="PollPlaceField"/>
                   </children>
                </HBox>
                <TableView prefHeight="200.0" prefWidth="392.0">

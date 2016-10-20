@@ -28,6 +28,8 @@ public class ViewNavigator {
     public static final String VIEW_POLL = "/fxml/viewPoll.fxml";
     public static final String DASHBORD = "/fxml/dashbord.fxml";
     public static final String MAILS_DIALOG = "/fxml/dialogAddMails.fxml";
+    public static final String MODIFY_POLL = "/fxml/modifyPollDashbord.fxml";
+    public static final String ADD_POLL = "/fxml/addPollDashbord.fxml";
 
     /** The main application layout controller. */
     private static MainController mainController;
