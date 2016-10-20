@@ -25,13 +25,16 @@ public class ModifyPollController {
      * are instanciate when fxml file is load
      */
     @FXML
-    Label namePollLabel;
+    private Label namePollLabel;
 
     @FXML
-    TextField pollDescriptionField;
+    private TextField pollDescriptionField;
 
     @FXML
-    TextField pollPlaceField;
+    private TextField pollPlaceField;
+
+    @FXML
+    private TextField namePollField;
 
     /**
      * Constructor
@@ -52,6 +55,7 @@ public class ModifyPollController {
     @FXML
     public void initialize() {
         namePollLabel.setText(namePoll.get());
+        namePollField.setText(namePoll.get());
         pollDescriptionField.setText(descriptionPoll.get());
         pollPlaceField.setText(placePoll.get());
     }
