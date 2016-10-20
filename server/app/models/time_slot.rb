@@ -1,5 +1,5 @@
 class TimeSlot < ApplicationRecord
-  has_one :opinionPoll
+  #has_one :opinionPoll
   validates :from, presence: true
   validates :to, presence: true
   #validate :dates_at_is_valid_datetime
