@@ -15,42 +15,45 @@ import java.util.List;
 
 /**
  * Created by Stéphen on 15/10/2016.
+ * Controller of viewPoll.fxml
  */
 public class PollController{
 
-    @FXML
-    TableView tableViewResponsePoll;
-
-    @FXML
-    TableColumn<ResponseTest, String> reponse;
-
-    @FXML
-    TableColumn<ResponseTest, String> reponse2;
-
-    @FXML
-    ResponseTest lig;
-
-    @FXML
-    ListView chat;
-
-    @FXML
-    TextField chatMessageField;
-
-    @FXML
-    TextField chatNameField;
-
-    @FXML
-    TextArea description;
-
-    @FXML
-    TextArea place;
-
-    @FXML
-    Label name;
-
+    /**
+     * Controller can use Model -> MVC
+     */
     private Model model;
 
-    private String link;
+    /**
+     * Variable FXML
+     * are instanciate when fxml file is load
+     */
+    @FXML
+    private TableView tableViewResponsePoll;
+
+    @FXML
+    private TableColumn<ResponseTest, String> reponse;
+
+    @FXML
+    private TableColumn<ResponseTest, String> reponse2;
+
+    @FXML
+    private ListView chat;
+
+    @FXML
+    private TextField chatMessageField;
+
+    @FXML
+    private TextField chatNameField;
+
+    @FXML
+    private TextArea description;
+
+    @FXML
+    private TextArea place;
+
+    @FXML
+    private Label name;
 
     /** The constructor. The constructor is called before the initialize()
       * method.
@@ -59,11 +62,17 @@ public class PollController{
         this.model = new Model();
     }
 
+    /**
+     * Event load home.fxml
+     */
     @FXML
     public void nextPaneHome() {
         ViewNavigator.loadFXMLFile(ViewNavigator.HOME);
     }
 
+    /**
+     * Event load login.fxml
+     */
     @FXML
     public void nextPaneLogin(){
         ViewNavigator.loadFXMLFile(ViewNavigator.LOGIN);
@@ -77,8 +86,8 @@ public class PollController{
         String name = chatNameField.getText();
         String message = chatMessageField.getText();
         String chatMessage = name + " : " + message;
-        model.addChatMessage(link, chatMessage);
-        ObservableList<String> listMessage = FXCollections.observableArrayList(model.getChatMessage(link));
+        model.addChatMessage(HomeController.getLink(), chatMessage);
+        ObservableList<String> listMessage = FXCollections.observableArrayList(model.getChatMessage(HomeController.getLink()));
         chat.setItems(listMessage);
         chatMessageField.setText("");
     }
@@ -87,32 +96,24 @@ public class PollController{
      * Initialize controller
      * Fonction as a constructor in javaFX
      */
-
     @FXML
     public void initialize() {
-        //Get link poll
-        try {
-            this.link = HomeController.getLink();
-        } catch (PollNotFoundException e) {
-
-        }
-
 
         //Get chat message
-        List<String> listMessage = model.getChatMessage(link);
+        List<String> listMessage = model.getChatMessage(HomeController.getLink());
 
         //Get and put all informations about poll and textArea become not editable
-        Poll poll = model.getPollByLink(link);
+        Poll poll = model.getPollByLink(HomeController.getLink());
         name.setText(poll.getName());
         description.setText(poll.getDescription());
         description.setEditable(false);
         place.setText(poll.getPlace());
         place.setEditable(false);
 
-        //Rend le tableau editable
+        //Makes the table editable
         tableViewResponsePoll.setEditable(true);
 
-        //Rend la colonne response editable
+        //Makes the response editable column
         reponse.setCellFactory(TextFieldTableCell.<ResponseTest>forTableColumn());
         reponse2.setCellFactory(TextFieldTableCell.<ResponseTest>forTableColumn());
     }

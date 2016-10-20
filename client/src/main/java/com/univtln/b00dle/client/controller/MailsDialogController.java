@@ -7,9 +7,14 @@ import java.io.IOException;
 
 /**
  * Created by Stéphen on 20/10/2016.
+ * Controller of dialogAddMails.fxml
  */
 public class MailsDialogController {
 
+    /**
+     * Event load dialog dialogAddMails.fxml
+     * @throws IOException
+     */
     @FXML
     public void sendMails() throws IOException {
         //1. Send mails

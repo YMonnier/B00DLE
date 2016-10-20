@@ -12,13 +12,20 @@ import java.io.IOException;
 
 /**
  * Created by Stéphen on 20/10/2016.
+ * Controller of AddPollDashbord.fxml
  */
 public class AddPollController {
 
+    /**
+     * Variable FXML
+     * are instanciate when fxml file is load
+     */
     @FXML
     private Stage mailsDialog;
 
-    /** Run popup to add mails */
+    /**
+     * Run popup to add mails
+     */
     @FXML
     public void addMails() throws IOException {
         FXMLLoader loader = new FXMLLoader();

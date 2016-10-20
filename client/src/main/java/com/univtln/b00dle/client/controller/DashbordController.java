@@ -19,33 +19,61 @@ import java.io.IOException;
 
 /**
  * Created by Stéphen on 15/10/2016.
+ * Controller of dashbord.fxml
  */
 
 public class DashbordController {
 
+    /**
+     * Controller can use Model -> MVC
+     */
+    private Model model;
+
+    /**
+     * Variable FXML
+     * are instanciate when fxml file is load
+     * Pane is a area who can put other fxml file
+     * Here AddPollDashbord.fxml and ModifyPollDashbord.fxml
+     */
     @FXML
     private Pane pane;
 
+    /**
+     * ListView display poll who are create by administrator
+     */
     @FXML
     private ListView listViewPoll;
 
-    private Model model;
-
+    /**
+     * Constructor
+     * Create Model
+     */
     public DashbordController(){
         this.model = new Model();
     }
 
+    /**
+     * Event load home.fxml
+     */
     @FXML
     public void nextPaneHome() {
         ViewNavigator.loadFXMLFile(ViewNavigator.HOME);
     }
 
+    /**
+     * Event load return on home
+     * Disconnect administrator and load home.fxml
+     */
     @FXML
     public void nextPaneLogout(){
         //Add logout in server
         ViewNavigator.loadFXMLFile(ViewNavigator.HOME);
     }
 
+    /**
+     * Load in pane AddPollDashbord.fxml
+     * @throws IOException
+     */
     @FXML
     public void addPoll() throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -54,12 +82,11 @@ public class DashbordController {
         pane.getChildren().add(newLoadedPane);
     }
 
-    @FXML
-    public void initialize(){
-        ObservableList<Object> listPoll = FXCollections.observableArrayList(model.getPoll(LoginController.getMail()));
-        listViewPoll.setItems(listPoll);
-    }
-
+    /**
+     * Load in pane ModifyPollDashbord.fxml
+     * Show in form all informations about poll
+     * @throws IOException
+     */
     @FXML
     public void addPollInformations() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(ViewNavigator.MODIFY_POLL));
@@ -68,5 +95,15 @@ public class DashbordController {
         pane.getChildren().clear();
         pane.getChildren().add(loader.load());
 
+    }
+
+    /**
+     * Fonction initialize when fxml file is load
+     * Get and add poll in ListView behove administrator
+     */
+    @FXML
+    public void initialize(){
+        ObservableList<Object> listPoll = FXCollections.observableArrayList(model.getPoll(LoginController.getMail()));
+        listViewPoll.setItems(listPoll);
     }
 }

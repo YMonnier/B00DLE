@@ -5,9 +5,8 @@ import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-//http://stackoverflow.com/questions/18619394/loading-new-fxml-in-the-same-scene
-
 /**
+ * Created by Stéphen on 07/10/2016.
  * MainController class for the entire layout.
  */
 
