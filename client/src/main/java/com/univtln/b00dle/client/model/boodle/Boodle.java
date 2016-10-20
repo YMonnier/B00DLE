@@ -37,7 +37,6 @@ public class Boodle {
         return listPoll;
     }
 
-    //Error java.util.hashmapNode
     public List<Poll> getPoll(String email){
         List<Poll> listPollAdministrator = new ArrayList<>();
         for(Map.Entry<String, Poll> node : listPoll.entrySet()){

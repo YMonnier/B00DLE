@@ -43,6 +43,9 @@ public class AddPollController {
     @FXML
     private TableView tableViewPoll;
 
+    /**
+     * Event who add dynamically column in poll
+     */
     @FXML
     public void addDate(){
         String departureDate = departureDateField.getText();

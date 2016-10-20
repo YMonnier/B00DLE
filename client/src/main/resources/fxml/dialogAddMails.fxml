@@ -1,57 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DialogPane?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-
-<?import org.tbee.javafx.scene.layout.fxml.MigPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.geometry.Insets?>
-
-<MigPane id="dialogAddMails" fx:controller="com.univtln.b00dle.client.controller.MailsDialogController"
-         styleClass="main-panel"
-         xmlns:fx="http://javafx.com/fxml">
-
-<DialogPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
-   <content>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="5">
-         <children>
-            <HBox prefHeight="13.0" prefWidth="340.0">
-               <children>
-                  <Label text="E-mail :" >
-                     <padding>
-                        <Insets right="80" />
-                     </padding>
-                  </Label>
-                  <TextArea prefHeight="17.0" prefWidth="200.0" />
-                  <Button mnemonicParsing="false" text="Add" />
-               </children>
+<?import javafx.scene.layout.VBox?>
+<AnchorPane id="dialogAddMails"
+            fx:controller="com.univtln.b00dle.client.controller.MailsDialogController"
+            xmlns="http://javafx.com/javafx/8.0.60"
+            xmlns:fx="http://javafx.com/fxml/1">
+      <BorderPane prefHeight="600" prefWidth="400">
+         <top>
+            <HBox spacing="10">
+               <padding><Insets top="10" bottom="10" /> </padding>
+               <Label text="E-mails :">
+                  <padding><Insets right="65" left="10"></Insets> </padding>
+               </Label>
+               <TextField fx:id="mailTextField"></TextField>
+               <Button onAction="#addMails" text="Add" ></Button>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <VBox prefHeight="17.0" prefWidth="119.0">
-                     <children>
-                        <Label prefHeight="17.0" prefWidth="115.0" text="Personnes ajoutées :" />
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="41.0" prefWidth="222.0">
-                     <children>
-                        <ListView prefHeight="600.0" prefWidth="200.0" />
-                     </children>
-                  </VBox>
-               </children>
+         </top>
+         <center>
+            <HBox>
+               <Label text="Personnes ajoutées :" prefWidth="130">
+                  <padding><Insets left="10"/></padding>
+               </Label>
+               <ListView prefHeight="400" prefWidth="250" fx:id="listViewMails"></ListView>
             </HBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" >
-               <children>
-                  <Button onAction="#sendMails" mnemonicParsing="false" text="Envoyer" />
-               </children>
+         </center>
+         <bottom>
+            <VBox alignment="CENTER">
+               <padding><Insets top="10" bottom="10" /></padding>
+               <Button prefWidth="100" onAction="#sendMails" text="Envoyer">
+               </Button>
             </VBox>
-         </children>
-      </VBox>
-   </content>
-</DialogPane>
 
-</MigPane>
+         </bottom>
+      </BorderPane>
+</AnchorPane>
+
