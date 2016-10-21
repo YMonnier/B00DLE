@@ -98,6 +98,33 @@
 \subparagraph{SPEC\_SEC\_001} Le système requiert une authentification pour accéder aux droits administrateurs
 \subparagraph{SPEC\_SEC\_002} Cryptage du mot de passe administrateur. 
 
+\subsection{Spécifications fonctionnelles}
+
+\subsubsection{Utilisateur}
+\paragraph{SPEC\_FONC\_002} Un utilisateur peut créer un compte.
+L’utilisateur doit entrer les informations suivantes pour créer un compte administrateur :
+\begin{itemize}
+\item Son nom
+\item Son e-mail suivant le format d’un e-mail
+\item Son mot de passe, au minimum 8 caractères
+\item Vérification du mot de passe \end{itemize}
+Il est automatiquement redirigé vers la page d’accueil du logiciel.
+
+\paragraph{SPEC\_FONC\_003} Un utilisateur peut se connecter à un compte existant.
+Pour qu’une authentification soit valide, l’utilisateur doit entrer :
+\begin{itemize}
+\item Son adresse mail
+\item Son mot de passe \end{itemize}
+L’adresse mail et le mot de passe doivent correspondre au données contenu dans la base de données.
+
+\paragraph{SPEC\_FONC\_011} Un utilisateur peut modifier ses réponses.
+Un utilisateur peut modifier les réponses à un sondage ayant été effectuées depuis le logiciel utilisé pour la création des réponses.
+
+\paragraph{SPEC\_FONC\_012} Un utilisateur peut supprimer ses réponses.
+Un utilisateur peut supprimer les réponses à un sondage ayant été effectuées depuis le logiciel utilisé pour la création des réponses.
+
+\subsubsection{Administrateur}
+
 \section{Maquettage}
 
 \subsection{Sous-section}
