@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_secure_password
-  #has_many :opinion_polls, dependent: :destroy
+
+  has_many :opinion_polls, dependent: :destroy
+
   validates :email,
             presence: true,
             uniqueness: true,
