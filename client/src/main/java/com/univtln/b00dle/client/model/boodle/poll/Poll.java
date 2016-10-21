@@ -71,7 +71,7 @@ public class Poll {
         }
 
         public Poll build(){
-            return new Poll(link, name, description, place, administrator, mails, dates);
+            return new Poll(link, name, description, place, administrator, dates, mails);
         }
     }
 
@@ -83,10 +83,14 @@ public class Poll {
         this.administrator = administrator;
     }
 
-    public Poll(String link, String name, String description, String place, Administrator administrator, List<String> mails, List<Date> dates) {
+    public Poll(String link, String name, String description, String place, Administrator administrator, List<Date> dates) {
         this(link, name, description, place, administrator);
-        this.mails = mails;
         this.dates = dates;
+    }
+
+    public Poll(String link, String name, String description, String place, Administrator administrator, List<Date> dates, List<String> mails ) {
+        this(link, name, description, place, administrator, dates);
+        this.mails = mails;
     }
 
     @Override
@@ -145,7 +149,7 @@ public class Poll {
         this.mails = mails;
     }
 
-    public List getDates() {
+    public List<Date> getDates() {
         return dates;
     }
 

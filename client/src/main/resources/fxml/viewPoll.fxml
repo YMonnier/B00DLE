@@ -9,7 +9,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import org.tbee.javafx.scene.layout.fxml.MigPane?>
-<MigPane id="sondagePane"  fx:controller="com.univtln.b00dle.client.controller.PollController"
+<?import com.univtln.b00dle.client.model.boodle.poll.Response?>
+<MigPane id="sondagePane" fx:controller="com.univtln.b00dle.client.controller.PollController"
          styleClass="main-panel"
          xmlns:fx="http://javafx.com/fxml">
 
@@ -83,20 +84,13 @@
             </HBox>
             <TableView fx:id="tableViewResponsePoll" editable="true" prefHeight="200.0" prefWidth="200.0">
               <columns>
-                <TableColumn fx:id="reponse" editable="true" prefWidth="75.0" text="C1" >
-                  <cellValueFactory><PropertyValueFactory property="rep" />
+                <TableColumn fx:id="columnUserName" editable="true" prefWidth="75.0" text="Nom" >
+                  <cellValueFactory>
                  </cellValueFactory>
                  </TableColumn>
-                <TableColumn fx:id="reponse2" prefWidth="75.0" text="C2" >
-                   <cellValueFactory><PropertyValueFactory property="rep2" />
-                   </cellValueFactory>
-                </TableColumn>
               </columns>
                <items>
                   <FXCollections fx:factory="observableArrayList">
-                     <ResponseTest rep="OK" rep2="OK"/>
-                     <ResponseTest rep="OK" rep2="OK"/>
-                     <ResponseTest rep="OK" rep2="OK"/>
                   </FXCollections>
                </items>
             </TableView>

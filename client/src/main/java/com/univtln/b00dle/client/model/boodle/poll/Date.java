@@ -5,31 +5,30 @@ package com.univtln.b00dle.client.model.boodle.poll;
  */
 public class Date {
 
-    private Date date;
-    private Date time;
+    private String departureDate;
+    private String departureTime;
+    private String endDate;
+    private String endTime;
 
-    public Date(Date date, Date time) {
-        this.date = date;
-        this.time = time;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public Date getTime() {
-        return time;
+    public Date(String departureDate, String departureTime, String endDate, String endTime) {
+        this.departureDate = departureDate;
+        this.departureTime = departureTime;
+        this.endDate = endDate;
+        this.endTime = endTime;
     }
 
     @Override
     public String toString() {
-        return date + " - " + time;
+        return departureDate + " - " + departureTime + "/" + endDate + " - " + endTime;
     }
 
     @Override
     public boolean equals(Object o) {
         if(o instanceof Date){
-            return this.date == ((Date)o).date && this.time == ((Date)o).time;
+            return this.departureDate == ((Date)o).departureDate
+                    && this.departureTime == ((Date)o).departureTime
+                    && this.endDate == ((Date)o).endDate
+                    && this.endTime == ((Date)o).endTime;
         }
         else{
             return super.equals(o);
@@ -40,6 +39,6 @@ public class Date {
     /* A revoir */
     @Override
     public int hashCode() {
-       return date.hashCode() * 31 + time.hashCode();
+       return departureDate.hashCode() * 31 + departureTime.hashCode();
     }
 }
