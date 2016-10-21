@@ -112,14 +112,17 @@ public class PollController{
         tableColumnName.setCellFactory(TextFieldTableCell.<TableItem>forTableColumn());
 
         //Add date in table
-        for(Date date : poll.getDates()){
-            String newNameColumn = date.toString();
-            TableColumn column = new TableColumn(newNameColumn);
-            column.setCellValueFactory(new PropertyValueFactory<TableItem, String>(newNameColumn));
-            column.setMinWidth(newNameColumn.length());
-            tableViewResponsePoll.getColumns().add(column);
-            column.setCellFactory(TextFieldTableCell.<TableItem>forTableColumn());
+        if(poll.getDates() != null) {
+            for(Date date : poll.getDates()){
+                String newNameColumn = date.toString();
+                TableColumn column = new TableColumn(newNameColumn);
+                column.setCellValueFactory(new PropertyValueFactory<TableItem, String>(newNameColumn));
+                column.setMinWidth(newNameColumn.length());
+                tableViewResponsePoll.getColumns().add(column);
+                column.setCellFactory(TextFieldTableCell.<TableItem>forTableColumn());
+            }
         }
+
 
         //Makes the table editable
         tableViewResponsePoll.setEditable(true);
