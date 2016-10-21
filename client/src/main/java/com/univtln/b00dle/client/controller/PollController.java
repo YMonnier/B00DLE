@@ -109,6 +109,10 @@ public class PollController{
         place.setText(poll.getPlace());
         place.setEditable(false);
 
+        //Makes the table editable
+        tableViewResponsePoll.setEditable(true);
+
+        //Makes the name editable column
         tableColumnName.setCellFactory(TextFieldTableCell.<TableItem>forTableColumn());
 
         //Add date in table
@@ -123,20 +127,12 @@ public class PollController{
             }
         }
 
-
-        //Makes the table editable
-        tableViewResponsePoll.setEditable(true);
-
+        //Add empty line response
         final ObservableList<TableItem> data =
                 FXCollections.observableArrayList(
-                new Response()
+                    new Response()
                 );
         tableViewResponsePoll.setItems(data);
-        //tableViewResponsePoll.getItems().add(new Response());
-
-        //Makes the response editable column
-        //reponse.setCellFactory(TextFieldTableCell.<ResponseTest>forTableColumn());
-        //reponse2.setCellFactory(TextFieldTableCell.<ResponseTest>forTableColumn());
     }
 
 }
