@@ -3,7 +3,7 @@ package com.univtln.b00dle.client.model.boodle.poll;
 /**
  * Created by sbellange845 on 15/10/16.
  */
-public class Date {
+public class Date  implements TableItem{
 
     private String departureDate;
     private String departureTime;

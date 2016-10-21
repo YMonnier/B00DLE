@@ -84,15 +84,9 @@
             </HBox>
             <TableView fx:id="tableViewResponsePoll" editable="true" prefHeight="200.0" prefWidth="200.0">
               <columns>
-                <TableColumn fx:id="columnUserName" editable="true" prefWidth="75.0" text="Nom" >
-                  <cellValueFactory>
-                 </cellValueFactory>
+                <TableColumn fx:id="tableColumnName" editable="true" prefWidth="75.0" text="Nom" >
                  </TableColumn>
               </columns>
-               <items>
-                  <FXCollections fx:factory="observableArrayList">
-                  </FXCollections>
-               </items>
             </TableView>
             <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Enregistrer">
                <VBox.margin>
