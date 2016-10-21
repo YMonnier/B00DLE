@@ -45,14 +45,59 @@
 \paragraph{Lien} Un lien est un identifiant unique pour retrouver un sondage.
 \paragraph{Administrateur} Un administrateur est un utilisateur avec des droits supplémentaires. Il peut accéder à la création d’un sondage, à la modification et suppression d’un sondage qu’il a créé.
 \paragraph{Utilisateur} Un utilisateur est une personne qui utilise l’application B00DLE sans compte administrateur.
-\paragraph{Date} Une date correspond à un ensemble date en aaaa-mm-jj et une horaire en hh:mm
+\paragraph{Date} Une date correspond à un ensemble date en aaaa-mm-jj et une horaire en hh:mm.
 
 \subsection{Actions}
 \paragraph{Diffuser} Envoyer un e-mail du lien du sondage à l’ensemble des différentes adresses.
 \paragraph{Clôturer} Terminer le droit de répondre à un sondage.
 \paragraph{Sélectionner} Cocher dans une case à cocher une date.
+\paragraph{Générer} Créer un lien unique qui correspond à un sondage.
 
 \section{Spécifications}
+
+\subsection{Résumé}
+\subsubsection{Fonctionnelles}
+
+\paragraph{Utilisateur}
+\subparagraph{SPEC\_FONC\_002} Un utilisateur peut créer un compte
+\subparagraph{SPEC\_FONC\_003} Un utilisateur peut se connecter à un compte existant
+\subparagraph{SPEC\_FONC\_011} Un utilisateur peut modifier ses réponses
+\subparagraph{SPEC\_FONC\_012} Un utilisateur peut supprimer ses réponses
+
+\paragraph{Administrateur}
+\subparagraph{SPEC\_FONC\_004} L’administrateur peut créer un sondage
+\subparagraph{SPEC\_FONC\_005} L’administrateur peut gérer un sondage
+\subparagraph{SPEC\_FONC\_006} L’administrateur peut clôturer un sondage
+\subparagraph{SPEC\_FONC\_007} Sélectionner une date qui convient à l’ensemble des utilisateurs
+\subparagraph{SPEC\_FONC\_014} Modifier les paramètres d’un sondage
+
+\paragraph{Sondage}
+\subparagraph{SPEC\_FONC\_008} Diffuser un sondage par mail
+\subparagraph{SPEC\_FONC\_009} Générer le lien d’un sondage
+\subparagraph{SPEC\_FONC\_010} Un utilisateur peut ajouter une réponse au sondage
+
+
+\paragraph{Fonctionnalités spécifiques}
+\subparagraph{SPEC\_FONC\_001} Système de chat
+\subparagraph{SPEC\_FONC\_013} Prendre en charge un agenda personnel
+
+\paragraph{Contraintes}
+\subparagraph{CONT\_FONC\_001} Contrainte d’ajout d’une réponse à un sondage clôturé
+\subparagraph{CONT\_FONC\_002} Contrainte de modification d’un sondage
+
+\subsubsection{IHM}
+\subparagraph{SPEC\_IHM\_001} Résumé textuel du sondage
+\subparagraph{SPEC\_IHM\_002} Consultation d’un sondage (utilisateurs)
+\subparagraph{SPEC\_IHM\_003} Consultation d’un sondage (administrateur)
+
+\subsubsection{Transactionnelles}
+\subparagraph{SPEC\_TRANS\_001} Envoyer le lien d’un sondage
+\subparagraph{CONT\_TRANS\_001} Mise à jour du chat en temps réel
+
+\subsubsection{Sécurité}
+\subparagraph{SPEC\_SEC\_001} Le système requiert une authentification pour accéder aux droits administrateurs
+\subparagraph{SPEC\_SEC\_002} Cryptage du mot de passe administrateur. 
+
 \section{Maquettage}
 
 \subsection{Sous-section}
