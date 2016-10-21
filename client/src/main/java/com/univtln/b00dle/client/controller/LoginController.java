@@ -31,7 +31,7 @@ public class LoginController {
     private TextField mailField;
 
     @FXML
-    private ListView listViewPoll;
+    private TextField passwordField;
 
     /**
      * Constructor
@@ -63,8 +63,10 @@ public class LoginController {
     @FXML
     public void nextPaneDashbord() {
         this.mail = mailField.getText();
+        //send serveur mail and password for verification
         ViewNavigator.loadFXMLFile(ViewNavigator.DASHBORD);
     }
+
 
     /**
      * Return current mail

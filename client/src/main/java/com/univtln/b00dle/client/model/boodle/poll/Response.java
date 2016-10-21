@@ -3,11 +3,15 @@ package com.univtln.b00dle.client.model.boodle.poll;
 /**
  * Created by sbellange845 on 15/10/16.
  */
-public class Response {
+public class Response implements TableItem {
 
     private String MACAdresseUser;
     private String linkPoll;
     private Date date;
+
+    public Response(){
+
+    }
 
     public Response(String MACAdresseUser, String linkPoll, Date date) {
         this.MACAdresseUser = MACAdresseUser;

@@ -1,14 +1,16 @@
 package com.univtln.b00dle.client.controller;
 
 import com.univtln.b00dle.client.model.Model;
-import com.univtln.b00dle.client.model.boodle.exception.PollNotFoundException;
+import com.univtln.b00dle.client.model.boodle.poll.Date;
 import com.univtln.b00dle.client.model.boodle.poll.Poll;
-import com.univtln.b00dle.client.model.boodle.poll.ResponseTest;
+import com.univtln.b00dle.client.model.boodle.poll.Response;
+import com.univtln.b00dle.client.model.boodle.poll.TableItem;
 import com.univtln.b00dle.client.view.ViewNavigator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
 import java.util.List;
@@ -29,13 +31,10 @@ public class PollController{
      * are instanciate when fxml file is load
      */
     @FXML
-    private TableView tableViewResponsePoll;
+    private TableView<TableItem> tableViewResponsePoll;
 
     @FXML
-    private TableColumn<ResponseTest, String> reponse;
-
-    @FXML
-    private TableColumn<ResponseTest, String> reponse2;
+    private TableColumn tableColumnName;
 
     @FXML
     private ListView chat;
@@ -110,12 +109,31 @@ public class PollController{
         place.setText(poll.getPlace());
         place.setEditable(false);
 
+        tableColumnName.setCellFactory(TextFieldTableCell.<TableItem>forTableColumn());
+
+        //Add date in table
+        for(Date date : poll.getDates()){
+            String newNameColumn = date.toString();
+            TableColumn column = new TableColumn(newNameColumn);
+            column.setCellValueFactory(new PropertyValueFactory<TableItem, String>(newNameColumn));
+            column.setMinWidth(newNameColumn.length());
+            tableViewResponsePoll.getColumns().add(column);
+            column.setCellFactory(TextFieldTableCell.<TableItem>forTableColumn());
+        }
+
         //Makes the table editable
         tableViewResponsePoll.setEditable(true);
 
+        final ObservableList<TableItem> data =
+                FXCollections.observableArrayList(
+                new Response()
+                );
+        tableViewResponsePoll.setItems(data);
+        //tableViewResponsePoll.getItems().add(new Response());
+
         //Makes the response editable column
-        reponse.setCellFactory(TextFieldTableCell.<ResponseTest>forTableColumn());
-        reponse2.setCellFactory(TextFieldTableCell.<ResponseTest>forTableColumn());
+        //reponse.setCellFactory(TextFieldTableCell.<ResponseTest>forTableColumn());
+        //reponse2.setCellFactory(TextFieldTableCell.<ResponseTest>forTableColumn());
     }
 
 }
