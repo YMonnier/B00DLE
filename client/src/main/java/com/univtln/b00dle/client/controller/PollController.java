@@ -109,31 +109,30 @@ public class PollController{
         place.setText(poll.getPlace());
         place.setEditable(false);
 
-        tableColumnName.setCellFactory(TextFieldTableCell.<TableItem>forTableColumn());
-
-        //Add date in table
-        for(Date date : poll.getDates()){
-            String newNameColumn = date.toString();
-            TableColumn column = new TableColumn(newNameColumn);
-            column.setCellValueFactory(new PropertyValueFactory<TableItem, String>(newNameColumn));
-            column.setMinWidth(newNameColumn.length());
-            tableViewResponsePoll.getColumns().add(column);
-            column.setCellFactory(TextFieldTableCell.<TableItem>forTableColumn());
-        }
-
         //Makes the table editable
         tableViewResponsePoll.setEditable(true);
 
+        //Makes the name editable column
+        tableColumnName.setCellFactory(TextFieldTableCell.<TableItem>forTableColumn());
+
+        //Add date in table
+        if(poll.getDates() != null) {
+            for(Date date : poll.getDates()){
+                String newNameColumn = date.toString();
+                TableColumn column = new TableColumn(newNameColumn);
+                column.setCellValueFactory(new PropertyValueFactory<TableItem, String>(newNameColumn));
+                column.setMinWidth(newNameColumn.length());
+                tableViewResponsePoll.getColumns().add(column);
+                column.setCellFactory(TextFieldTableCell.<TableItem>forTableColumn());
+            }
+        }
+
+        //Add empty line response
         final ObservableList<TableItem> data =
                 FXCollections.observableArrayList(
-                new Response()
+                    new Response()
                 );
         tableViewResponsePoll.setItems(data);
-        //tableViewResponsePoll.getItems().add(new Response());
-
-        //Makes the response editable column
-        //reponse.setCellFactory(TextFieldTableCell.<ResponseTest>forTableColumn());
-        //reponse2.setCellFactory(TextFieldTableCell.<ResponseTest>forTableColumn());
     }
 
 }
