@@ -12,7 +12,7 @@ class ApplicationController < ActionController::API
   def bad_request object
     return render json: {
         succeed: false,
-        message: object
+        message: ActiveModelSerializers::SerializableResource.new(object, {})
     }, status: 400
   end
 
@@ -26,7 +26,7 @@ class ApplicationController < ActionController::API
   def created_request object
     return render json: {
         succeed: true,
-        data: object
+        data: ActiveModelSerializers::SerializableResource.new(object, {})
     }, status: 201
   end
 
@@ -40,7 +40,8 @@ class ApplicationController < ActionController::API
   def ok_request object
     return render json: {
         succeed: true,
-        data: object
+        #data: object
+        data: ActiveModelSerializers::SerializableResource.new(object, {})
     }, status: 200
   end
 end

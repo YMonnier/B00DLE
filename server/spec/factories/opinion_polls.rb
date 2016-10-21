@@ -3,7 +3,7 @@ FactoryGirl.define do
     title { FFaker::Lorem.word }
     description { FFaker::Lorem.phrase }
     place { FFaker::AddressFR.city }
-    user_id { rand(1...50) }
     close { false }
+    user
   end
 end
