@@ -20,7 +20,6 @@ class Api::OpinionPollsController < ApplicationController
   #
   ##
   def create
-
     @opinion_poll = OpinionPoll.new(opinion_params)
     @opinion_poll.user_id = current_user.id
 
@@ -52,15 +51,15 @@ class Api::OpinionPollsController < ApplicationController
   #
   ##
   def index
-    #ok_request current_user.opinion_polls
-    render json: current_user
+    ok_request current_user
+    #render json:  user
   end
 
   def show
     id = params[:id]
     if is_number? id
-      #return ok_request OpinionPoll.find(id)
-      render json: OpinionPoll.find(id)
+      return ok_request OpinionPoll.find(id)
+      #render json: OpinionPoll.find(id)
     else
       token = id
       decode_t = decode_link token
