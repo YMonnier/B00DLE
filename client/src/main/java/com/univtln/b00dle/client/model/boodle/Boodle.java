@@ -24,7 +24,7 @@ public class Boodle {
         ArrayList<Date> listDate = new ArrayList<>();
         listDate.add(new Date("01/01/2000", "16h00", "01/01/2000", "18h00"));
         listDate.add(new Date("01/01/2000", "12h00", "01/01/2000", "13h00"));
-        Poll poll3 = new Poll("a", "Sondage 3", "Description sondage 2", "Toulon", new Administrator("s@s.fr", "ok"), listDate);
+        Poll poll3 = new Poll("a", "Sondage 3", "Description sondage 3", "Toulon", new Administrator("s@s.fr", "ok"), listDate);
         listPoll.put(poll1.getLink(), poll1);
         listPoll.put(poll2.getLink(), poll2);
         listPoll.put(poll3.getLink(), poll3);
