@@ -22,27 +22,47 @@
 	\includegraphics[scale=0.5]{figures/Logo_B00DLE.png}
 	\maketitle
 \end{titlepage}
-\part{Introduction}
+\part{Rapport client}
+
+\tableofcontents
+
+\chapter{Introduction}
 
 \paragraph{}
 	L'objectif de ce projet est de réaliser un logiciel de planification de réunions en Java en se focalisant sur sa conception UML. L'interface et le mode de fonctionnement du logiciel sera basé sur le site web Doodle (http://www.doodle.com/). 
 	\paragraph{}
 	Le logiciel créé devra répondre au besoin de planifier des réunions en permettant à des utilisateurs de fournir une réponse sans devoir s'inscrire ni se connecter. Le logiciel devra fournir au créateur du sondage un accès facile aux réponses de tous les utilisateurs.
 	\paragraph{}
-	Ce rapport présentera la conception et la réalisation du logiciel B00DLE en respectant la chronologie de notre étude : spécifications, étude UML puis implémentation.
+	Ce rapport présentera la conception et la réalisation du logiciel B00DLE en respectant la chronologie de notre étude : spécifications, étude UML puis implémentation.
 
 
 
-\part{Pré-conception}
+\chapter{Pré-conception}
 
-\chapter{Dictionnaires}
-\chapter{Spécifications}
-\chapter{Maquettage}
-\section{Section}
+\section{Dictionnaires}
+\subsection{Termes}
+\paragraph{Sondage} Un sondage est un tableau regroupant différent composant date/horaire ainsi que les réponses des différents utilisateurs.
+\paragraph{Lien} Un lien est un identifiant unique pour retrouver un sondage.
+\paragraph{Administrateur} Un administrateur est un utilisateur avec des droits supplémentaires. Il peut accéder à la création d’un sondage, à la modification et suppression d’un sondage qu’il a créé.
+\paragraph{Utilisateur} Un utilisateur est une personne qui utilise l’application B00DLE sans compte administrateur.
+\paragraph{Date} Une date correspond à un ensemble date en aaaa-mm-jj et une horaire en hh:mm
+
+\subsection{Actions}
+\paragraph{Diffuser} Envoyer un e-mail du lien du sondage à l’ensemble des différentes adresses.
+\paragraph{Clôturer} Terminer le droit de répondre à un sondage.
+\paragraph{Sélectionner} Cocher dans une case à cocher une date.
+
+\section{Spécifications}
+\section{Maquettage}
+
 \subsection{Sous-section}
 
-\part{Conception UML}
+\chapter{Conception UML}
 
-\part{Implémentation}
+\chapter{Implémentation}
+
+\part{Diagrammes UML}
+
+\part{Modélisation serveur}
 
 \end{document}          
