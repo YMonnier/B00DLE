@@ -1,9 +1,10 @@
-\documentclass[]{report}
+\documentclass[titlepage]{report}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[francais]{babel}
 \usepackage{graphicx}
+\usepackage{titling} % can use pretitle to have a picture on title page
 
 \addtolength{\oddsidemargin}{-.875in}
 \addtolength{\evensidemargin}{-.875in}
@@ -11,30 +12,36 @@
 \addtolength{\topmargin}{-.875in}
 \addtolength{\textheight}{1.75in}
 
+\setcounter{secnumdepth}{3}
+
 % Title Page
 
-	\title{Rapport de projet - Planificateur de réunions}
-	
-	\author{BELLANGER Stephen \and
-		MONNIER Ysée \and
-		VIALLA Maxence}
-	\date{Septembre-Novembre 2016}
+\pretitle{
+	\begin{center}
+		\LARGE
+		\includegraphics[scale=0.8]{figures/Logo_B00DLE.png}\\[\bigskipamount]
+	}
+	\posttitle{\end{center}}
 
+
+		\title{Rapport de projet - Planificateur de réunions}
+		
+		\author{BELLANGER Stephen \and
+			MONNIER Ysée \and
+			VIALLA Maxence}
+		\date{Septembre 2016 - Novembre 2016}
+		
 
 
 \begin{document}
-\begin{titlepage}
-	\begin{center}
 	
-	\includegraphics[scale=0.5]{figures/Logo_B00DLE.png}
 	\maketitle
-	\end{center}
-\end{titlepage}
-\part{Rapport client}
+
 
 \tableofcontents
 
 \listoffigures 
+\part{Rapport client}
 
 \chapter{Introduction}
 
@@ -288,10 +295,21 @@ La page d'accueil de l'application permettra à un utilisateur de se connecter a
 
 \chapter{Conception UML}
 
+La modélisation UML présentée ici se concentrera principalement sur le fonctionnement du client. L'architecture du serveur sera détaillée dans la partie \ref{part_modelServer} (page \pageref{part_modelServer}). 
+\par Dans cette partie, nous avons choisit de ne faire apparaître qu'une partie des diagrammes afin d'appuyer notre propos. La totalité des diagrammes UML utilisés lors de la conception de B00DLE sont présentés en partie \ref{part_allUML} (page \pageref{part_allUML}).
+
+\section{Modélisation de l'axe statique}
+
 \chapter{Implémentation}
 
-\part{Diagrammes UML}
-
 \part{Modélisation serveur}
+\label{part_modelServer}
+
+\par TODO
+
+\part{Diagrammes UML}
+\label{part_allUML}
+
+\par TODO
 
 \end{document}          
