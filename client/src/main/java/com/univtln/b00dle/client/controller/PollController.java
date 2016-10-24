@@ -46,10 +46,10 @@ public class PollController{
     private TextField chatNameField;
 
     @FXML
-    private TextArea description;
+    private Label description;
 
     @FXML
-    private TextArea place;
+    private Label place;
 
     @FXML
     private Label name;
@@ -93,7 +93,7 @@ public class PollController{
 
     /**
      * Initialize controller
-     * Fonction as a constructor in javaFX
+     * Fonction as a constructor/main in javaFX
      */
     @FXML
     public void initialize() {
@@ -105,9 +105,7 @@ public class PollController{
         Poll poll = model.getPollByLink(HomeController.getLink());
         name.setText(poll.getName());
         description.setText(poll.getDescription());
-        description.setEditable(false);
         place.setText(poll.getPlace());
-        place.setEditable(false);
 
         //Makes the table editable
         tableViewResponsePoll.setEditable(true);
