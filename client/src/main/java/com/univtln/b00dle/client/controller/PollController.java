@@ -128,6 +128,10 @@ public class PollController{
         }
 
         //Add empty line response
+
+        //Makes the table editable
+        tableViewResponsePoll.setEditable(true);
+
         final ObservableList<TableItem> data =
                 FXCollections.observableArrayList(
                     new Response()
