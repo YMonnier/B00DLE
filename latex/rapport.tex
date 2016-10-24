@@ -8,7 +8,6 @@
 \addtolength{\oddsidemargin}{-.875in}
 \addtolength{\evensidemargin}{-.875in}
 \addtolength{\textwidth}{1.75in}
-	
 \addtolength{\topmargin}{-.875in}
 \addtolength{\textheight}{1.75in}
 
@@ -34,6 +33,8 @@
 \part{Rapport client}
 
 \tableofcontents
+
+\listoffigures 
 
 \chapter{Introduction}
 
@@ -212,7 +213,78 @@ Un utilisateur doit se connecter à un compte existant pour accéder à la créa
 
 \section{Maquettage}
 
-\subsection{Sous-section}
+La page d'accueil de l'application permettra à un utilisateur de se connecter afin d'avoir un accès d'administrateur ou bien d'entrer un lien afin d'accéder à un sondage existant et d'y répondre (Figure \ref{maquette_accueil}).
+
+\begin{figure}[h]
+	\caption{Maquette - Page d'accueil}
+	\label{maquette_accueil}
+	\centering
+	\includegraphics[scale=0.7]{figures/maquettes/accueil.png}
+\end{figure}
+
+\par Lorsque l'utilisateur accède à un sondage, il arrive sur la page principale (Dashboard) qui lui permet de consulter les caractéristiques et réponses actuelles du sondage. Ses propres réponses à ce sondage sont mises en évidence et il peut les éditer ou les supprimer. Il peut également ajouter une ou plusieurs réponses sur cette page (Figure \ref{maquette_dashboard}).
+\par Cette page permet aussi à l'utilisateur de chatter avec les autres utilisateurs ayant accès à ce sondage.
+
+\begin{figure}[h]
+	\caption{Maquette - Dashboard}
+	\label{maquette_dashboard}
+	\centering
+	\includegraphics[scale=0.7]{figures/maquettes/dashboard.png}
+\end{figure}
+
+\paragraph{} Si l'utilisateur souhaite se connecter, il accède à une fenêtre l'invitant à rentrer ses identifiants (Figure \ref{maquette_connexion}). S'il ne possède pas de compte, il peut en créer en suivant le lien Créer un compte (Figure \ref{maquette_creationCompte}).
+
+\begin{figure}[h]
+	\caption{Maquette - Connexion}
+	\label{maquette_connexion}
+	\centering
+	\includegraphics[scale=0.7]{figures/maquettes/connexion.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Maquette - Créer un compte}
+	\label{maquette_creationCompte}
+	\centering
+	\includegraphics[scale=0.7]{figures/maquettes/creationCompte.png}
+\end{figure}
+
+\paragraph{} Une fois connecté, l'utilisateur peut accéder à la page de création de sondage (Figure \ref{maquette_creationEvenement}) afin d'entrer toutes les informations nécessaires à la création d'un nouveau sondage. Le bouton + à gauche permet d'accéder à la création de sondage depuis n'importe quelle page administrateur. Le bouton + en bas permet de valider le champ de texte de jour et d'ajouter une nouvelle date au sondage.
+
+\begin{figure}[h]
+	\caption{Maquette - Créer un sondage}
+	\label{maquette_creationEvenement}
+	\centering
+	\includegraphics[scale=0.7]{figures/maquettes/creationEvenement.png}
+\end{figure}
+
+\paragraph{}Une fois la création validée, un popup permet de choisir les personnes à qui le logiciel va envoyer un mail les invitant à répondre au sondage (Figure \ref{maquette_popupAddParticipants}). Le bouton + permet de valider le champ de texte de l'adresse mail et d'envoyer un mail contenant le lien du sondage si l'adresse indiquée est valide.
+
+\begin{figure}[h]
+	\caption{Maquette - Ajouter des collaborateurs}
+	\label{maquette_popupAddParticipants}
+	\centering
+	\includegraphics[scale=0.7]{figures/maquettes/popupAddParticipants.png}
+\end{figure}
+
+\paragraph{}En cliquant sur un sondage existant depuis l'interface administrateur, il est possible d'éditer certaines informations si l'administrateur est le créateur du sondage (Figure \ref{maquette_modifierEvenement}).
+
+\begin{figure}[h]
+	\caption{Maquette - Modifier un sondage}
+	\label{maquette_modifierEvenement}
+	\centering
+	\includegraphics[scale=0.7]{figures/maquettes/modifierEvenement.png}
+\end{figure}
+
+\paragraph{}Depuis toutes les pages du logiciel, l'administrateur peut se déconnecter pour accéder à la page d'accueil.
+\par Les cas nominaux d'utilisation utiliseront la navigation présentés dans le diagramme de navigabilité présenté en figure \ref{diagramme_navigabilite}. L'interface permettra également une navigation aisée entre les principales vues du logiciel. Par exemple, il sera possible d'accéder à l'accueil ou de se connecter/déconnecter depuis n'importe quelle vue du logiciel.
+
+\begin{figure}[h]
+	\caption{Diagramme de navigabilité}
+	\label{diagramme_navigabilite}
+	\centering
+	% TODO Re-dl diagramme depuis Lucidchart
+	\includegraphics[scale=1]{figures/diagrammes/navigabilite.png}
+\end{figure}
 
 \chapter{Conception UML}
 
