@@ -5,12 +5,19 @@
 \usepackage[francais]{babel}
 \usepackage{graphicx}
 
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+	
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+
 % Title Page
 
 	\title{Rapport de projet - Planificateur de réunions}
 	
-	\author{BELLANGER Stephen
-		MONNIER Ysée
+	\author{BELLANGER Stephen \and
+		MONNIER Ysée \and
 		VIALLA Maxence}
 	\date{Septembre-Novembre 2016}
 
@@ -18,9 +25,11 @@
 
 \begin{document}
 \begin{titlepage}
+	\begin{center}
 	
 	\includegraphics[scale=0.5]{figures/Logo_B00DLE.png}
 	\maketitle
+	\end{center}
 \end{titlepage}
 \part{Rapport client}
 
@@ -96,12 +105,11 @@
 
 \subsubsection{Sécurité}
 \subparagraph{SPEC\_SEC\_001} Le système requiert une authentification pour accéder aux droits administrateurs
-\subparagraph{SPEC\_SEC\_002} Cryptage du mot de passe administrateur. 
 
 \subsection{Spécifications fonctionnelles}
 
 \subsubsection{Utilisateur}
-\paragraph{SPEC\_FONC\_002} Un utilisateur peut créer un compte.
+\paragraph{SPEC\_FONC\_002 : Un utilisateur peut créer un compte.}
 L’utilisateur doit entrer les informations suivantes pour créer un compte administrateur :
 \begin{itemize}
 \item Son nom
@@ -110,20 +118,97 @@ L’utilisateur doit entrer les informations suivantes pour créer un compte adm
 \item Vérification du mot de passe \end{itemize}
 Il est automatiquement redirigé vers la page d’accueil du logiciel.
 
-\paragraph{SPEC\_FONC\_003} Un utilisateur peut se connecter à un compte existant.
+\paragraph{SPEC\_FONC\_003 : Un utilisateur peut se connecter à un compte existant.}
 Pour qu’une authentification soit valide, l’utilisateur doit entrer :
 \begin{itemize}
 \item Son adresse mail
 \item Son mot de passe \end{itemize}
 L’adresse mail et le mot de passe doivent correspondre au données contenu dans la base de données.
 
-\paragraph{SPEC\_FONC\_011} Un utilisateur peut modifier ses réponses.
+\paragraph{SPEC\_FONC\_011 : Un utilisateur peut modifier ses réponses.}
 Un utilisateur peut modifier les réponses à un sondage ayant été effectuées depuis le logiciel utilisé pour la création des réponses.
 
-\paragraph{SPEC\_FONC\_012} Un utilisateur peut supprimer ses réponses.
+\paragraph{SPEC\_FONC\_012 : Un utilisateur peut supprimer ses réponses.}
 Un utilisateur peut supprimer les réponses à un sondage ayant été effectuées depuis le logiciel utilisé pour la création des réponses.
 
 \subsubsection{Administrateur}
+
+\paragraph{SPEC\_FONC\_004 : Un administrateur peut créer un sondage.}
+Un utilisateur peut créer un sondage en entrant les informations suivantes :
+\begin{itemize}
+\item Le nom du sondage 
+\item La description du sondage
+\item Le lieu du sondage
+\item Ajouter les dates de début et de fin de chaque créneau  \end{itemize}
+
+\paragraph{SPEC\_FONC\_005 : Un administrateur peut gérer un sondage.}
+L’administrateur peut modifier les informations suivantes :
+\begin{itemize}
+\item Le nom du sondage
+\item La description du sondage
+\item Le lieu du sondage
+\item Inviter une nouvelle personne au sondage \end{itemize}
+
+\paragraph{SPEC\_FONC\_006 : Un administrateur peut clôturer un sondage. }
+L’administrateur peut choisir de clôturer un sondage dont il est le créateur.
+
+\paragraph{SPEC\_FONC\_007 : Un administrateur peut sélectionner une date qui convient à l’ensemble des utilisateurs.}
+L’administrateur peut sélectionner une date valide qui lui convient par rapport aux réponses des utilisateurs. Il peut également clôturer un sondage sans faire de choix.
+
+\paragraph{SPEC\_FONC\_014 : Un administrateur peut modifier les paramètres d’un sondage.}
+Le système doit permettre à un administrateur authentifié de modifier tous les paramètres existant pour un sondage dont il est le créateur : \begin{itemize}
+\item Modifier le nom, le lieu ou la description du sondage
+\item Ajouter ou supprimer un créneau horaire
+\item Suppression d’une ou plusieurs réponses d’utilisateur(s) \end{itemize}
+
+\subsubsection{Sondage}
+
+\paragraph{SPEC\_FONC\_008 : Le système peut diffuser un sondage.}
+L’administrateur fournit au système une liste d’adresses mail via un formulaire. 
+
+\paragraph{SPEC\_FONC\_009 : Le système génère le lien d’un sondage.}
+Le système propose à l’administrateur un identifiant unique au sondage qu’il peut partager lui même avec les personnes de son choix.
+
+\paragraph{SPEC\_FONC\_010 : Un utilisateur peut ajouter une réponse au sondage.}
+Un utilisateur disposant du lien vers un sondage peut y ajouter une réponse. 
+
+\subsubsection{Fonctionnalités spécifiques}
+
+\paragraph{SPEC\_FONC\_001 : Le système intègre un chat instantané.}
+Le système doit mettre en place un chat permettant aux utilisateurs de communiquer entre eux sans devoir s’authentifier. Chaque sondage dispose de son propre chat.
+
+\paragraph{SPEC\_FONC\_013 : Le système peut prendre en charge un agenda personnel}
+Le système doit pouvoir fournir à un utilisateur des indications lui rappelant qu’il a déjà répondu à un sondage. Cette indication bloque les dates indisponibles à tous les sondages auquel il est en train de répondre.
+
+\subsubsection{Contraintes}
+\paragraph{CONT\_FONC\_001 : Contrainte d’ajout d’une réponse à un sondage clôturé.}
+Dans les 2 cas, il est impossible pour les utilisateurs d’ajouter une réponse à un sondage clôturé.
+
+\paragraph{CONT\_FONC\_002 : Contrainte de modification d’un sondage.}
+L’administrateur ne peut pas modifier une date de son sondage, ni modifier les réponses des utilisateurs.
+
+\subsection{IHM}
+
+\paragraph{SPEC\_IHM\_001 : Résumé textuel du sondage.}
+Le système doit fournir un résumé textuel qui résume les disponibilités des utilisateurs.
+
+\paragraph{SPEC\_IHM\_002 : Consultation d’un sondage (utilisateurs).}
+Le système permet aux utilisateurs de consulter toutes les réponses à un sondage dont ils ont l’identifiant.
+
+\paragraph{SPEC\_IHM\_003 : Consultation d’un sondage (administrateur).}
+Le système permet à l’administrateur de consulter toutes les réponses à un sondage dont il est le créateur.
+
+\subsection{Transactionnelles}
+
+\paragraph{SPEC\_TRANS\_001 : Le système permet d'envoyer le lien d’un sondage.}
+Le système envoie un lien aux utilisateurs spécifiés par l'administrateur permettant seulement de répondre au sondage.
+
+\paragraph{CONT\_TRANS\_001 : Le système met à jour les chats en temps réel.}
+Le chat est mis à jour en temps réel.
+
+\subsection{Sécurité}
+\paragraph{SPEC\_SEC\_001 : Le système requiert une authentification pour accéder aux droits administrateurs.}
+Un utilisateur doit se connecter à un compte existant pour accéder à la création, modification ou suppression de sondage
 
 \section{Maquettage}
 
