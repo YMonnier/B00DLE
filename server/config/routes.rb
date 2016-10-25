@@ -3,6 +3,6 @@ Rails.application.routes.draw do
     mount Knock::Engine => '/login'
     resources :users, :only => [:create]
     resources :opinion_polls
-    #resources :users
+    resources :answers, :only => [:create, :update, :destroy]
   end
 end

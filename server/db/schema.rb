@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 500) do
 
   create_table "answers", force: :cascade do |t|
     t.string   "name"
-    t.integer  "app_id"
+    t.string   "app_id"
     t.integer  "opinion_poll_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
