@@ -1,6 +1,6 @@
 require 'jwt'
 class Api::OpinionPollsController < ApplicationController
-  before_action :authenticate_user, :only => [:create, :delete, :update, :index]
+  before_action :authenticate_user, :only => [:create, :destroy, :update, :index]
 
   ##
   #
@@ -55,17 +55,83 @@ class Api::OpinionPollsController < ApplicationController
     #render json:  user
   end
 
+
+  ##
+  #
+  # Get a specific opinion poll
+  # with an link or id given.
+  # If the link is given, we decode it.
+  #
+  ##
   def show
     id = params[:id]
-    if is_number? id
-      return ok_request OpinionPoll.find(id)
-      #render json: OpinionPoll.find(id)
-    else
+    unless is_number? id
       token = id
       decode_t = decode_link token
-      poll_id = decode_t[0]['id']
-      return ok_request OpinionPoll.find(poll_id)
+      id = decode_t[0]['id']
     end
+
+    @opinion_poll = OpinionPoll.find(id)
+
+    return ok_request @opinion_poll
+
+  rescue ActiveRecord::RecordNotFound
+    r = {opinion_poll: 'Record Not Found'}
+    return not_found r
+  end
+
+
+  ##
+  #
+  # Update a specific opinion poll
+  # with a link or id given.
+  # If the link is given, we decode it.
+  #
+  ##
+  def update
+    id = params[:id]
+    unless is_number? id
+      token = id
+      decode_t = decode_link token
+      id = decode_t[0]['id']
+    end
+
+    @opinion_poll = OpinionPoll.find(id)
+
+    if @opinion_poll.update(opinion_params)
+      ok_request @opinion_poll
+    else
+      bad_request @opinion_poll.errors
+    end
+
+  rescue ActiveRecord::RecordNotFound
+    r = {opinion_poll: 'Record Not Found'}
+    return not_found r
+  end
+
+  ##
+  #
+  # Destroy a specific opinion poll
+  # with an link or id given.
+  # If the link is given, we decode it.
+  #
+  ##
+  def destroy
+    id = params[:id]
+    unless is_number? id
+      token = id
+      decode_t = decode_link token
+      id = decode_t[0]['id']
+    end
+    @opinion_poll = OpinionPoll.find(id)
+    @opinion_poll.destroy
+
+    r = {}
+    return deleted_request r
+
+  rescue ActiveRecord::RecordNotFound
+    r = {opinion_poll: 'Record Not Found'}
+    return not_found r
   end
 
   private
@@ -139,4 +205,5 @@ class Api::OpinionPollsController < ApplicationController
   def decode_link data
     JWT.decode data, nil, false
   end
+
 end

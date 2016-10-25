@@ -167,23 +167,13 @@ RSpec.describe Api::OpinionPollsController, :type => :controller do
         @time = FactoryGirl.attributes_for :time_slot, opinion_poll: @opinion_poll
         @invitation = FactoryGirl.attributes_for :invitation, opinion_poll: @opinion_poll
 
-        pp '======== user'
-        pp @user
-        pp '======== opinion poll'
-        pp @opinion_poll
-
         parameters = {
             id: @opinion_poll[:id],
         }
 
         get :show, params: parameters
 
-
-
         @json = json_response
-
-        pp '======== JSON:'
-        pp @json
         @data = json_response[:data]
       end
 
@@ -192,7 +182,98 @@ RSpec.describe Api::OpinionPollsController, :type => :controller do
         expect(@json[:succeed]).to eql true
       end
 
+      it 'id should be the same' do
+        expect(@data[:id]).to eql @opinion_poll[:id]
+      end
+
       it { should respond_with 200 }
+    end
+  end
+
+  describe 'PUT/PATCH #update' do
+    before(:each) do
+      @user = FactoryGirl.create :user
+      @opinion_poll = FactoryGirl.create :opinion_poll, user: @user
+
+      token = generate_token @user
+      api_authorization_header(token)
+    end
+
+    context 'when is successfully updated' do
+      before(:each) do
+        parameters = {
+            id: @opinion_poll[:id],
+            title: 'test_update'
+        }
+
+        put :update, params: parameters
+      end
+
+      it 'renders the json representation for the updated opinion poll' do
+        opinion_response = json_response[:data]
+        expect(opinion_response[:title]).to eql 'test_update'
+      end
+
+      it { should respond_with 200 }
+    end
+
+    context 'when opinion poll is not found' do
+      before(:each) do
+        parameters = {
+            id: -1234,
+            title: 'Hello!'
+        }
+
+        put :update, params: parameters
+      end
+
+      it { should respond_with 404 }
+    end
+  end
+
+  describe 'DELETE #destroy' do
+
+    context 'when is successfully to get destroy an opinion poll' do
+      before do
+        @user = FactoryGirl.create :user
+        @opinion_poll = FactoryGirl.create :opinion_poll, user: @user
+
+        token = generate_token @user
+        api_authorization_header(token)
+
+        #@time = FactoryGirl.attributes_for :time_slot, opinion_poll: @opinion_poll
+        #@invitation = FactoryGirl.attributes_for :invitation, opinion_poll: @opinion_poll
+
+        parameters = {
+            id: @opinion_poll[:id],
+        }
+
+        delete :destroy, params: parameters
+      end
+
+      it { should respond_with 204 }
+    end
+
+
+    context 'when opinion poll is not found ' do
+      before do
+        @user = FactoryGirl.create :user
+        @opinion_poll = FactoryGirl.create :opinion_poll, user: @user
+
+        token = generate_token @user
+        api_authorization_header(token)
+
+        #@time = FactoryGirl.attributes_for :time_slot, opinion_poll: @opinion_poll
+        #@invitation = FactoryGirl.attributes_for :invitation, opinion_poll: @opinion_poll
+
+        parameters = {
+            id: 12,
+        }
+
+        delete :destroy, params: parameters
+      end
+
+      it { should respond_with 404 }
     end
   end
 end
