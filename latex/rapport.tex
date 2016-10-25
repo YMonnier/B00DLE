@@ -45,12 +45,14 @@
 
 \chapter{Introduction}
 
-\paragraph{}
-	L'objectif de ce projet est de réaliser un logiciel de planification de réunions en Java en se focalisant sur sa conception UML. L'interface et le mode de fonctionnement du logiciel sera basé sur le site web Doodle (http://www.doodle.com/). 
-	\paragraph{}
-	Le logiciel créé devra répondre au besoin de planifier des réunions en permettant à des utilisateurs de fournir une réponse sans devoir s'inscrire ni se connecter. Le logiciel devra fournir au créateur du sondage un accès facile aux réponses de tous les utilisateurs.
-	\paragraph{}
-	Ce rapport présentera la conception et la réalisation du logiciel B00DLE en respectant la chronologie de notre étude : spécifications, étude UML puis implémentation.
+\par
+L'objectif de ce projet est de réaliser un logiciel de planification de réunions en Java en se focalisant sur sa conception UML. 
+L'interface et le mode de fonctionnement du logiciel sera basé sur le site web Doodle (http://www.doodle.com/). 
+\par
+Le logiciel créé devra répondre au besoin de planifier des réunions en permettant à des utilisateurs de fournir une réponse sans devoir s'inscrire ni se connecter. 
+Le logiciel devra fournir au créateur du sondage un accès facile aux réponses de tous les utilisateurs.
+\par
+Ce rapport présentera la conception et la réalisation du logiciel B00DLE en respectant la chronologie de notre étude : spécifications, étude UML puis implémentation.
 
 
 
@@ -229,7 +231,9 @@ La page d'accueil de l'application permettra à un utilisateur de se connecter a
 	\includegraphics[scale=0.7]{figures/maquettes/accueil.png}
 \end{figure}
 
-\par Lorsque l'utilisateur accède à un sondage, il arrive sur la page principale (Dashboard) qui lui permet de consulter les caractéristiques et réponses actuelles du sondage. Ses propres réponses à ce sondage sont mises en évidence et il peut les éditer ou les supprimer. Il peut également ajouter une ou plusieurs réponses sur cette page (Figure \ref{maquette_dashboard}).
+\par Lorsque l'utilisateur accède à un sondage, il arrive sur la page principale (Dashboard) qui lui permet de consulter les caractéristiques et réponses actuelles du sondage. 
+Ses propres réponses à ce sondage sont mises en évidence et il peut les éditer ou les supprimer. 
+Il peut également ajouter une ou plusieurs réponses sur cette page (Figure \ref{maquette_dashboard}).
 \par Cette page permet aussi à l'utilisateur de chatter avec les autres utilisateurs ayant accès à ce sondage.
 
 \begin{figure}[h]
@@ -239,7 +243,8 @@ La page d'accueil de l'application permettra à un utilisateur de se connecter a
 	\includegraphics[scale=0.7]{figures/maquettes/dashboard.png}
 \end{figure}
 
-\paragraph{} Si l'utilisateur souhaite se connecter, il accède à une fenêtre l'invitant à rentrer ses identifiants (Figure \ref{maquette_connexion}). S'il ne possède pas de compte, il peut en créer en suivant le lien Créer un compte (Figure \ref{maquette_creationCompte}).
+\paragraph{} Si l'utilisateur souhaite se connecter, il accède à une fenêtre l'invitant à rentrer ses identifiants (Figure \ref{maquette_connexion}). 
+S'il ne possède pas de compte, il peut en créer en suivant le lien Créer un compte (Figure \ref{maquette_creationCompte}).
 
 \begin{figure}[h]
 	\caption{Maquette - Connexion}
@@ -255,7 +260,9 @@ La page d'accueil de l'application permettra à un utilisateur de se connecter a
 	\includegraphics[scale=0.7]{figures/maquettes/creationCompte.png}
 \end{figure}
 
-\paragraph{} Une fois connecté, l'utilisateur peut accéder à la page de création de sondage (Figure \ref{maquette_creationEvenement}) afin d'entrer toutes les informations nécessaires à la création d'un nouveau sondage. Le bouton + à gauche permet d'accéder à la création de sondage depuis n'importe quelle page administrateur. Le bouton + en bas permet de valider le champ de texte de jour et d'ajouter une nouvelle date au sondage.
+\paragraph{} Une fois connecté, l'utilisateur peut accéder à la page de création de sondage (Figure \ref{maquette_creationEvenement}) afin d'entrer toutes les informations nécessaires à la création d'un nouveau sondage. 
+Le bouton + à gauche permet d'accéder à la création de sondage depuis n'importe quelle page administrateur. 
+Le bouton + en bas permet de valider le champ de texte de jour et d'ajouter une nouvelle date au sondage.
 
 \begin{figure}[h]
 	\caption{Maquette - Créer un sondage}
@@ -264,7 +271,8 @@ La page d'accueil de l'application permettra à un utilisateur de se connecter a
 	\includegraphics[scale=0.7]{figures/maquettes/creationEvenement.png}
 \end{figure}
 
-\paragraph{}Une fois la création validée, un popup permet de choisir les personnes à qui le logiciel va envoyer un mail les invitant à répondre au sondage (Figure \ref{maquette_popupAddParticipants}). Le bouton + permet de valider le champ de texte de l'adresse mail et d'envoyer un mail contenant le lien du sondage si l'adresse indiquée est valide.
+\paragraph{}Une fois la création validée, un popup permet de choisir les personnes à qui le logiciel va envoyer un mail les invitant à répondre au sondage (Figure \ref{maquette_popupAddParticipants}). 
+Le bouton + permet de valider le champ de texte de l'adresse mail et d'envoyer un mail contenant le lien du sondage si l'adresse indiquée est valide.
 
 \begin{figure}[h]
 	\caption{Maquette - Ajouter des collaborateurs}
@@ -283,22 +291,78 @@ La page d'accueil de l'application permettra à un utilisateur de se connecter a
 \end{figure}
 
 \paragraph{}Depuis toutes les pages du logiciel, l'administrateur peut se déconnecter pour accéder à la page d'accueil.
-\par Les cas nominaux d'utilisation utiliseront la navigation présentés dans le diagramme de navigabilité présenté en figure \ref{diagramme_navigabilite}. L'interface permettra également une navigation aisée entre les principales vues du logiciel. Par exemple, il sera possible d'accéder à l'accueil ou de se connecter/déconnecter depuis n'importe quelle vue du logiciel.
+\par Les cas nominaux d'utilisation utiliseront la navigation présentés dans le diagramme de navigabilité présenté en figure \ref{diagramme_navigabilite}. L'interface permettra également une navigation aisée entre les principales vues du logiciel. 
+Par exemple, il sera possible d'accéder à l'accueil ou de se connecter/déconnecter depuis n'importe quelle vue du logiciel.
 
 \begin{figure}[h]
 	\caption{Diagramme de navigabilité}
 	\label{diagramme_navigabilite}
 	\centering
-	% TODO Re-dl diagramme depuis Lucidchart
 	\includegraphics[scale=1]{figures/diagrammes/navigabilite.png}
 \end{figure}
 
 \chapter{Conception UML}
 
-La modélisation UML présentée ici se concentrera principalement sur le fonctionnement du client. L'architecture du serveur sera détaillée dans la partie \ref{part_modelServer} (page \pageref{part_modelServer}). 
-\par Dans cette partie, nous avons choisit de ne faire apparaître qu'une partie des diagrammes afin d'appuyer notre propos. La totalité des diagrammes UML utilisés lors de la conception de B00DLE sont présentés en partie \ref{part_allUML} (page \pageref{part_allUML}).
+La modélisation UML présentée ici se concentrera principalement sur le fonctionnement du client. 
+L'architecture du serveur sera détaillée dans la partie \ref{part_modelServer} (page \pageref{part_modelServer}). 
+\par Dans cette partie, nous avons choisit de ne faire apparaître qu'une partie des diagrammes afin d'appuyer notre propos. 
+La totalité des diagrammes UML utilisés lors de la conception de B00DLE sont présentés en partie \ref{part_allUML} (page \pageref{part_allUML}).
 
-\section{Modélisation de l'axe statique}
+\section{Modélisation de l'axe fonctionnel}
+
+\subsection{Diagramme de contexte statique}
+
+Nous distinguons deux types d'acteurs, un utilisateur et un administrateur qui auront des utilisations du logiciel complètement distincts. 
+Cette séparation nous permet d'autoriser une utilisation de l'application sans authentification pour l'utilisateur (\ref{diagramme_contexteStatique}). 
+
+\begin{figure}[h]
+	\caption{Diagramme de contexte statique}
+	\label{diagramme_contexteStatique}
+	\centering
+	\includegraphics[scale=0.7]{figures/diagrammes/contexteStatique.png}
+\end{figure}
+
+L'accès aux données nécessaires au fonctionnement de B00DLE se fera par le biais d'un serveur codé en Ruby dont le fonctionnement est détaillé en annexe. C'est ce serveur qui communiquera avec la base de données.
+
+\subsection{Diagramme des cas d'utilisation}
+
+\par Les cas d'usage de l'administrateur requièrent tous une authentification. N'importe quel utilisateur peut créer un compte afin d'accéder au rôle d'administrateur après authentification (\ref{diagramme_casDUtilisation}).
+
+\begin{figure}[h]
+	\caption{Diagramme des cas d'utilisation}
+	\label{diagramme_casDUtilisation}
+	\centering
+	\includegraphics[scale=0.8]{figures/diagrammes/casDUtilisation.png}
+\end{figure}
+
+\par La priorité des cas d'utilisation est détaillée dans la figure \ref{tableau_casDUtilisation}. La principale fonctionnalité du logiciel est d'assurer la possibilité de créer un sondage et d'y ajouter des réponses.
+
+	\begin{figure}[h]
+	\caption{Priorité des cas d'utilisation}
+	\label{tableau_casDUtilisation}
+	\centering
+\begin{tabular}{|c|c|c|c|}
+	\hline
+	Nom & Priorité & Risque & Classement \\
+	\hline
+	Créer un sondage & Haut & Moyen & 1 \\
+	Répondre à un sondage & Haut & Moyen & 2 \\
+	Supprimer ses réponses à un sondage & Moyen & Haut & 3 \\
+	Consulter un sondage & Haut & Bas & 4 \\
+	Supprimer un sondage & Bas & Haut & 5 \\
+	Modifier un sondage & Moyen & Moyen & 6 \\
+	Modifier ses réponses à un sondage & Moyen & Moyen & 7 \\
+	Créer un compte & Haut & Bas & 8 \\
+	Clôturer un sondage & Bas & Bas & 9 \\
+	Chatter & Bas & Bas & 10 \\
+	\hline
+\end{tabular}
+\end{figure}
+
+\subsection{Diagramme de classe}
+
+fdsf
+
 
 \chapter{Implémentation}
 
