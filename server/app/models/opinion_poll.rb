@@ -1,5 +1,5 @@
 class OpinionPoll < ApplicationRecord
-  #has_many :answers
+  has_many :answers
   has_many :invitations, dependent: :destroy
   has_many :time_slots, dependent: :destroy
   belongs_to :user

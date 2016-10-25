@@ -15,21 +15,20 @@ ActiveRecord::Schema.define(version: 500) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "answers", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "application_id"
-    t.integer  "opinion_poll_id"
-    t.integer  "time_slot_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["application_id"], name: "index_answers_on_application_id", using: :btree
-    t.index ["opinion_poll_id"], name: "index_answers_on_opinion_poll_id", using: :btree
-    t.index ["time_slot_id"], name: "index_answers_on_time_slot_id", using: :btree
+  create_table "answer_time_slots", id: false, force: :cascade do |t|
+    t.integer "answer_id"
+    t.integer "time_slot_id"
+    t.index ["answer_id"], name: "index_answer_time_slots_on_answer_id", using: :btree
+    t.index ["time_slot_id"], name: "index_answer_time_slots_on_time_slot_id", using: :btree
   end
 
-  create_table "applications", id: :integer, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "answers", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "app_id"
+    t.integer  "opinion_poll_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["opinion_poll_id"], name: "index_answers_on_opinion_poll_id", using: :btree
   end
 
   create_table "invitations", force: :cascade do |t|
@@ -66,9 +65,9 @@ ActiveRecord::Schema.define(version: 500) do
     t.string "password_digest"
   end
 
-  add_foreign_key "answers", "applications"
+  add_foreign_key "answer_time_slots", "answers"
+  add_foreign_key "answer_time_slots", "time_slots"
   add_foreign_key "answers", "opinion_polls"
-  add_foreign_key "answers", "time_slots"
   add_foreign_key "invitations", "opinion_polls"
   add_foreign_key "opinion_polls", "users"
   add_foreign_key "time_slots", "opinion_polls"
