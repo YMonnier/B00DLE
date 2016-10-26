@@ -71,6 +71,16 @@ class Api::AnswersController < ApplicationController
   end
 
 
+  def destroy
+    @answer = Answer.find_by! id: params[:id], app_id: params[:app_id]
+    @answer.destroy
+    return deleted_request
+
+  rescue ActiveRecord::RecordNotFound
+    r = {answer: 'Record Not Found'}
+    return not_found r
+  end
+
   private
   def answer_params
     params.permit(:app_id, :name, :opinion_poll_id)

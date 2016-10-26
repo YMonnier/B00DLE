@@ -4,14 +4,13 @@ RSpec.describe Api::AnswersController, :type => :controller do
   describe 'POST #create' do
     context 'when is successfully created' do
       before do
-        @opinion_poll = FactoryGirl.create :opinion_poll #, user: @user
+        @opinion_poll = FactoryGirl.create :opinion_poll
 
         @times = []
         4.times {
           t = FactoryGirl.create :time_slot, opinion_poll: @opinion_poll
           @times.append t.id
         }
-
 
         parameters = {
             app_id: '5E:FF:56:A2:AF:15',
@@ -42,7 +41,7 @@ RSpec.describe Api::AnswersController, :type => :controller do
 
   describe 'PUT/PATCH #update' do
     before(:each) do
-      @opinion_poll = FactoryGirl.create :opinion_poll #, user: @user
+      @opinion_poll = FactoryGirl.create :opinion_poll
 
       @times = []
       4.times {
@@ -84,7 +83,6 @@ RSpec.describe Api::AnswersController, :type => :controller do
         put :update, params: parameters
         @json = json_response
         @data = json_response[:data]
-        pp @json
       end
 
       it { should respond_with 404 }
@@ -100,7 +98,6 @@ RSpec.describe Api::AnswersController, :type => :controller do
         put :update, params: parameters
         @json = json_response
         @data = json_response[:data]
-        pp @json
       end
 
       it { should respond_with 404 }
@@ -116,10 +113,62 @@ RSpec.describe Api::AnswersController, :type => :controller do
         put :update, params: parameters
         @json = json_response
         @data = json_response[:data]
-        pp @json
       end
 
       it { should respond_with 404 }
     end
+  end
+
+  describe 'DELETE #destroy' do
+    context 'when is successfully to get destroy an answer' do
+      before do
+        @opinion_poll = FactoryGirl.create :opinion_poll
+        @answer = FactoryGirl.create :answer, opinion_poll: @opinion_poll
+
+        parameters = {
+            id: @answer.id,
+            app_id: @answer.app_id
+        }
+
+
+        delete :destroy, params: parameters
+      end
+
+      it { should respond_with 204 }
+    end
+  end
+
+  context 'when is not successfully to get destroy an answer - not found app_id' do
+    before do
+      @opinion_poll = FactoryGirl.create :opinion_poll
+      @answer = FactoryGirl.create :answer, opinion_poll: @opinion_poll
+
+      parameters = {
+          id: @answer.id,
+          app_id: 'NOT FOUND'
+      }
+
+
+      delete :destroy, params: parameters
+    end
+
+    it { should respond_with 404 }
+  end
+
+  context 'when is not successfully to get destroy an answer - not found answer id' do
+    before do
+      @opinion_poll = FactoryGirl.create :opinion_poll
+      @answer = FactoryGirl.create :answer, opinion_poll: @opinion_poll
+
+      parameters = {
+          id: -123578,
+          app_id: @answer.app_id
+      }
+
+
+      delete :destroy, params: parameters
+    end
+
+    it { should respond_with 404 }
   end
 end
