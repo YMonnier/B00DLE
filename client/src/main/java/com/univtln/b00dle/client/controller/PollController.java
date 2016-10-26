@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
@@ -118,10 +119,10 @@ public class PollController{
             for(Date date : poll.getDates()){
                 String newNameColumn = date.toString();
                 TableColumn column = new TableColumn(newNameColumn);
-                column.setCellValueFactory(new PropertyValueFactory<TableItem, String>(newNameColumn));
+                column.setCellValueFactory(new PropertyValueFactory<TableItem, Boolean>(newNameColumn));
                 column.setMinWidth(newNameColumn.length());
                 tableViewResponsePoll.getColumns().add(column);
-                column.setCellFactory(TextFieldTableCell.<TableItem>forTableColumn());
+                column.setCellFactory(CheckBoxTableCell.forTableColumn(column));
             }
         }
 
