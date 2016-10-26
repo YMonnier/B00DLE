@@ -17,7 +17,7 @@ gem 'active_model_serializers'
 gem 'bcrypt', '~> 3.1.7'
 
 # Auth
-gem 'knock'
+gem 'knock', '~> 1.5'
 
 # Secutity
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
