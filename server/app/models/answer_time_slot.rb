@@ -1,4 +1,4 @@
 class AnswerTimeSlot < ApplicationRecord
-  #has_one :answer
-  #has_one :time_slot, dependent: :destroy
+  belongs_to :answer
+  belongs_to :time_slot, dependent: :destroy
 end

@@ -5,25 +5,24 @@ RSpec.describe Api::OpinionPollsController, :type => :controller do
     context 'when is successfully created' do
       before do
         @user = FactoryGirl.create :user
-
         token = generate_token @user
         api_authorization_header(token)
 
-        @opinion_poll = FactoryGirl.attributes_for :opinion_poll, user: @user
-
-        @time = FactoryGirl.attributes_for :time_slot, opinion_poll: @opinion_poll
-        @invitation = FactoryGirl.attributes_for :invitation, opinion_poll: @opinion_poll
+        @opinion_poll = FactoryGirl.create :opinion_poll, user: @user
+        @time = FactoryGirl.create :time_slot, opinion_poll: @opinion_poll
+        @invitation = FactoryGirl.create :invitation, opinion_poll: @opinion_poll
 
         parameters = {
-            title: @opinion_poll[:title],
-            description: @opinion_poll[:description],
-            place: @opinion_poll[:place],
-            emails: [@invitation[:email]],
-            time_slots: [{from: @time[:from], to: @time[:to]}]
+            title: @opinion_poll.title,
+            description: @opinion_poll.description,
+            place: @opinion_poll.place,
+            emails: [@invitation.email],
+            time_slots: [{from: @time.from, to: @time.to}]
         }
 
         post :create, params: parameters
         @json = json_response
+        #pp @json
         @data = json_response[:data]
         @user_response = @json[:data]
       end
@@ -38,11 +37,11 @@ RSpec.describe Api::OpinionPollsController, :type => :controller do
       end
 
       it 'title should be the same' do
-        expect(@data[:title]).to eql @opinion_poll[:title]
+        expect(@data[:title]).to eql @opinion_poll.title
       end
 
       it 'description should be the same' do
-        expect(@data[:description]).to eql @opinion_poll[:description]
+        expect(@data[:description]).to eql @opinion_poll.description
       end
 
       it { should respond_with 201 }
@@ -51,46 +50,41 @@ RSpec.describe Api::OpinionPollsController, :type => :controller do
     context 'when is not permit to create(Not authorize)' do
       before do
         @user = FactoryGirl.create :user
-
-        @opinion_poll = FactoryGirl.attributes_for :opinion_poll, user: @user
-
-        @time = FactoryGirl.attributes_for :time_slot, opinion_poll: @opinion_poll
-        @invitation = FactoryGirl.attributes_for :invitation, opinion_poll: @opinion_poll
+        @opinion_poll = FactoryGirl.create :opinion_poll, user: @user
+        @time = FactoryGirl.create :time_slot, opinion_poll: @opinion_poll
+        @invitation = FactoryGirl.create :invitation, opinion_poll: @opinion_poll
 
         parameters = {
-            title: @opinion_poll[:title],
-            description: @opinion_poll[:description],
-            place: @opinion_poll[:place],
-            emails: [@invitation[:email]],
-            time_slots: [{from: @time[:from], to: @time[:to]}]
+            title: @opinion_poll.title,
+            description: @opinion_poll.description,
+            place: @opinion_poll.place,
+            emails: [@invitation.email],
+            time_slots: [{from: @time.from, to: @time.to}]
         }
+
         post :create, params: parameters
       end
 
       it { should respond_with 401 }
     end
 
-
     context 'when is not successful - bad request - bad email parameters' do
       before do
         @user = FactoryGirl.create :user
-
         token = generate_token @user
         api_authorization_header(token)
 
-
-        @opinion_poll = FactoryGirl.attributes_for :opinion_poll, user: @user
-
-        @time = FactoryGirl.attributes_for :time_slot, opinion_poll: @opinion_poll
-        @invitation = FactoryGirl.attributes_for :invitation, opinion_poll: @opinion_poll
+        @opinion_poll = FactoryGirl.create :opinion_poll, user: @user
+        @time = FactoryGirl.create :time_slot, opinion_poll: @opinion_poll
+        @invitation = FactoryGirl.create :invitation, opinion_poll: @opinion_poll
         @invitation[:email] = 'zedezd@zed'
 
         parameters = {
-            title: @opinion_poll[:title],
-            description: @opinion_poll[:description],
-            place: @opinion_poll[:place],
-            emails: [@invitation[:email]],
-            time_slots: [{from: @time[:from], to: @time[:to]}]
+            title: @opinion_poll.title,
+            description: @opinion_poll.description,
+            place: @opinion_poll.place,
+            emails: [@invitation.email],
+            time_slots: [{from: @time.from, to: @time.to}]
         }
 
         #@user_attr[:password_confirmation] = @user_attr[:password]
@@ -117,19 +111,18 @@ RSpec.describe Api::OpinionPollsController, :type => :controller do
         token = generate_token @user
         api_authorization_header(token)
 
-        @opinion_poll = FactoryGirl.attributes_for :opinion_poll, user: @user
+        @opinion_poll = FactoryGirl.create :opinion_poll, user: @user
+        @time = FactoryGirl.create :time_slot, opinion_poll: @opinion_poll
+        @invitation = FactoryGirl.create :invitation, opinion_poll: @opinion_poll
 
-        @time = FactoryGirl.attributes_for :time_slot, opinion_poll: @opinion_poll
-        @invitation = FactoryGirl.attributes_for :invitation, opinion_poll: @opinion_poll
 
         parameters = {
-            title: @opinion_poll[:title],
-            description: @opinion_poll[:description],
-            place: @opinion_poll[:place],
-            emails: [@invitation[:email]],
-            time_slots: [{from: @time[:from], to: @time[:to]}]
+            title: @opinion_poll.title,
+            description: @opinion_poll.description,
+            place: @opinion_poll.place,
+            emails: [@invitation.email],
+            time_slots: [{from: @time.from, to: @time.to}]
         }
-
         post :create, params: parameters
         get :index
 
@@ -161,14 +154,12 @@ RSpec.describe Api::OpinionPollsController, :type => :controller do
     context 'when is successfully to get specific opinion poll - ' do
       before do
         @user = FactoryGirl.create :user
-
         @opinion_poll = FactoryGirl.create :opinion_poll, user: @user
-
-        @time = FactoryGirl.attributes_for :time_slot, opinion_poll: @opinion_poll
-        @invitation = FactoryGirl.attributes_for :invitation, opinion_poll: @opinion_poll
+        @time = FactoryGirl.create :time_slot, opinion_poll: @opinion_poll
+        @invitation = FactoryGirl.create :invitation, opinion_poll: @opinion_poll
 
         parameters = {
-            id: @opinion_poll[:id],
+            id: @opinion_poll.id,
         }
 
         get :show, params: parameters
@@ -241,9 +232,6 @@ RSpec.describe Api::OpinionPollsController, :type => :controller do
         token = generate_token @user
         api_authorization_header(token)
 
-        #@time = FactoryGirl.attributes_for :time_slot, opinion_poll: @opinion_poll
-        #@invitation = FactoryGirl.attributes_for :invitation, opinion_poll: @opinion_poll
-
         parameters = {
             id: @opinion_poll[:id],
         }
@@ -263,8 +251,6 @@ RSpec.describe Api::OpinionPollsController, :type => :controller do
         token = generate_token @user
         api_authorization_header(token)
 
-        #@time = FactoryGirl.attributes_for :time_slot, opinion_poll: @opinion_poll
-        #@invitation = FactoryGirl.attributes_for :invitation, opinion_poll: @opinion_poll
 
         parameters = {
             id: 12,

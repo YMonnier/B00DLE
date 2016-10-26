@@ -1,6 +1,6 @@
 class Answer < ApplicationRecord
-    #has_one :opinion_poll
-    #has_many :answer_time_slots
+    belongs_to :opinion_poll
+    has_many :time_slots, :through => :answer_time_slots
 
     validates :name, presence: true, allow_blank: false
 

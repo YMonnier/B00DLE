@@ -20,11 +20,12 @@ class Api::OpinionPollsController < ApplicationController
   #
   ##
   def create
+    t = {ok: 'OK???'}
     @opinion_poll = OpinionPoll.new(opinion_params)
     @opinion_poll.user_id = current_user.id
-
     if @opinion_poll.valid?
       invitation_models = validate_emails params[:emails]; return if performed?
+    #return ok_request t
       time_models = validate_time_slots params[:time_slots]; return if performed?
 
       if @opinion_poll.save
@@ -158,7 +159,7 @@ class Api::OpinionPollsController < ApplicationController
   def validate_emails emails
     invitation_models = []
     emails.each do |email|
-      invit = Invitation.new(email: email)
+      invit = Invitation.new(email: email, opinion_poll: @opinion_poll)
       bad_request invit.errors.messages and return unless invit.valid? #opinion_poll_id: @opinion_poll)
       invitation_models.append invit
     end
@@ -174,7 +175,8 @@ class Api::OpinionPollsController < ApplicationController
   def validate_time_slots times
     time_models = []
     times.each do |time|
-      t = TimeSlot.new(from: time[:from], to: time[:to])
+      t = TimeSlot.new(from: time[:from], to: time[:to], opinion_poll: @opinion_poll)
+
       bad_request t.errors.messages and return unless t.valid?
       time_models.append t
     end

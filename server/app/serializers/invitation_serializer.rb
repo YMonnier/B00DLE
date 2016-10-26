@@ -1,4 +1,4 @@
 class InvitationSerializer < ActiveModel::Serializer
   attributes :id, :email
-  has_one :opinion_poll
+  belongs_to :opinion_poll
 end

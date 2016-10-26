@@ -1,8 +1,7 @@
 require 'rails_helper'
 require 'pp'
 RSpec.describe TimeSlot, :type => :model do
-  before { @time = FactoryGirl.build(:time_slot)
-  pp @time}
+  before { @time = FactoryGirl.build(:time_slot) }
   subject { @time }
 
 
