@@ -23,7 +23,6 @@ RSpec.describe Api::AnswersController, :type => :controller do
         post :create, params: parameters
         @json = json_response
         @data = json_response[:data]
-        @user_response = @json[:data]
       end
 
       it 'opinion poll id should be the same' do
@@ -38,6 +37,89 @@ RSpec.describe Api::AnswersController, :type => :controller do
       end
 
       it { should respond_with 201 }
+    end
+  end
+
+  describe 'PUT/PATCH #update' do
+    before(:each) do
+      @opinion_poll = FactoryGirl.create :opinion_poll #, user: @user
+
+      @times = []
+      4.times {
+        t = FactoryGirl.create :time_slot, opinion_poll: @opinion_poll
+        @times.append t.id
+      }
+
+      @answer = FactoryGirl.create :answer, opinion_poll: @opinion_poll
+
+    end
+
+    context 'when is successfully updated' do
+      before(:each) do
+        parameters = {
+            id: @answer.id,
+            app_id: @answer.app_id,
+            times: [@times[0], @times[1]]
+        }
+        put :update, params: parameters
+        @json = json_response
+        @data = json_response[:data]
+      end
+
+      it 'time slot id should be the same' do
+        expect(@data[:time_slots][0][:id]).to eql @times[0]
+        expect(@data[:time_slots][1][:id]).to eql @times[1]
+      end
+
+      it { should respond_with 200 }
+    end
+
+    context 'when is not successfully updated with not found time slot error' do
+      before(:each) do
+        parameters = {
+            id: @answer.id,
+            app_id: @answer.app_id,
+            times: [-1234]
+        }
+        put :update, params: parameters
+        @json = json_response
+        @data = json_response[:data]
+        pp @json
+      end
+
+      it { should respond_with 404 }
+    end
+
+    context 'when is not successfully updated with not found answer error' do
+      before(:each) do
+        parameters = {
+            id: -23,
+            app_id: @answer.app_id,
+            times: [@times[0]]
+        }
+        put :update, params: parameters
+        @json = json_response
+        @data = json_response[:data]
+        pp @json
+      end
+
+      it { should respond_with 404 }
+    end
+
+    context 'when is not successfully updated with not found answer error' do
+      before(:each) do
+        parameters = {
+            id: @answer.id,
+            app_id: 'Not Found!',
+            times: [@times[0]]
+        }
+        put :update, params: parameters
+        @json = json_response
+        @data = json_response[:data]
+        pp @json
+      end
+
+      it { should respond_with 404 }
     end
   end
 end

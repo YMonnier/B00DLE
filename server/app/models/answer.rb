@@ -1,6 +1,6 @@
 class Answer < ApplicationRecord
   belongs_to :opinion_poll
-  has_many :answer_time_slots
+  has_many :answer_time_slots, dependent: :destroy
   has_many :time_slots, :through => :answer_time_slots
 
   validates :name, presence: true, allow_blank: false

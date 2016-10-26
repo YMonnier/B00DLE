@@ -32,9 +32,52 @@ class Api::AnswersController < ApplicationController
     end
   end
 
+  ##
+  #
+  # Update a specific answer.
+  # URL_PARAM :id
+  # JSON Parameters:
+  # {
+  #    "app_id": "5E:FF:56:A2:AF:15",
+  #    "name": "John",
+  #    "times": [1, 2, 3, 56, 12]
+  # }
+  #
+  ##
+  def update
+    if params[:times]
+      @answer = Answer.find_by! id: params[:id], app_id: params[:app_id]
+      times = params[:times]
+      valid_time_slots = validate_time_slot_ids times; return if performed?
+      if valid_time_slots
+        if @answer.update(answer_update_params)
+          @answer.answer_time_slots.delete_all
+          times.each do |time_slot_id|
+            AnswerTimeSlot.create(answer_id: @answer.id, time_slot_id: time_slot_id)
+          end
+          ok_request @answer
+        else
+          bad_request @answer.errors
+        end
+      end
+    else
+      r = {times: 'should not be empty'}
+      return bad_request r
+    end
+
+  rescue ActiveRecord::RecordNotFound
+    r = {answer: 'Record Not Found'}
+    return not_found r
+  end
+
+
   private
   def answer_params
     params.permit(:app_id, :name, :opinion_poll_id)
+  end
+
+  def answer_update_params
+    params.permit(:app_id, :name)
   end
 
   ##
