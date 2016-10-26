@@ -26,11 +26,6 @@ RSpec.describe Api::AnswersController, :type => :controller do
         @user_response = @json[:data]
       end
 
-
-      it 'succeed should be succeed' do
-        expect(@json[:succeed]).to eql true
-      end
-
       it 'opinion poll id should be the same' do
         expect(@data[:opinion_poll][:id]).to eql @opinion_poll.id
       end

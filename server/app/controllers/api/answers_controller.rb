@@ -1,6 +1,16 @@
 class Api::AnswersController < ApplicationController
-
-
+  ##
+  #
+  # Create a new answer.
+  # JSON Parameters:
+  # {
+  #    "app_id": "5E:FF:56:A2:AF:15",
+  #    "name": "John",
+  #    "opinion_poll_id": 1,
+  #    "times": [1, 2, 3, 56, 12]
+  # }
+  #
+  ##
   def create
     if params[:times]
       times = params[:times]
@@ -21,6 +31,8 @@ class Api::AnswersController < ApplicationController
       return bad_request r
     end
   end
+
+
 
   private
   def answer_params

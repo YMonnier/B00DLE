@@ -10,10 +10,8 @@ class ApplicationController < ActionController::API
   #
   ##
   def bad_request object
-    return render json: {
-        succeed: false,
-        message: ActiveModelSerializers::SerializableResource.new(object, {})
-    }, status: 400
+    render json: { errors: object },
+           status: :bad_request
   end
 
   ##
@@ -24,10 +22,8 @@ class ApplicationController < ActionController::API
   #
   ##
   def not_found object
-    return render json: {
-        succeed: false,
-        message: ActiveModelSerializers::SerializableResource.new(object, {})
-    }, status: 404
+    render json: { errors: object },
+           status: :not_found
   end
 
   ##
@@ -38,10 +34,9 @@ class ApplicationController < ActionController::API
   #
   ##
   def created_request object
-    return render json: {
-        succeed: true,
-        data: ActiveModelSerializers::SerializableResource.new(object, {})
-    }, status: 201
+    render json: object,
+           root: :data,
+           status: :created
   end
 
   ##
@@ -51,11 +46,11 @@ class ApplicationController < ActionController::API
   # Parameters object: Object created.
   #
   ##
-  def deleted_request object
-    return render json: {
-        succeed: true,
-        data: ActiveModelSerializers::SerializableResource.new(object, {})
-    }, status: 204
+  def deleted_request
+    r = {}
+    render json: r,
+           root: :data,
+           status: :no_content
   end
 
   ##
@@ -65,11 +60,10 @@ class ApplicationController < ActionController::API
   # Parameters object: Object wanted.
   #
   ##
-  def ok_request object
-    return render json: {
-        succeed: true,
-        #data: object
-        data: ActiveModelSerializers::SerializableResource.new(object, {})
-    }, status: 200
+  def ok_request object, options=nil
+    render json: object,
+           root: :data,
+           status: :ok,
+           include: options
   end
 end

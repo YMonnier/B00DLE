@@ -20,12 +20,10 @@ class Api::OpinionPollsController < ApplicationController
   #
   ##
   def create
-    t = {ok: 'OK???'}
     @opinion_poll = OpinionPoll.new(opinion_params)
     @opinion_poll.user_id = current_user.id
     if @opinion_poll.valid?
       invitation_models = validate_emails params[:emails]; return if performed?
-    #return ok_request t
       time_models = validate_time_slots params[:time_slots]; return if performed?
 
       if @opinion_poll.save
@@ -38,10 +36,13 @@ class Api::OpinionPollsController < ApplicationController
           time_slot.opinion_poll_id = @opinion_poll.id
           time_slot.save
         end
+        created_request @opinion_poll
+        #render json: @opinion_poll,
+        #              root: :data,
+        #              status: :created
       end
-      return created_request @opinion_poll
     else
-      return bad_request @opinion_poll.errors.messages
+      bad_request @opinion_poll.errors
     end
   end
 
@@ -53,7 +54,6 @@ class Api::OpinionPollsController < ApplicationController
   ##
   def index
     ok_request current_user
-    #render json:  user
   end
 
 
@@ -74,8 +74,7 @@ class Api::OpinionPollsController < ApplicationController
 
     @opinion_poll = OpinionPoll.find(id)
 
-    return ok_request @opinion_poll
-
+    ok_request @opinion_poll, %w(user answers.time_slots)
   rescue ActiveRecord::RecordNotFound
     r = {opinion_poll: 'Record Not Found'}
     return not_found r
@@ -127,8 +126,7 @@ class Api::OpinionPollsController < ApplicationController
     @opinion_poll = OpinionPoll.find(id)
     @opinion_poll.destroy
 
-    r = {}
-    return deleted_request r
+    return deleted_request
 
   rescue ActiveRecord::RecordNotFound
     r = {opinion_poll: 'Record Not Found'}
