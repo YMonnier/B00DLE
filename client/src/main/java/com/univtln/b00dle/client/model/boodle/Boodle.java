@@ -18,7 +18,7 @@ public class Boodle {
 
     public Boodle(){
         this.listPoll = new HashMap<String, Poll>();
-        /** Add Poll for test view */
+        /** Add Poll to test view */
         Poll poll1 = new Poll("484f74", "Sondage 1", "Description sondage 1", "Toulon", new Administrator("s@s.fr", "ok"));
         Poll poll2 = new Poll("esdg848r4", "Sondage 2", "Description sondage 2", "Toulon", new Administrator("s@s.fr", "ok"));
         ArrayList<Date> listDate = new ArrayList<>();

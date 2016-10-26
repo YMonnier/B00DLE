@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
@@ -46,10 +47,10 @@ public class PollController{
     private TextField chatNameField;
 
     @FXML
-    private TextArea description;
+    private Label description;
 
     @FXML
-    private TextArea place;
+    private Label place;
 
     @FXML
     private Label name;
@@ -93,7 +94,7 @@ public class PollController{
 
     /**
      * Initialize controller
-     * Fonction as a constructor in javaFX
+     * Fonction as a constructor/main in javaFX
      */
     @FXML
     public void initialize() {
@@ -105,9 +106,7 @@ public class PollController{
         Poll poll = model.getPollByLink(HomeController.getLink());
         name.setText(poll.getName());
         description.setText(poll.getDescription());
-        description.setEditable(false);
         place.setText(poll.getPlace());
-        place.setEditable(false);
 
         //Makes the table editable
         tableViewResponsePoll.setEditable(true);
@@ -120,14 +119,18 @@ public class PollController{
             for(Date date : poll.getDates()){
                 String newNameColumn = date.toString();
                 TableColumn column = new TableColumn(newNameColumn);
-                column.setCellValueFactory(new PropertyValueFactory<TableItem, String>(newNameColumn));
+                column.setCellValueFactory(new PropertyValueFactory<TableItem, Boolean>(newNameColumn));
                 column.setMinWidth(newNameColumn.length());
                 tableViewResponsePoll.getColumns().add(column);
-                column.setCellFactory(TextFieldTableCell.<TableItem>forTableColumn());
+                column.setCellFactory(CheckBoxTableCell.forTableColumn(column));
             }
         }
 
         //Add empty line response
+
+        //Makes the table editable
+        tableViewResponsePoll.setEditable(true);
+
         final ObservableList<TableItem> data =
                 FXCollections.observableArrayList(
                     new Response()

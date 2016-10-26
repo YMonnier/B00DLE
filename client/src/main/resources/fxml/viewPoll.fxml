@@ -69,17 +69,13 @@
                         <Insets right="5"/>
                      </padding>
                   </Label>
-                  <TextArea fx:id="description" prefHeight="200.0" prefWidth="500.0" />
+                  <Label fx:id="description" prefWidth="500.0" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Lieu : " >
-                     <padding>
-                        <Insets right="52"/>
-                     </padding>
-                  </Label>
-                  <TextArea fx:id="place" prefHeight="100.0" prefWidth="500.0" />
+                  <Label text="Lieu : " />
+                  <Label fx:id="place" prefWidth="500.0" />
                </children>
             </HBox>
             <TableView fx:id="tableViewResponsePoll" editable="true" prefHeight="200.0" prefWidth="200.0">
