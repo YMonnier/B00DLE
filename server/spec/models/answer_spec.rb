@@ -1,7 +1,10 @@
 require 'rails_helper'
 require 'pp'
 RSpec.describe Answer, :type => :model do
-  before { @answer = FactoryGirl.build :answer }
+  before {
+    @opinion_poll = FactoryGirl.create :opinion_poll
+    @answer = FactoryGirl.build :answer, opinion_poll: @opinion_poll
+  }
   subject { @answer }
 
   it { should respond_to :name }

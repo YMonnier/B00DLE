@@ -32,8 +32,6 @@ class Api::AnswersController < ApplicationController
     end
   end
 
-
-
   private
   def answer_params
     params.permit(:app_id, :name, :opinion_poll_id)
