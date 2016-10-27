@@ -1,4 +1,7 @@
 require 'jwt'
+require 'net/http'
+require 'net/https'
+
 class Api::OpinionPollsController < ApplicationController
   before_action :authenticate_user, :only => [:create, :destroy, :update, :index]
 
@@ -32,17 +35,17 @@ class Api::OpinionPollsController < ApplicationController
           invitation.save
         end
 
+        link = encode_link @opinion_poll.id, @opinion_poll.title
+        send_emails invitation_models, link; return if performed?
+
         time_models.each do |time_slot|
           time_slot.opinion_poll_id = @opinion_poll.id
           time_slot.save
         end
-        created_request @opinion_poll
-        #render json: @opinion_poll,
-        #              root: :data,
-        #              status: :created
+        return created_request @opinion_poll
       end
     else
-      bad_request @opinion_poll.errors
+      return bad_request @opinion_poll.errors
     end
   end
 
@@ -74,7 +77,7 @@ class Api::OpinionPollsController < ApplicationController
 
     @opinion_poll = OpinionPoll.find(id)
 
-    ok_request @opinion_poll, %w(user answers.time_slots)
+    return ok_request @opinion_poll, %w(user answers.time_slots)
   rescue ActiveRecord::RecordNotFound
     r = {opinion_poll: 'Record Not Found'}
     return not_found r
@@ -99,9 +102,9 @@ class Api::OpinionPollsController < ApplicationController
     @opinion_poll = OpinionPoll.find(id)
 
     if @opinion_poll.update(opinion_params)
-      ok_request @opinion_poll
+      return ok_request @opinion_poll
     else
-      bad_request @opinion_poll.errors
+      return bad_request @opinion_poll.errors
     end
 
   rescue ActiveRecord::RecordNotFound
@@ -194,7 +197,8 @@ class Api::OpinionPollsController < ApplicationController
         :id => id,
         :title => title
     }
-    JWT.encode payload, nil, 'none'
+    link = JWT.encode payload, nil, 'none'
+    link.sub('.', '_').chop
   end
 
   ##
@@ -203,7 +207,27 @@ class Api::OpinionPollsController < ApplicationController
   #
   ##
   def decode_link data
-    JWT.decode data, nil, false
+    link = data.sub('_', '.')
+    JWT.decode link, nil, false
+  end
+
+  def send_emails invits, link
+    list_emails = invits.empty? ? [] : invits.map { |invitation| invitation.email}
+
+    return if list_emails.empty?
+    http = Net::HTTP.new('projects.yseemonnier.com')
+    path = '/MailerB00DLE.php'
+    list_emails.each do |email|
+
+      params = {
+          link: link,
+          email: email
+      }
+      post_data = URI.encode_www_form(params)
+      headers = {'Content-Type'=> 'application/x-www-form-urlencoded'}
+      http.post(path, post_data)
+    end
+
   end
 
 end

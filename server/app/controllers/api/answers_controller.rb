@@ -21,9 +21,9 @@ class Api::AnswersController < ApplicationController
           times.each do |time_slot_id|
             AnswerTimeSlot.create(answer_id: @answer.id, time_slot_id: time_slot_id)
           end
-          created_request @answer
+          return created_request @answer
         else
-          bad_request @answer.errors
+          return bad_request @answer.errors
         end
       end
     else
@@ -55,9 +55,9 @@ class Api::AnswersController < ApplicationController
           times.each do |time_slot_id|
             AnswerTimeSlot.create(answer_id: @answer.id, time_slot_id: time_slot_id)
           end
-          ok_request @answer
+          return ok_request @answer
         else
-          bad_request @answer.errors
+          return bad_request @answer.errors
         end
       end
     else
