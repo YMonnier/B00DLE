@@ -1,8 +1,8 @@
 package com.univtln.b00dle.client.model.boodle.actor;
 
-import com.univtln.b00dle.client.model.utils.Utilities;
 import com.univtln.b00dle.client.model.boodle.poll.Poll;
 import com.univtln.b00dle.client.model.boodle.poll.Response;
+import com.univtln.b00dle.client.utilities.network.InetAddress;
 
 /**
  * Created by sbellange845 on 15/10/16.
@@ -16,7 +16,7 @@ public class User {
     private String MACAdresse;
 
     public User() {
-        this.MACAdresse = Utilities.getMacAdresse();
+        this.MACAdresse = InetAddress.getMacAdresse();
     }
 
     /**

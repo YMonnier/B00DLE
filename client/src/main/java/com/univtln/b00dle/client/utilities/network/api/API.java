@@ -1,13 +1,11 @@
 package com.univtln.b00dle.client.utilities.network.api;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.*;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 
@@ -20,6 +18,7 @@ import java.io.IOException;
  * https://github.com/YMonnier
  */
 public class API {
+    private static final Logger LOGGER = Logger.getLogger(API.class);
     /**
      * Token to access restricted resources.
      * Header Authorization: "...."
@@ -29,22 +28,12 @@ public class API {
     /**
      * Base url.
      */
-    private static final String URL = "localhost:3000/api";
+    private static final String URL = "http://localhost:3000/api";
 
     /**
      * Get the token authoization for restricted resources.
      */
     public final static String LOGIN = URL + "/login/auth_token";
-
-    /**
-     * All response status from B00DLE API.
-     */
-    public static class Status {
-        public static final int CREATED = 201;
-        public static final int OK = 200;
-        public static final int NOT_FOUND = 404;
-        public static final int BAD_REQUEST = 400;
-    }
 
     /**
      * All resources from the B00DLE API.
@@ -120,14 +109,14 @@ public class API {
          */
         public final static String ANSWERS = URL + "/answers";
     }
-//"http://localhost:3000/api/opinion_polls/eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0_eyJpZCI6NDUsInRpdGxlIjoiemVkemVkIn0"
 
     public static HttpResponse post(String url, String parameters) throws IOException {
         HttpClient httpClient = HttpClientBuilder.create().build();
         HttpPost request = new HttpPost(url);
         setHeader(request);
         request.setEntity(new StringEntity(parameters));
-
+        LOGGER.debug("HTTP:POST - url: " + url);
+        LOGGER.debug("HTTP:POST - parameters: " + parameters);
         try {
             return httpClient.execute(request);
         } catch (IOException e) {
@@ -140,6 +129,7 @@ public class API {
         HttpGet request = new HttpGet(url);
         setHeader(request);
 
+        LOGGER.debug("HTTP:GET - url: " + url);
         try {
             return httpClient.execute(request);
         } catch (IOException e) {
@@ -153,6 +143,8 @@ public class API {
         setHeader(request);
         request.setEntity(new StringEntity(parameters));
 
+        LOGGER.debug("HTTP:PUT - url: " + url);
+        LOGGER.debug("HTTP:PUT - parameters: " + parameters);
         try {
             return httpClient.execute(request);
         } catch (IOException e) {
@@ -165,6 +157,7 @@ public class API {
         HttpDelete request = new HttpDelete(url);
         setHeader(request);
 
+        LOGGER.debug("HTTP:DELETE - url: " + url);
         try {
             return httpClient.execute(request);
         } catch (IOException e) {
