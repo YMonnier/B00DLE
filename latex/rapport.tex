@@ -41,7 +41,7 @@
 \tableofcontents
 
 \listoffigures 
-\part{Rapport client}
+\part{Client B00DLE}
 
 \chapter{Introduction}
 
@@ -54,6 +54,9 @@ Le logiciel devra fournir au créateur du sondage un accès facile aux réponses
 \par
 Ce rapport présentera la conception et la réalisation du logiciel B00DLE en respectant la chronologie de notre étude : spécifications, étude UML puis implémentation.
 
+\section{Présentation de l'équipe}
+
+TODO
 
 
 \chapter{Pré-conception}
@@ -472,6 +475,8 @@ Le diagramme entité association détaillé de cette base de données est prése
 \section{Modélisation rapide du serveur} 
 \label{part_shortModelServer}
 
+\paragraph{} Le client B00DLE communique avec son serveur via un protocole HTTP. Le serveur traite les requête et réalise les modifications souhaitées dans la base de données. Dans les situations d'exceptions, le serveur renvoie l'erreur HTTP correspondante au client qui se charge de la communiquer à l'utilisateur via un popup affichant un message compréhensif. Le diagramme de séquence général du serveur est présenté en figure \ref{diagramme_sequence_serveur}.
+
 \begin{figure}[h]
 	\caption{Diagramme de séquence - Serveur}
 	\label{diagramme_sequence_serveur}
@@ -479,16 +484,31 @@ Le diagramme entité association détaillé de cette base de données est prése
 	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_serveur.png}
 \end{figure}
 
-\chapter{Implémentation}
+\clearpage
 
+\chapter{Manuel utilisateur B00DLE}
+
+TODO
+
+\chapter{Déroulement du projet}
+
+\section{Difficultés rencontrées}
+
+TODO
+
+\section{Perspectives d'évolution}
+
+TODO
+
+\chapter{Conclusion}
 
 \clearpage
-\part{Modélisation serveur}
+\part{Modélisation du serveur}
 \label{part_modelServer}
 
 \par TODO
 
-\part{Diagrammes UML}
+\part{Annexes - Diagrammes UML}
 \label{part_allUML}
 
 \par TODO
