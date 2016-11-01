@@ -1,6 +1,7 @@
 package com.univtln.b00dle.client.view;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 /**
@@ -32,4 +33,12 @@ public class Dialog {
         return stage;
     }
 
+    public static void showAlert(String title, String content, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+
+        alert.showAndWait();
+    }
 }
