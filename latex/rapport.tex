@@ -3,7 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[francais]{babel}
-\usepackage{graphicx}
+\usepackage{graphicx} % can modify title style
 \usepackage{titling} % can use pretitle to have a picture on title page
 
 \addtolength{\oddsidemargin}{-.875in}
@@ -310,7 +310,7 @@ L'architecture du serveur sera détaillée dans la partie \ref{part_modelServer}
 \par Dans cette partie, nous avons choisit de ne faire apparaître qu'une partie des diagrammes afin d'appuyer notre propos. 
 La totalité des diagrammes UML utilisés lors de la conception de B00DLE sont présentés en partie \ref{part_allUML} (page \pageref{part_allUML}).
 
-\section{Modélisation de l'axe fonctionnel}
+\section{Modélisation de l'axe statique}
 
 \subsection{Diagramme de contexte statique}
 
@@ -389,16 +389,100 @@ Le diagramme entité association détaillé de cette base de données est prése
 
 \clearpage
 
-\section{Modélisation des axes statique et dynamique}
+\section{Modélisation des axes fonctionnel et dynamique}
+
+\subsection{Généralités}
 
 \par Tous les diagrammes de séquence et d'activité présentés ci-dessous seront depuis le point de vue du client.
-\par Une rapide modélisation du serveur sera présentée dans la partie \ref{part_shortModelServer} (page \pageref{shortModelServer}).
+\par Une rapide modélisation du serveur sera présentée dans la partie \ref{part_shortModelServer} (page \pageref{shortModelServer}). Les diagrammes de séquence client font pour la plupart référence au diagramme de séquence présenté figure \ref{diagramme_sequence_serveur} page \pageref{diagramme_sequence_serveur}.
 
-\section{Modélisation du serveur} 
+\paragraph{} Tous les cas d'utilisation d'administration débutent par une connexion de l'utilisateur, décrite dans le diagramme de séquence en figure \ref{diagramme_sequence_connexion}. Ce diagramme illustre notre choix de déléguer tout le traitement et toute la vérification des données à notre serveur.
+
+\begin{figure}[h]
+	\caption{Diagramme de séquence - Connexion}
+	\label{diagramme_sequence_connexion}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_connexion.png}
+\end{figure}
+
+\par Avant sa première connexion, l'utilisateur devra créer un compte pour obtenir ses informations de connexion (diagramme de séquence figure \ref{diagramme_sequence_inscription}). Là encore, on peut remarquer que le client n'effectue aucun traitement sur les données entrées par l'utilisateur.
+
+\begin{figure}[h]
+	\caption{Diagramme de séquence - Inscription}
+	\label{diagramme_sequence_inscription}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_inscription.png}
+\end{figure}
+
+\clearpage
+
+\subsection{Traitement d'un cas d'utilisation - Créer un sondage}
+
+\paragraph{} Le cas d'utilisation que nous avons choisi de détailler ici est la création d'un sondage. C'est un des cas d'utilisation essentiel au fonctionnement de notre application et son modèle de fonctionnement est proche de celui des autres cas d'utilisation faisant intervenir un sondage.
+
+\paragraph{} Le diagramme de séquence (figure \ref{diagramme_sequence_creerSondage}) s'articule principalement autour de trois étapes : authentification, saisie des données du sondage puis envoi des données aux serveur.
+
+\begin{figure}[h]
+	\caption{Diagramme de séquence - Créer un sondage}
+	\label{diagramme_sequence_creerSondage}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_creerSondage.png}
+\end{figure}
+
+\paragraph{} Comme on peut le voir sur le diagramme d'activité (figure \ref{diagramme_activite_creerSondage}), c'est le serveur qui se charge de remonter les erreurs sur le format des données ou sur la lecture/écriture en base de données. Le client ne fait qu'informer l'utilisateur sur l'échec de l'opération.
+
+\begin{figure}[h]
+	\caption{Diagramme d'activité - Créer un sondage}
+	\label{diagramme_activite_creerSondage}
+	\centering
+	\includegraphics[scale=0.8]{figures/diagrammes/activite_creerSondage.png}
+\end{figure}
+
+\paragraph{} Les cas d'utilisation de suppression et modification de sondage sont très similaires (voir diagramme de séquence de modification de sondage figure \ref{diagramme_sequence_modifierSondage}).
+
+\begin{figure}[h]
+	\caption{Diagramme de séquence - Modifier un sondage}
+	\label{diagramme_sequence_modifierSondage}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_modifierSondage.png}
+\end{figure}
+
+\clearpage
+
+\subsection{Traitement d'un cas d'utilisation - Répondre à un sondage}
+
+
+\begin{figure}[h]
+	\caption{Diagramme de séquence - Répondre à un sondage}
+	\label{diagramme_sequence_repondreSondage}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_repondreSondage.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme d'activité - Répondre à un sondage}
+	\label{diagramme_activite_répondreSondage}
+	\centering
+	\includegraphics[scale=0.8]{figures/diagrammes/activite_repondreSondage.png}
+\end{figure}
+
+
+\clearpage
+
+\section{Modélisation rapide du serveur} 
 \label{part_shortModelServer}
+
+\begin{figure}[h]
+	\caption{Diagramme de séquence - Serveur}
+	\label{diagramme_sequence_serveur}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_serveur.png}
+\end{figure}
 
 \chapter{Implémentation}
 
+
+\clearpage
 \part{Modélisation serveur}
 \label{part_modelServer}
 
