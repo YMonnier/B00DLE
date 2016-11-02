@@ -77,7 +77,7 @@ class Api::OpinionPollsController < ApplicationController
 
     @opinion_poll = OpinionPoll.find(id)
 
-    return ok_request @opinion_poll, %w(user answers.time_slots)
+    return ok_request @opinion_poll, %w(user time_slots answers.time_slots)
   rescue ActiveRecord::RecordNotFound
     r = {opinion_poll: 'Record Not Found'}
     return not_found r
