@@ -28,7 +28,9 @@ public class API {
     /**
      * Base url.
      */
-    private static final String URL = "http://localhost:3000/api";
+    //private static final String URL = "http://localhost:3000/api";
+    private static final String URL = "https://b00dle-api.herokuapp.com/api";
+
 
     /**
      * Get the token authoization for restricted resources.
