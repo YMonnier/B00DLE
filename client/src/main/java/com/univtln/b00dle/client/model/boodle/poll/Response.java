@@ -47,4 +47,8 @@ public class Response implements TableItem {
     public String getLinkPoll() {
         return linkPoll;
     }
+
+    public Date getDate() {
+        return date;
+    }
 }

@@ -6,11 +6,11 @@
 \usepackage{graphicx} % can modify title style
 \usepackage{titling} % can use pretitle to have a picture on title page
 
-\addtolength{\oddsidemargin}{-.875in}
-\addtolength{\evensidemargin}{-.875in}
-\addtolength{\textwidth}{1.75in}
-\addtolength{\topmargin}{-.875in}
-\addtolength{\textheight}{1.75in}
+\addtolength{\oddsidemargin}{-2cm}
+\addtolength{\evensidemargin}{-2cm}
+\addtolength{\textwidth}{4cm}
+\addtolength{\topmargin}{-2cm}
+\addtolength{\textheight}{4cm}
 
 \setcounter{secnumdepth}{3}
 
@@ -20,7 +20,9 @@
 	\begin{center}
 		\LARGE
 		\includegraphics[scale=0.8]{figures/Logo_B00DLE.png}\\[\bigskipamount]
+		\vspace{10cm}
 	}
+	
 	\posttitle{\end{center}}
 
 
@@ -57,9 +59,17 @@ Le logiciel devra fournir au créateur du sondage un accès facile aux réponses
 Ce rapport présentera la conception et la réalisation du logiciel B00DLE en respectant la chronologie de notre étude : spécifications, étude UML, présentation du résultat puis un retour sur le déroulement du projet.
 \par D'un point de vue technique, le client sera réalisé en Java avec une interface réalisée avec la librairie JavaFX. Il s'appuiera sur un serveur en Ruby qui communiquera avec une base de données.
 
-\section{Présentation de l'équipe}
+\section{Répartition du travail}
 
-TODO
+\par La grande majorité de la phase de conception a été réalisée à trois : les spécifications et la modélisation de l'axe fonctionnel ont été faites par le groupe au complet.
+Les diagrammes de séquence et d'activité ont été répartis entre nous, puis nous les avons tous passé en revue et modifié jusqu'à que nous soyons tous d'accord.
+
+\par Lors de la phase de développement, nous avons réparti les rôles de la manière suivante : \begin{itemize}
+	\item Ysée : développement du serveur
+	\item Stephen : développement du client
+	\item Maxence : rédaction du rapport
+\end{itemize}
+\par Toutefois, vu l'objectif du projet, nous avons tous participé au développement du client, mais à un niveau d'implication différent.
 
 
 \chapter{Pré-conception}
@@ -497,7 +507,18 @@ TODO
 
 \section{Difficultés rencontrées}
 
-TODO
+\paragraph{} La principale difficulté que nous avons eu lors de la réalisation de ce projet a été de maintenir une cohérence entre les diagrammes UML réalisés lors de la première partie du projet et le code Java réalisé par la suite.
+En effet, étant donné que ce projet était notre première réalisation mêlant conception UML et développement, nous n'avions pas le recul nécessaire lors de la modélisation pour prévoir tous les éléments qui nous auraient été utiles lors de la phase de développement.
+
+\par{} Nous avons donc choisi de reprendre et de mettre à jour la plupart de nos diagrammes UML après avoir commencé à mettre en place l'interface graphique du client. 
+
+\paragraph{} La seconde catégorie de difficulté est liée à l'utilisation de nouvelles technologies : \begin{itemize}
+	\item Mise en place d'un serveur afin d'obtenir un service utilisant la même architecture qu'un projet commercial : utilisation de Ruby.
+	\item Utilisation de JavaFX pour l'interface du client : difficulté d'utilisation, notamment pour des interfaces complexes utilisant des tableaux.
+	\item Difficulté de mise en place de tests du code côté client, notamment au niveau de l'interface
+\end{itemize}
+
+\paragraph{} Globalement, l'avancée du projet a été assez fluide malgré ces difficultés. La mise en commun de nos connaissances et de nos expériences précédentes nous a permis d'atteindre la majorité des objectifs que nous nous étions fixés.
 
 \section{Perspectives d'évolution}
 
@@ -505,13 +526,13 @@ TODO
 	\item Amélioration des messages d'erreurs liées aux erreur serveur
 	\item Possiblité de consulter un sondage terminé
 	\item Ajout de plus de possibilité de personnalisation des sondages
-	\item ...
+	\item Mise à jour de la majorité des boutons de l'interface afin d'améliorer l'ergonomie du logiciel
 \end{itemize}
 
 \paragraph{} Nous aurions également aimé ajouter quelques fonctionnalités à B00DLE parmi lesquelles : \begin{itemize}
 	\item Possibilité de fixer une date limite de réponse au sondage
 	\item Gestion de sondages plus généraux (format de réponse quelconque, pas seulement sous la forme d'une date)
-	\item ...
+	\item Prise en charge d'un agenda personnel permettant au logiciel de rappeler à l'utilisateur ses disponibilités vis à vis des dates proposées par un sondage
 \end{itemize}
 
 \chapter{Conclusion}

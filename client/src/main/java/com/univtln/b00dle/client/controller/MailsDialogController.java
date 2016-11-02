@@ -1,12 +1,11 @@
 package com.univtln.b00dle.client.controller;
 
+import com.univtln.b00dle.client.model.boodle.poll.Poll;
 import com.univtln.b00dle.client.view.Dialog;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import org.omg.PortableServer.LIFESPAN_POLICY_ID;
 
 import java.io.IOException;
 
@@ -16,10 +15,8 @@ import java.io.IOException;
  */
 public class MailsDialogController {
 
-    /**
-     * Link into dialog and dashbord
-     */
-    private DashbordController dashbordController;
+    private ListView listView;
+    private Poll poll;
 
     /**
      * Variable FXML
@@ -27,13 +24,22 @@ public class MailsDialogController {
      */
 
     @FXML
+    private Button add;
+
+    @FXML
+    private Button send;
+
+    @FXML
     private ListView listViewMails;
 
     @FXML
     private TextField mailTextField;
 
-    public MailsDialogController(){
-        this.dashbordController = new DashbordController();
+    public MailsDialogController(){}
+
+    public MailsDialogController(ListView listView, Poll poll){
+        this.listView = listView;
+        this.poll = poll;
     }
 
     /**
@@ -56,6 +62,22 @@ public class MailsDialogController {
         //2. Add poll in list
         Dialog.getStage().close();
         //4. Display in modify template poll
+        listView.getItems().add(poll);
+    }
+
+    @FXML
+    public void initialize(){
+        add.setOnAction(e -> {
+            addMailAction();
+        });
+
+        send.setOnAction(e -> {
+            try {
+                sendOpinionPollAction();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
     }
 
 }
