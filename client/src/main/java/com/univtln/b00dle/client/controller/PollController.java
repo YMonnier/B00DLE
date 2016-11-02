@@ -82,7 +82,7 @@ public class PollController{
      * Add a message into chat poll
      */
     @FXML
-    public void addChatMessage(){
+    public void sendMessage(){
         String name = chatNameField.getText();
         String message = chatMessageField.getText();
         String chatMessage = name + " : " + message;
