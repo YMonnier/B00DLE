@@ -1,5 +1,6 @@
 package com.univtln.b00dle.client.controller;
 
+import com.univtln.b00dle.client.model.OpinionPoll;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
@@ -43,10 +44,10 @@ public class ModifyPollController {
      * @param descritpion
      * @param place
      */
-    public ModifyPollController(String name, String descritpion, String place){
-        namePoll.set(name);
-        descriptionPoll.set(descritpion);
-        placePoll.set(place);
+    public ModifyPollController(OpinionPoll opinionPoll){
+        namePoll.set(opinionPoll.getTitle());
+        descriptionPoll.set(opinionPoll.getDescription());
+        placePoll.set(opinionPoll.getPlace());
     }
 
     /**

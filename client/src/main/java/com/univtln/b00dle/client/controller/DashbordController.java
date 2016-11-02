@@ -1,6 +1,7 @@
 package com.univtln.b00dle.client.controller;
 
 import com.univtln.b00dle.client.model.Model;
+import com.univtln.b00dle.client.model.OpinionPoll;
 import com.univtln.b00dle.client.model.boodle.poll.Poll;
 import com.univtln.b00dle.client.view.ViewNavigator;
 import javafx.collections.FXCollections;
@@ -19,12 +20,6 @@ import java.io.IOException;
  */
 
 public class DashbordController {
-
-    /**
-     * Controller can use Model -> MVC
-     */
-    private Model model;
-
     /**
      * Variable FXML
      * are instanciate when fxml file is load
@@ -38,15 +33,12 @@ public class DashbordController {
      * ListView display poll who are create by administrator
      */
     @FXML
-    private ListView<Poll> listViewPoll;
+    private ListView<OpinionPoll> listViewPoll;
 
     /**
      * Constructor
-     * Create Model
      */
-    public DashbordController(){
-        this.model = new Model();
-    }
+    public DashbordController(){}
 
     /**
      * Event load home.fxml
@@ -91,11 +83,9 @@ public class DashbordController {
      */
     @FXML
     public void viewModifyPollAction(MouseEvent arg) throws IOException {
-        String link = listViewPoll.getSelectionModel().getSelectedItem().getLink();
+        OpinionPoll opinionPoll = listViewPoll.getSelectionModel().getSelectedItem();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(ViewNavigator.MODIFY_POLL));
-        ModifyPollController m = new ModifyPollController(model.getPollByLink(link).getName(),
-                model.getPollByLink(link).getDescription(),
-                model.getPollByLink(link).getPlace());
+        ModifyPollController m = new ModifyPollController(opinionPoll);
         loader.setController(m);
         pane.getChildren().clear();
         pane.getChildren().add(loader.load());
@@ -107,7 +97,7 @@ public class DashbordController {
      */
     @FXML
     public void initialize(){
-        ObservableList<Poll> listPoll = FXCollections.observableArrayList(model.getPoll(LoginController.getMail()));
-        listViewPoll.setItems(listPoll);
+        //ObservableList<Poll> listPoll = FXCollections.observableArrayList(model.getPoll(LoginController.getMail()));
+        //listViewPoll.setItems(listPoll);
     }
 }

@@ -79,8 +79,8 @@ public class CreateAccountController {
                     assert data.get("email").getAsString().equals(mailField.getText());
 
                     LOGGER.info("Creating user done. Go to the Dashboard view.");
-                    Dialog.showAlert("Inscription",
-                            "Votre inscription a bien été prise en compte. Vous pouvez maintenant vous connecter.",
+                    Dialog.showAlert("Registration",
+                            "Youpii, you can now login to the B00DLE Application!",
                             Alert.AlertType.INFORMATION);
 
                     ViewNavigator.loadFXMLFile(ViewNavigator.LOGIN);
@@ -89,14 +89,14 @@ public class CreateAccountController {
                     LOGGER.warn("The HTTP status code is invalid: " + status);
                     LOGGER.warn("Errors: " + errors);
 
-                    Dialog.showAlert("Inscription",
-                            "Un problème est survenu ! Veuillez ressayer plus tard.\n" + errors,
+                    Dialog.showAlert("Registration",
+                            "Oops! Please try again later.\n" + errors,
                             Alert.AlertType.WARNING);
                 }
             } catch (IOException e) {
                 LOGGER.debug("Error HTTP Request: " + e.getLocalizedMessage());
-                Dialog.showAlert("Inscription",
-                        "Un problème est survenu ! Veuillez ressayer plus tard.",
+                Dialog.showAlert("Registration",
+                        "Oops! Please try again later.",
                         Alert.AlertType.WARNING);
             }
         } else {

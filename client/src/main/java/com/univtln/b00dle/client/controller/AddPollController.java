@@ -1,5 +1,7 @@
 package com.univtln.b00dle.client.controller;
 
+import com.univtln.b00dle.client.model.OpinionPoll;
+import com.univtln.b00dle.client.model.TimeSlot;
 import com.univtln.b00dle.client.model.boodle.poll.Poll;
 import com.univtln.b00dle.client.view.Dialog;
 import com.univtln.b00dle.client.view.ViewNavigator;
@@ -7,12 +9,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.stage.Stage;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.util.Map;
@@ -23,8 +23,11 @@ import java.util.Map;
  */
 public class AddPollController {
 
+    private static final Logger LOGGER = Logger.getLogger(AddPollController.class);
+
     private ListView listView;
 
+    private OpinionPoll opinionPoll;
     /**
      * Variable FXML
      * are instanciate when fxml file is load
@@ -56,11 +59,16 @@ public class AddPollController {
     @FXML
     private TableView tableViewPoll;
 
+    @FXML
+    private Button addButton;
+
     public AddPollController() {
     }
 
     public AddPollController(ListView listView) {
+        LOGGER.info("AddPollController...");
         this.listView = listView;
+        this.opinionPoll = new OpinionPoll.Builder().build();
     }
 
     /**
@@ -68,11 +76,22 @@ public class AddPollController {
      */
     @FXML
     public void addTimeSlotAction() {
-        String departureDate = departureDateField.getText();
-        String departureTime = departureTimeField.getText();
-        String endDate = endDateField.getText();
-        String endTime = endTimeField.getText();
-        String newNameColumn = departureDate + " - " + departureTime + "/" + endDate + " - " + endTime;
+        LOGGER.info("Add time slot...");
+        String dateFrom = departureDateField.getText();
+        String timeFrom = departureTimeField.getText();
+        String dateTo = endDateField.getText();
+        String timeTo = endTimeField.getText();
+
+
+        // Add time slot to the current model
+        TimeSlot timeSlot = new TimeSlot.Builder()
+                .setFrom(dateFrom + " " + timeFrom)
+                .setTo(dateTo + " " + timeTo)
+                .build();
+        this.opinionPoll.getTimeSlots().add(timeSlot);
+        LOGGER.debug("current opinion poll: " + opinionPoll.toString());
+        // Add colomn to the tableView
+        String newNameColumn = dateFrom + " - " + timeFrom + "\n" + dateTo + " - " + timeTo;
         TableColumn<Map, String> column = new TableColumn<>(newNameColumn);
         column.setCellValueFactory(new MapValueFactory(newNameColumn));
         column.setMinWidth(newNameColumn.length());
@@ -84,31 +103,39 @@ public class AddPollController {
      */
     @FXML
     public void viewEmailFormAction() throws IOException {
+        LOGGER.info("View email form...");
         //Get Poll informations
-        Poll poll = new Poll(namePollField.getText(), descriptionPollField.getText(), placePollField.getText());
-        namePollField.setText("");
-        descriptionPollField.setText("");
-        placePollField.setText("");
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(ViewNavigator.MAILS_DIALOG));
-        MailsDialogController mailsDialogController = new MailsDialogController(listView, poll);
-        loader.setController(mailsDialogController);
-        Parent content = (Parent) loader.load();
-        Dialog.build("Ajouter collaborateurs");
-        Dialog.getStage().setScene(new Scene(content));
-        Dialog.getStage().show();
-    }
+        String title = namePollField.getText();
+        String description = descriptionPollField.getText();
+        String place = placePollField.getText();
 
-    /**
-     * Event add poll in ListView
-     */
-    @FXML
-    public void addPollInListView() {
+        if (!title.isEmpty()
+                && !description.isEmpty()
+                && !place.isEmpty()
+                && this.opinionPoll.getTimeSlots().size() > 0) {
+            this.opinionPoll.setDescription(description);
+            this.opinionPoll.setPlace(place);
+            this.opinionPoll.setTitle(title);
 
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(ViewNavigator.MAILS_DIALOG));
+            MailsDialogController mailsDialogController = new MailsDialogController(this.listView, this.opinionPoll);
+            loader.setController(mailsDialogController);
+            Parent content = loader.load();
+            Dialog.build("Invitations");
+            Dialog.getStage().setScene(new Scene(content));
+            Dialog.getStage().show();
+        } else {
+            Dialog.showAlert("Opinion Poll",
+                    "Oops! Please check your input data.",
+                    Alert.AlertType.WARNING);
+        }
     }
 
     @FXML
     public void initialize() {
         tableViewPoll.setEditable(true);
+        addButton.setOnAction(e -> this.addTimeSlotAction());
+
     }
 }

@@ -26,12 +26,11 @@ public class TimeSlot {
 
     /**
      * CReate a new time slot.
-     * @param from date from.
-     * @param to date to.
+     * @param builder builder pattern
      */
-    public TimeSlot(String from, String to) {
-        this.from = from;
-        this.to = to;
+    public TimeSlot(Builder builder) {
+        this.from = builder.from;
+        this.to = builder.to;
     }
 
     public int getId() {
@@ -42,5 +41,24 @@ public class TimeSlot {
     }
     public String getTo() {
         return to;
+    }
+
+    public static class Builder {
+        private String from;
+        private String to;
+
+        public TimeSlot build() {
+            return new TimeSlot(this);
+        }
+
+        public Builder setFrom(String from) {
+            this.from = from;
+            return this;
+        }
+
+        public Builder setTo(String to) {
+            this.to = to;
+            return this;
+        }
     }
 }

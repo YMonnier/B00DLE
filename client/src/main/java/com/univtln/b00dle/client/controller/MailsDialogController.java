@@ -1,5 +1,6 @@
 package com.univtln.b00dle.client.controller;
 
+import com.univtln.b00dle.client.model.OpinionPoll;
 import com.univtln.b00dle.client.model.boodle.poll.Poll;
 import com.univtln.b00dle.client.view.Dialog;
 import javafx.fxml.FXML;
@@ -16,7 +17,7 @@ import java.io.IOException;
 public class MailsDialogController {
 
     private ListView listView;
-    private Poll poll;
+    private OpinionPoll opinionPoll;
 
     /**
      * Variable FXML
@@ -37,9 +38,9 @@ public class MailsDialogController {
 
     public MailsDialogController(){}
 
-    public MailsDialogController(ListView listView, Poll poll){
+    public MailsDialogController(ListView listView, OpinionPoll opinionPoll){
         this.listView = listView;
-        this.poll = poll;
+        this.opinionPoll = opinionPoll;
     }
 
     /**
@@ -62,7 +63,7 @@ public class MailsDialogController {
         //2. Add poll in list
         Dialog.getStage().close();
         //4. Display in modify template poll
-        listView.getItems().add(poll);
+        listView.getItems().add(this.opinionPoll);
     }
 
     @FXML
