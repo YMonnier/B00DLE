@@ -64,37 +64,37 @@ public class DashbordController {
     }
 
     /**
-     * Event load return on home
+     * Event load go back to the home view
      * Disconnect administrator and load home.fxml
      */
     @FXML
-    public void nextPaneLogout(){
-        //Add logout in server
+    public void logoutAction(){
         ViewNavigator.loadFXMLFile(ViewNavigator.HOME);
     }
 
     /**
-     * Load in pane AddPollDashbord.fxml
+     * Load inside the pane AddPollDashbord.fxml
      * @throws IOException
      */
     @FXML
-    public void addPoll() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        Pane newLoadedPane = loader.load(getClass().getResource(ViewNavigator.ADD_POLL));
+    public void viewPollFormAction() throws IOException {
+        Pane newLoadedPane = FXMLLoader.load(getClass().getResource(ViewNavigator.ADD_POLL));
         pane.getChildren().clear();
         pane.getChildren().add(newLoadedPane);
     }
 
     /**
-     * Load in pane ModifyPollDashbord.fxml
-     * Show in form all informations about poll
+     * Load inside the pane ModifyPollDashbord.fxml
+     * Show allo information that you can edit and sent to the server.
      * @throws IOException
      */
     @FXML
-    public void addPollInformations(MouseEvent arg) throws IOException {
+    public void viewModifyPollAction(MouseEvent arg) throws IOException {
         String link = listViewPoll.getSelectionModel().getSelectedItem().getLink();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(ViewNavigator.MODIFY_POLL));
-        ModifyPollController m = new ModifyPollController(model.getPollByLink(link).getName(), model.getPollByLink(link).getDescription(), model.getPollByLink(link).getPlace());
+        ModifyPollController m = new ModifyPollController(model.getPollByLink(link).getName(),
+                model.getPollByLink(link).getDescription(),
+                model.getPollByLink(link).getPlace());
         loader.setController(m);
         pane.getChildren().clear();
         pane.getChildren().add(loader.load());

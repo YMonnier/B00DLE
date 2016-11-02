@@ -18,7 +18,7 @@
                   <padding><Insets right="65" left="10"></Insets> </padding>
                </Label>
                <TextField fx:id="mailTextField"></TextField>
-               <Button onAction="#addMails" text="Add" ></Button>
+               <Button onAction="#addMailAction" text="Add" ></Button>
             </HBox>
          </top>
          <center>
@@ -32,7 +32,7 @@
          <bottom>
             <VBox alignment="CENTER">
                <padding><Insets top="10" bottom="10" /></padding>
-               <Button prefWidth="100" onAction="#sendMails" text="Envoyer">
+               <Button prefWidth="100" onAction="#sendOpinionPollAction" text="Envoyer">
                </Button>
             </VBox>
 

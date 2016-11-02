@@ -50,7 +50,7 @@ public class AddPollController {
      * Event who add dynamically column in poll
      */
     @FXML
-    public void addDate(){
+    public void addTimeSlotAction(){
         String departureDate = departureDateField.getText();
         String departureTime = departureTimeField.getText();
         String endDate = endDateField.getText();
@@ -66,7 +66,7 @@ public class AddPollController {
      * Run popup to add mails
      */
     @FXML
-    public void addMails() throws IOException {
+    public void viewEmailFormAction() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(ViewNavigator.MAILS_DIALOG));
         Parent content = (Parent) loader.load();

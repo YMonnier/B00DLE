@@ -43,7 +43,7 @@
             <TextField fx:id="mailField" />
             <Label text="Mot de passe" />
             <TextField fx:id="passwordField" />
-            <Button onAction="#nextPaneDashbord" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Valider">
+            <Button onAction="#loginAction" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Valider">
                <VBox.margin>
                   <Insets top="20.0" bottom="60"/>
                </VBox.margin>

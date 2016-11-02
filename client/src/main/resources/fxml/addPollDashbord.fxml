@@ -74,11 +74,11 @@
                            <padding><Insets left="5"/></padding>
                         </Label>
                         <TextField fx:id="endTimeField" prefHeight="100.0" prefWidth="80.0" promptText="mm/hh"/>
-                        <Button onAction="#addDate" mnemonicParsing="false" text="Add" />
+                        <Button onAction="#addTimeSlotAction" mnemonicParsing="false" text="Add" />
                      </children>
                   </HBox>
                   <TableView fx:id="tableViewPoll" prefHeight="200.0" prefWidth="200.0" />
-                  <Button onAction="#addMails" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Valider" />
+                  <Button onAction="#viewEmailFormAction" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Valider" />
                </children>
             </VBox>
          </center>

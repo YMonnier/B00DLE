@@ -52,7 +52,7 @@
             <TextField fx:id="passwordField" />
             <Label text="Vérification du mot de passe" />
             <TextField fx:id="passwordVerificationField"/>
-            <Button onAction="#nextPaneDashbord" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Valider">
+            <Button onAction="#registerAction" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Valider">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>

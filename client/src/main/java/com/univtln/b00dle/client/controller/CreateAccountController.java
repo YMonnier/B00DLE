@@ -53,12 +53,12 @@ public class CreateAccountController {
     }
 
     /**
-     * Event which check if all data are valid and
+     * Event which checks if all data are valid and
      * send a POST request to create a new User.
      * Load dashbord.fxml
      */
     @FXML
-    public void nextPaneDashbord() {
+    public void registerAction() {
         if (!nameField.getText().equals("") &&
                 !mailField.getText().equals("") &&
                 !passwordField.getText().equals("") &&

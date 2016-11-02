@@ -40,7 +40,7 @@ public class MailsDialogController {
      * Event add mails in ListView
      */
     @FXML
-    public void addMails(){
+    public void addMailAction(){
         //Get mail of administrator
         // .....
         listViewMails.getItems().add(mailTextField.getText());
@@ -51,7 +51,7 @@ public class MailsDialogController {
      * @throws IOException
      */
     @FXML
-    public void sendMails() throws IOException {
+    public void sendOpinionPollAction() throws IOException {
         //1. Send mails
         //2. Add poll in list
         Dialog.getStage().close();

@@ -29,7 +29,7 @@
             <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <Button onAction="#nextPaneHome" mnemonicParsing="false" prefHeight="46.0" prefWidth="86.0" text="HOME" />
-                  <Button onAction="#nextPaneLogout" mnemonicParsing="false" prefHeight="46.0" prefWidth="86.0" text="LOGOUT" />
+                  <Button onAction="#logoutAction" mnemonicParsing="false" prefHeight="46.0" prefWidth="86.0" text="LOGOUT" />
                </children>
             </HBox>
          </right>
@@ -49,12 +49,12 @@
                <padding><Insets top="5" bottom="5"/></padding>
                <children>
                   <Label prefHeight="21.0" prefWidth="71.0" text="Sondages" />
-                  <Button onAction="#addPoll" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="Add" />
+                  <Button onAction="#viewPollFormAction" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="Add" />
                </children>
             </HBox>
          </top>
          <center>
-            <ListView onMouseClicked="#addPollInformations" fx:id="listViewPoll" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <ListView onMouseClicked="#viewModifyPollAction" fx:id="listViewPoll" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </left>
