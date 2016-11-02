@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import org.tbee.javafx.scene.layout.fxml.MigPane?>
+<?import javafx.scene.control.PasswordField?>
 <MigPane id="createAccount" fx:controller="com.univtln.b00dle.client.controller.CreateAccountController"
          styleClass="main-panel"
          xmlns:fx="http://javafx.com/fxml">
@@ -44,15 +45,15 @@
                   <Insets bottom="80.0" />
                </padding>
             </Label>
-            <Label text="Nom" />
+            <Label text="Name" />
             <TextField fx:id="nameField" />
-            <Label text="E-mail" />
+            <Label text="Email" />
             <TextField fx:id="mailField" />
-            <Label text="Mot de passe" />
-            <TextField fx:id="passwordField" />
-            <Label text="Vérification du mot de passe" />
-            <TextField fx:id="passwordVerificationField"/>
-            <Button onAction="#registerAction" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Valider">
+            <Label text="Password" />
+            <PasswordField fx:id="passwordField" />
+            <Label text="Password confirmation" />
+            <PasswordField fx:id="passwordVerificationField"/>
+            <Button onAction="#registerAction" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Validate">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>

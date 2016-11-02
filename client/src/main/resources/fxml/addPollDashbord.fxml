@@ -21,7 +21,7 @@
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
-            <Label text="Création d'un sondage" BorderPane.alignment="CENTER" >
+            <Label text="Poll creation" BorderPane.alignment="CENTER" >
             <padding><Insets top="5" bottom="30"/></padding>
             </Label>
          </top>
@@ -30,7 +30,7 @@
                <children>
                   <HBox prefHeight="200.0" prefWidth="600.0">
                      <children>
-                        <Label text="Nom :" >
+                        <Label text="Name:" >
                            <padding><Insets right="59"/></padding>
                         </Label>
                         <TextField fx:id="namePollField" prefHeight="100.0" prefWidth="400.0" />
@@ -38,7 +38,7 @@
                   </HBox>
                   <HBox prefHeight="200.0" prefWidth="600.0">
                      <children>
-                        <Label text="Description :" >
+                        <Label text="Description:" >
                            <padding><Insets right="15"/></padding>
                         </Label>
                         <TextField fx:id="descriptionPollField" prefHeight="300.0" prefWidth="400.0" />
@@ -46,7 +46,7 @@
                   </HBox>
                   <HBox prefHeight="200.0" prefWidth="600.0">
                      <children>
-                        <Label text="Lieu :" >
+                        <Label text="Place:" >
                            <padding><Insets right="63"/></padding>
                         </Label>
                         <TextField fx:id="placePollField" prefHeight="100.0" prefWidth="400.0" />
@@ -54,31 +54,31 @@
                   </HBox>
                   <HBox prefHeight="36.0" prefWidth="600.0" spacing="5">
                      <children>
-                        <Label text="Date de départ: " >
+                        <Label text="Date from: " >
                            <padding><Insets right="5"/></padding>
                         </Label>
-                        <TextField fx:id="departureDateField" prefHeight="100.0" prefWidth="100.0" promptText="jj/mm/aaaa"/>
-                        <Label text="Horaire de départ: " >
+                        <TextField fx:id="departureDateField" prefHeight="100.0" prefWidth="100.0" promptText="aaaa/mm/jj"/>
+                        <Label text="Time from: " >
                            <padding><Insets left="5"/></padding>
                         </Label>
-                        <TextField fx:id="departureTimeField" prefHeight="100.0" prefWidth="80.0" promptText="mm/hh"/>
+                        <TextField fx:id="departureTimeField" prefHeight="100.0" prefWidth="80.0" promptText="hh:mm"/>
                      </children>
                   </HBox>
                   <HBox prefHeight="36.0" prefWidth="600.0" spacing="5">
                      <children>
-                        <Label text="Date de fin: " >
+                        <Label text="Date to: " >
                            <padding><Insets right="5"/></padding>
                         </Label>
-                        <TextField fx:id="endDateField" prefHeight="100.0" prefWidth="100.0" promptText="jj/mm/aaaa"/>
-                        <Label text="Horaire de fin: " >
+                        <TextField fx:id="endDateField" prefHeight="100.0" prefWidth="100.0" promptText="aaaa/mm/jj"/>
+                        <Label text="Time to: " >
                            <padding><Insets left="5"/></padding>
                         </Label>
-                        <TextField fx:id="endTimeField" prefHeight="100.0" prefWidth="80.0" promptText="mm/hh"/>
-                        <Button onAction="#addTimeSlotAction" mnemonicParsing="false" text="Add" />
+                        <TextField fx:id="endTimeField" prefHeight="100.0" prefWidth="80.0" promptText="hh:mm"/>
+                        <Button fx:id="addButton" mnemonicParsing="false" text="Add" />
                      </children>
                   </HBox>
                   <TableView fx:id="tableViewPoll" prefHeight="200.0" prefWidth="200.0" />
-                  <Button onAction="#viewEmailFormAction" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Valider" />
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Validate" />
                </children>
             </VBox>
          </center>

@@ -34,21 +34,21 @@
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <padding><Insets top="50" right="25" bottom="10" left="25"/></padding>
          <children>
-            <Label text="Connexion à un compte Administrateur">
+            <Label text="Administration Login">
                <padding>
                   <Insets bottom="80.0" />
                </padding>
             </Label>
-            <Label text="E-mail" />
+            <Label text="Email" />
             <TextField fx:id="mailField" />
-            <Label text="Mot de passe" />
-            <TextField fx:id="passwordField" />
-            <Button onAction="#loginAction" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Valider">
+            <Label text="Password" />
+            <PasswordField fx:id="passwordField" />
+            <Button onAction="#loginAction" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Validate">
                <VBox.margin>
                   <Insets top="20.0" bottom="60"/>
                </VBox.margin>
             </Button>
-            <Hyperlink onAction="#nextPaneCreateAccount" fx:id="createAccount" text="Créer un compte ?">
+            <Hyperlink onAction="#nextPaneCreateAccount" fx:id="createAccount" text="Want to create an account?">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>

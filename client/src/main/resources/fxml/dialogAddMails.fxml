@@ -13,7 +13,7 @@
          <top>
             <HBox spacing="10">
                <padding><Insets top="10" bottom="10" /> </padding>
-               <Label text="E-mails :">
+               <Label text="Email:">
                   <padding><Insets right="65" left="10"></Insets> </padding>
                </Label>
                <TextField fx:id="mailTextField"></TextField>
@@ -22,7 +22,7 @@
          </top>
          <center>
             <HBox>
-               <Label text="Personnes ajoutées :" prefWidth="130">
+               <Label text="Invitations:" prefWidth="130">
                   <padding><Insets left="10"/></padding>
                </Label>
                <ListView prefHeight="400" prefWidth="250" fx:id="listViewMails"></ListView>
@@ -31,7 +31,7 @@
          <bottom>
             <VBox alignment="CENTER">
                <padding><Insets top="10" bottom="10" /></padding>
-               <Button prefWidth="100" text="Envoyer">
+               <Button prefWidth="100" text="Send">
                </Button>
             </VBox>
 
