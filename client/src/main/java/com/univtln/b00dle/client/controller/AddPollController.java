@@ -85,6 +85,9 @@ public class AddPollController {
     public void addMails() throws IOException {
         //Get Poll informations
         Poll poll = new Poll(namePollField.getText(), descriptionPollField.getText(), placePollField.getText());
+        namePollField.setText("");
+        descriptionPollField.setText("");
+        placePollField.setText("");
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(ViewNavigator.MAILS_DIALOG));
         MailsDialogController mailsDialogController = new MailsDialogController(listView, poll);

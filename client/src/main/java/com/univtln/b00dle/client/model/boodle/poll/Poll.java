@@ -170,4 +170,7 @@ public class Poll {
         return administrator;
     }
 
+    public void setResponses(List<Response> responses) {
+        this.responses = responses;
+    }
 }

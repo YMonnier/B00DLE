@@ -72,13 +72,6 @@ public class DashbordController {
      */
     @FXML
     public void addPoll() throws IOException {
-        /*FXMLLoader loader = new FXMLLoader();
-        /AddPollController addPollController = new AddPollController("test");
-        Pane newLoadedPane = loader.load(getClass().getResource(ViewNavigator.ADD_POLL));
-        loader.setController(addPollController);
-        pane.getChildren().clear();
-        pane.getChildren().add(newLoadedPane);*/
-
         AddPollController addPollController =
                 new AddPollController(listViewPoll);
 
@@ -89,6 +82,7 @@ public class DashbordController {
         );
         loader.setController(addPollController);
 
+        pane.getChildren().clear();
         pane.getChildren().add(loader.load());
     }
 

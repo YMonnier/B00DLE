@@ -137,17 +137,25 @@ public class PollController{
                 );
         tableViewResponsePoll.setItems(data);
 
+        //Add prevouisy answer poll
+        if(tableViewResponsePoll.getColumns() != null){
+            for(int i = 0; i < tableViewResponsePoll.getColumns().size(); i++){
+                for(Response response : poll.getResponses()){
+                    if(tableViewResponsePoll.getColumns().get(i).getText().equals(response.getDate().toString())){
+                        System.out.println("1 reponse");
+                    }
+                }
+            }
+        }
+
+
+        //Answer poll
         tableViewResponsePoll.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 TablePosition tablePosition = tableViewResponsePoll.getSelectionModel().getSelectedCells().get(0);
-                //tableViewResponsePoll.getItems().get()
                 System.out.println(tablePosition.getColumn());
             }
         });
-
-
-
-        //System.out.println(tablePosition.getColumn());
     }
 
 }
