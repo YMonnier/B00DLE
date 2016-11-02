@@ -136,6 +136,18 @@ public class PollController{
                     new Response()
                 );
         tableViewResponsePoll.setItems(data);
+
+        tableViewResponsePoll.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                TablePosition tablePosition = tableViewResponsePoll.getSelectionModel().getSelectedCells().get(0);
+                //tableViewResponsePoll.getItems().get()
+                System.out.println(tablePosition.getColumn());
+            }
+        });
+
+
+
+        //System.out.println(tablePosition.getColumn());
     }
 
 }

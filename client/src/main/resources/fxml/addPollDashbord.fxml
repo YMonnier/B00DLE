@@ -12,7 +12,7 @@
 
 <?import javafx.geometry.Insets?>
 
-<MigPane id="addPollDashbord" fx:controller="com.univtln.b00dle.client.controller.AddPollController"
+<MigPane id="addPollDashbord"
          styleClass="main-panel"
          xmlns:fx="http://javafx.com/fxml">
 
@@ -41,7 +41,7 @@
                         <Label text="Description :" >
                            <padding><Insets right="15"/></padding>
                         </Label>
-                        <TextField prefHeight="300.0" prefWidth="400.0" />
+                        <TextField fx:id="descriptionPollField" prefHeight="300.0" prefWidth="400.0" />
                      </children>
                   </HBox>
                   <HBox prefHeight="200.0" prefWidth="600.0">
@@ -49,7 +49,7 @@
                         <Label text="Lieu :" >
                            <padding><Insets right="63"/></padding>
                         </Label>
-                        <TextField prefHeight="100.0" prefWidth="400.0" />
+                        <TextField fx:id="placePollField" prefHeight="100.0" prefWidth="400.0" />
                      </children>
                   </HBox>
                   <HBox prefHeight="36.0" prefWidth="600.0" spacing="5">

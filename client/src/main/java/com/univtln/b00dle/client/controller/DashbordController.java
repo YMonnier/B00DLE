@@ -2,21 +2,14 @@ package com.univtln.b00dle.client.controller;
 
 import com.univtln.b00dle.client.model.Model;
 import com.univtln.b00dle.client.model.boodle.poll.Poll;
-import com.univtln.b00dle.client.view.Dialog;
 import com.univtln.b00dle.client.view.ViewNavigator;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -79,10 +72,24 @@ public class DashbordController {
      */
     @FXML
     public void addPoll() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
+        /*FXMLLoader loader = new FXMLLoader();
+        /AddPollController addPollController = new AddPollController("test");
         Pane newLoadedPane = loader.load(getClass().getResource(ViewNavigator.ADD_POLL));
+        loader.setController(addPollController);
         pane.getChildren().clear();
-        pane.getChildren().add(newLoadedPane);
+        pane.getChildren().add(newLoadedPane);*/
+
+        AddPollController addPollController =
+                new AddPollController(listViewPoll);
+
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource(
+                        ViewNavigator.ADD_POLL
+                )
+        );
+        loader.setController(addPollController);
+
+        pane.getChildren().add(loader.load());
     }
 
     /**

@@ -7,7 +7,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.VBox?>
 <AnchorPane id="dialogAddMails"
-            fx:controller="com.univtln.b00dle.client.controller.MailsDialogController"
             xmlns="http://javafx.com/javafx/8.0.60"
             xmlns:fx="http://javafx.com/fxml/1">
       <BorderPane prefHeight="600" prefWidth="400">
@@ -18,7 +17,7 @@
                   <padding><Insets right="65" left="10"></Insets> </padding>
                </Label>
                <TextField fx:id="mailTextField"></TextField>
-               <Button onAction="#addMails" text="Add" ></Button>
+               <Button fx:id="add" text="Add" ></Button>
             </HBox>
          </top>
          <center>
@@ -32,7 +31,7 @@
          <bottom>
             <VBox alignment="CENTER">
                <padding><Insets top="10" bottom="10" /></padding>
-               <Button prefWidth="100" onAction="#sendMails" text="Envoyer">
+               <Button fx:id="send" prefWidth="100" text="Envoyer">
                </Button>
             </VBox>
 

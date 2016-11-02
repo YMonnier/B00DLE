@@ -75,6 +75,13 @@ public class Poll {
         }
     }
 
+    //Remove after test
+    public Poll(String name, String description, String place){
+        this.name = name;
+        this.description = description;
+        this.place = place;
+    }
+
     public Poll(String link, String name, String description, String place, Administrator administrator){
         this.link = link;
         this.name = name;

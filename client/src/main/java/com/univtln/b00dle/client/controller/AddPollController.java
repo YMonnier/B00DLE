@@ -1,11 +1,13 @@
 package com.univtln.b00dle.client.controller;
 
+import com.univtln.b00dle.client.model.boodle.poll.Poll;
 import com.univtln.b00dle.client.view.Dialog;
 import com.univtln.b00dle.client.view.ViewNavigator;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -21,6 +23,8 @@ import java.util.Map;
  */
 public class AddPollController {
 
+    private ListView listView;
+
     /**
      * Variable FXML
      * are instanciate when fxml file is load
@@ -30,6 +34,12 @@ public class AddPollController {
 
     @FXML
     private TextField namePollField;
+
+    @FXML
+    private TextField descriptionPollField;
+
+    @FXML
+    private TextField placePollField;
 
     @FXML
     private TextField departureDateField;
@@ -45,6 +55,12 @@ public class AddPollController {
 
     @FXML
     private TableView tableViewPoll;
+
+    public AddPollController(){}
+
+    public AddPollController(ListView listView){
+        this.listView = listView;
+    }
 
     /**
      * Event who add dynamically column in poll
@@ -67,8 +83,12 @@ public class AddPollController {
      */
     @FXML
     public void addMails() throws IOException {
+        //Get Poll informations
+        Poll poll = new Poll(namePollField.getText(), descriptionPollField.getText(), placePollField.getText());
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(ViewNavigator.MAILS_DIALOG));
+        MailsDialogController mailsDialogController = new MailsDialogController(listView, poll);
+        loader.setController(mailsDialogController);
         Parent content = (Parent) loader.load();
         Dialog.build("Ajouter collaborateurs");
         Dialog.getStage().setScene(new Scene(content));
