@@ -45,6 +45,8 @@
 
 \chapter{Introduction}
 
+\section{Introduction}
+
 \par
 L'objectif de ce projet est de réaliser un logiciel de planification de réunions en Java en se focalisant sur sa conception UML. 
 L'interface et le mode de fonctionnement du logiciel sera basé sur le site web Doodle (http://www.doodle.com/). 
@@ -52,7 +54,8 @@ L'interface et le mode de fonctionnement du logiciel sera basé sur le site web 
 Le logiciel créé devra répondre au besoin de planifier des réunions en permettant à des utilisateurs de fournir une réponse sans devoir s'inscrire ni se connecter. 
 Le logiciel devra fournir au créateur du sondage un accès facile aux réponses de tous les utilisateurs.
 \par
-Ce rapport présentera la conception et la réalisation du logiciel B00DLE en respectant la chronologie de notre étude : spécifications, étude UML puis implémentation.
+Ce rapport présentera la conception et la réalisation du logiciel B00DLE en respectant la chronologie de notre étude : spécifications, étude UML, présentation du résultat puis un retour sur le déroulement du projet.
+\par D'un point de vue technique, le client sera réalisé en Java avec une interface réalisée avec la librairie JavaFX. Il s'appuiera sur un serveur en Ruby qui communiquera avec une base de données.
 
 \section{Présentation de l'équipe}
 
@@ -498,7 +501,18 @@ TODO
 
 \section{Perspectives d'évolution}
 
-TODO
+\paragraph{} Le client est pour le moment dans un état très basique. De nombreuses améliorations peuvent lui être apportées, notamment au niveau de l'interface : \begin{itemize}
+	\item Amélioration des messages d'erreurs liées aux erreur serveur
+	\item Possiblité de consulter un sondage terminé
+	\item Ajout de plus de possibilité de personnalisation des sondages
+	\item ...
+\end{itemize}
+
+\paragraph{} Nous aurions également aimé ajouter quelques fonctionnalités à B00DLE parmi lesquelles : \begin{itemize}
+	\item Possibilité de fixer une date limite de réponse au sondage
+	\item Gestion de sondages plus généraux (format de réponse quelconque, pas seulement sous la forme d'une date)
+	\item ...
+\end{itemize}
 
 \chapter{Conclusion}
 
