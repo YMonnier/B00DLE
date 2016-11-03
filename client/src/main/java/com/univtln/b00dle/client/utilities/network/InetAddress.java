@@ -15,7 +15,7 @@ import java.net.UnknownHostException;
 public class InetAddress {
     /**
      * Get MAC adress
-     * @return String MACAdress
+     * @return Test MACAdress
      */
     public static String getMacAdresse(){
 

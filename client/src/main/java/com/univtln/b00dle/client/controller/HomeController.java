@@ -139,7 +139,7 @@ public class HomeController {
 
     /**
      * Return current link
-     * @return Static String
+     * @return Static Test
      * @throws PollNotFoundException
      */
     protected static String getLink() {

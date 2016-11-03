@@ -62,6 +62,9 @@ public class AddPollController {
     @FXML
     private Button addButton;
 
+    @FXML
+    private Button validateButton;
+
     public AddPollController() {
     }
 
@@ -102,7 +105,7 @@ public class AddPollController {
      * Run popup to add mails
      */
     @FXML
-    public void viewEmailFormAction() throws IOException {
+    public void viewEmailFormAction() {
         LOGGER.info("View email form...");
         //Get Poll informations
         String title = namePollField.getText();
@@ -121,10 +124,16 @@ public class AddPollController {
             loader.setLocation(getClass().getResource(ViewNavigator.MAILS_DIALOG));
             MailsDialogController mailsDialogController = new MailsDialogController(this.listView, this.opinionPoll);
             loader.setController(mailsDialogController);
-            Parent content = loader.load();
-            Dialog.build("Invitations");
-            Dialog.getStage().setScene(new Scene(content));
-            Dialog.getStage().show();
+            Parent content = null;
+            try {
+                content = loader.load();
+                Dialog.build("Invitations");
+                Dialog.getStage().setScene(new Scene(content));
+                Dialog.getStage().show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         } else {
             Dialog.showAlert("Opinion Poll",
                     "Oops! Please check your input data.",
@@ -135,7 +144,7 @@ public class AddPollController {
     @FXML
     public void initialize() {
         tableViewPoll.setEditable(true);
-        addButton.setOnAction(e -> this.addTimeSlotAction());
-
+        this.addButton.setOnAction(e -> this.addTimeSlotAction());
+        this.validateButton.setOnAction(e -> this.viewEmailFormAction());
     }
 }

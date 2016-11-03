@@ -2,7 +2,6 @@ package com.univtln.b00dle.client.controller;
 
 import com.univtln.b00dle.client.model.Invitation;
 import com.univtln.b00dle.client.model.OpinionPoll;
-import com.univtln.b00dle.client.model.boodle.poll.Poll;
 import com.univtln.b00dle.client.view.Dialog;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -47,9 +46,9 @@ public class MailsDialogController {
      */
     @FXML
     public void addMailAction() {
-        String email = mailTextField.getText();
+        java.lang.String email = mailTextField.getText();
         if (!email.isEmpty()) {
-            this.opinionPoll.getInvitations().add(new Invitation(email));
+            this.opinionPoll.getInvitations().add(email);
             this.listViewMails.getItems().add(email);
         } else {
             Dialog.showAlert("Opinion Poll",

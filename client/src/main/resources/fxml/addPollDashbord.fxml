@@ -78,7 +78,7 @@
                      </children>
                   </HBox>
                   <TableView fx:id="tableViewPoll" prefHeight="200.0" prefWidth="200.0" />
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Validate" />
+                  <Button fx:id="validateButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Validate" />
                </children>
             </VBox>
          </center>
