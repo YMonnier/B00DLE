@@ -6,10 +6,14 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.univtln.b00dle.client.utilities.network.api.API;
 import com.univtln.b00dle.client.view.Dialog;
+import com.univtln.b00dle.client.view.MainApp;
 import com.univtln.b00dle.client.view.ViewNavigator;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.util.EntityUtils;
@@ -49,7 +53,16 @@ public class CreateAccountController {
      */
     @FXML
     public void nextPaneHome() {
-        ViewNavigator.loadFXMLFile(ViewNavigator.HOME);
+        LOGGER.debug("viewLoginAction::run view");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(ViewNavigator.HOME));
+
+        try {
+            MainApp.mainStage.setScene(new Scene((Pane)loader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        MainApp.mainStage.show();
     }
 
     /**
@@ -83,7 +96,16 @@ public class CreateAccountController {
                             "Youpii, you can now login to the B00DLE Application!",
                             Alert.AlertType.INFORMATION);
 
-                    ViewNavigator.loadFXMLFile(ViewNavigator.LOGIN);
+                    LOGGER.debug("registerAction::run view login");
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource(ViewNavigator.LOGIN));
+
+                    try {
+                        MainApp.mainStage.setScene(new Scene((Pane)loader.load()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    MainApp.mainStage.show();
                 } else {
                     String errors = jsonObject.get("errors").toString();
                     LOGGER.warn("The HTTP status code is invalid: " + status);

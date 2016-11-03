@@ -5,10 +5,14 @@ import com.google.gson.JsonObject;
 import com.univtln.b00dle.client.model.Model;
 import com.univtln.b00dle.client.utilities.network.api.API;
 import com.univtln.b00dle.client.view.Dialog;
+import com.univtln.b00dle.client.view.MainApp;
 import com.univtln.b00dle.client.view.ViewNavigator;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.util.EntityUtils;
@@ -52,7 +56,15 @@ public class LoginController {
      */
     @FXML
     public void nextPaneCreateAccount() {
-        ViewNavigator.loadFXMLFile(ViewNavigator.CREATE_ACCOUNT);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(ViewNavigator.CREATE_ACCOUNT));
+
+        try {
+            MainApp.mainStage.setScene(new Scene((Pane)loader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        MainApp.mainStage.show();
     }
 
     /**
@@ -62,7 +74,15 @@ public class LoginController {
      */
     @FXML
     public void nextPaneHome() {
-        ViewNavigator.loadFXMLFile(ViewNavigator.HOME);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(ViewNavigator.HOME));
+
+        try {
+            MainApp.mainStage.setScene(new Scene((Pane)loader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        MainApp.mainStage.show();
     }
 
     /**
@@ -87,7 +107,16 @@ public class LoginController {
                     API.authorization = jsonObject.get("jwt").getAsString();
                     LOGGER.info("Login successful. Go to the Dashboard view.");
                     LOGGER.debug("token: " + API.authorization);
-                    ViewNavigator.loadFXMLFile(ViewNavigator.DASHBORD);
+                    LOGGER.debug("loginAction::run view dashbord");
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource(ViewNavigator.DASHBORD));
+
+                    try {
+                        MainApp.mainStage.setScene(new Scene((Pane)loader.load()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    MainApp.mainStage.show();
                 } else {
                     LOGGER.warn("The HTTP status code is invalid: " + status);
                     Dialog.showAlert("Authentication",

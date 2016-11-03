@@ -51,7 +51,16 @@ public class HomeController {
      * Event load login.fxml
      */
     public void viewLoginAction() {
-        ViewNavigator.loadFXMLFile(ViewNavigator.LOGIN);
+        LOGGER.debug("viewLoginAction::run view");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(ViewNavigator.LOGIN));
+
+        try {
+            MainApp.mainStage.setScene(new Scene((Pane)loader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        MainApp.mainStage.show();
     }
 
     /**

@@ -5,16 +5,21 @@ import com.univtln.b00dle.client.model.boodle.poll.Date;
 import com.univtln.b00dle.client.model.boodle.poll.Poll;
 import com.univtln.b00dle.client.model.boodle.poll.Response;
 import com.univtln.b00dle.client.model.boodle.poll.TableItem;
+import com.univtln.b00dle.client.view.MainApp;
 import com.univtln.b00dle.client.view.ViewNavigator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.Pane;
 import org.apache.log4j.Logger;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,7 +88,16 @@ public class PollController {
      */
     @FXML
     public void viewHomeAction() {
-        ViewNavigator.loadFXMLFile(ViewNavigator.HOME);
+        LOGGER.debug("viewHomeAction::run view");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(ViewNavigator.HOME));
+
+        try {
+            MainApp.mainStage.setScene(new Scene((Pane)loader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        MainApp.mainStage.show();
     }
 
     /**
@@ -91,7 +105,16 @@ public class PollController {
      */
     @FXML
     public void viewLoginAction() {
-        ViewNavigator.loadFXMLFile(ViewNavigator.LOGIN);
+        LOGGER.debug("viewLoginAction::run view");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(ViewNavigator.LOGIN));
+
+        try {
+            MainApp.mainStage.setScene(new Scene((Pane)loader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        MainApp.mainStage.show();
     }
 
     /**

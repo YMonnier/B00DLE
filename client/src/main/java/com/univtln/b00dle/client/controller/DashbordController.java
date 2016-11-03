@@ -3,14 +3,17 @@ package com.univtln.b00dle.client.controller;
 import com.univtln.b00dle.client.model.Model;
 import com.univtln.b00dle.client.model.OpinionPoll;
 import com.univtln.b00dle.client.model.boodle.poll.Poll;
+import com.univtln.b00dle.client.view.MainApp;
 import com.univtln.b00dle.client.view.ViewNavigator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 
@@ -20,6 +23,9 @@ import java.io.IOException;
  */
 
 public class DashbordController {
+
+    private static final Logger LOGGER = Logger.getLogger(LoginController.class);
+
     /**
      * Variable FXML
      * are instanciate when fxml file is load
@@ -45,7 +51,16 @@ public class DashbordController {
      */
     @FXML
     public void nextPaneHome() {
-        ViewNavigator.loadFXMLFile(ViewNavigator.HOME);
+        LOGGER.debug("viewLoginAction::run view");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(ViewNavigator.HOME));
+
+        try {
+            MainApp.mainStage.setScene(new Scene((Pane)loader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        MainApp.mainStage.show();
     }
 
     /**
@@ -54,7 +69,16 @@ public class DashbordController {
      */
     @FXML
     public void logoutAction(){
-        ViewNavigator.loadFXMLFile(ViewNavigator.HOME);
+        LOGGER.debug("viewLogoutAction::run view");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(ViewNavigator.HOME));
+
+        try {
+            MainApp.mainStage.setScene(new Scene((Pane)loader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        MainApp.mainStage.show();
     }
 
     /**
