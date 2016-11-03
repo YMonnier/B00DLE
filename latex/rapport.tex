@@ -3,10 +3,11 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[francais]{babel}
+\usepackage{listings} %listings for code
 \usepackage{graphicx} % can modify title style
 \usepackage{titling} % can use pretitle to have a picture on title page
 \usepackage{chngcntr} % permits to reset chapter numerization in each part
-\usepackage{hyperref}
+\usepackage{hyperref} % makes table of contents and list of figures clickable 
 
 \hypersetup{colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
 
@@ -543,11 +544,91 @@ En effet, étant donné que ce projet était notre première réalisation mêlan
 
 \chapter{Conclusion}
 
+\paragraph{}TODO
+
 \clearpage
 \part{Modélisation du serveur}
 \label{part_modelServer}
 
-\par TODO
+\chapter{Introduction}
+
+\section{Conventions}
+\begin{itemize}
+	\item \textbf{Client} : Application client.
+	\item \textbf{Statut} : Code réponse de la requête HTTP
+	\item Toutes les réponses possibles sont listés sous la catégorie 'Réponse'
+	\item Toutes les réponses sont du format JSON
+\end{itemize}
+
+
+\section{Codes statut}
+
+\paragraph{} Tous les codes de statut sont des standards HTTP. Cette API utilisera les suivants : 
+\begin{itemize}
+	\item $ 2XX $ - Succès de la requête
+	\item $ 4XX $ - Erreur du côté client
+	\item $ 5XX $ - Erreur du côté serveur		
+\end{itemize}
+
+\paragraph{}
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		Code statut & Description \\
+		\hline \hline
+		$ 200 $ & Requête traitée avec succès \\
+		\hline 
+		$ 201 $ & Requête traitée avec succès et création d'un document \\	
+		\hline 
+		$ 202 $ & Requête traitée avec succès mais pas d'information à renvoyer \\
+		\hline \hline 
+		$ 400 $ & La syntaxe de la requête est erronée \\	
+		\hline 
+		$ 401 $ & Une authentification est nécessaire pour accéder à la ressource \\	
+		\hline
+		$ 404 $ & Ressource non trouvée \\
+		\hline \hline
+		$ 500 $ & Erreur interne du serveur \\
+		\hline
+		$ 503 $ & Service temporairement indisponible ou en maintenance \\ 	
+		\hline
+	\end{tabular}
+\end{center}
+
+\chapter{Authentification}
+
+\lstset{language=XML} 
+
+\begin{lstlisting}[frame=single]
+{
+	"data": {
+		"id": 1,
+		"title": "IT Meeting",
+		"description": "IT Meeting to speak about...",
+		"place": "San Francisco",
+		"close": false,
+		"time_slots": [
+		{
+			"id": 2,
+			"from": "2016-12-15 13:00",
+			"to": "2016-12-15 16:00",
+		}, {
+		"id": 3,
+		"from": "2016-12-16 09:00",
+		"to": "2016-12-16 12:00",
+	}
+	],
+	"invitations": [{
+		"id", 2,
+		"email", "paul@mail.com",
+	}],
+	"answers": []
+}
+}
+
+\end{lstlisting}
+
 
 \part{Annexes - Diagrammes UML}
 \label{part_allUML}
