@@ -1,9 +1,11 @@
 package com.univtln.b00dle.client.controller;
 
+import com.univtln.b00dle.client.model.Invitation;
 import com.univtln.b00dle.client.model.OpinionPoll;
 import com.univtln.b00dle.client.model.boodle.poll.Poll;
 import com.univtln.b00dle.client.view.Dialog;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -17,12 +19,8 @@ import java.io.IOException;
 public class MailsDialogController {
 
     private ListView listView;
-    private OpinionPoll opinionPoll;
 
-    /**
-     * Variable FXML
-     * are instanciate when fxml file is load
-     */
+    private OpinionPoll opinionPoll;
 
     @FXML
     private Button add;
@@ -36,9 +34,10 @@ public class MailsDialogController {
     @FXML
     private TextField mailTextField;
 
-    public MailsDialogController(){}
+    public MailsDialogController() {
+    }
 
-    public MailsDialogController(ListView listView, OpinionPoll opinionPoll){
+    public MailsDialogController(ListView listView, OpinionPoll opinionPoll) {
         this.listView = listView;
         this.opinionPoll = opinionPoll;
     }
@@ -47,14 +46,21 @@ public class MailsDialogController {
      * Event add mails in ListView
      */
     @FXML
-    public void addMailAction(){
-        //Get mail of administrator
-        // .....
-        listViewMails.getItems().add(mailTextField.getText());
+    public void addMailAction() {
+        String email = mailTextField.getText();
+        if (!email.isEmpty()) {
+            this.opinionPoll.getInvitations().add(new Invitation(email));
+            this.listViewMails.getItems().add(email);
+        } else {
+            Dialog.showAlert("Opinion Poll",
+                    "Oops! Please check your input data.",
+                    Alert.AlertType.WARNING);
+        }
     }
 
     /**
      * Event load dialog dialogAddMails.fxml
+     *
      * @throws IOException
      */
     @FXML
@@ -67,7 +73,7 @@ public class MailsDialogController {
     }
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         add.setOnAction(e -> {
             addMailAction();
         });
