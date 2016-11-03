@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.univtln.b00dle.client.model.boodle.poll.ResponseTest?>
-<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import org.tbee.javafx.scene.layout.fxml.MigPane?>
-<?import com.univtln.b00dle.client.model.boodle.poll.Response?>
 <MigPane id="sondagePane"
          styleClass="main-panel"
          xmlns:fx="http://javafx.com/fxml">

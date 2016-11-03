@@ -125,7 +125,7 @@ public class PollController {
         String message = chatMessageField.getText();
         String chatMessage = name + " : " + message;
         //model.addChatMessage(HomeController.getLink(), chatMessage);
-        //ObservableList<String> listMessage = FXCollections.observableArrayList(model.getChatMessage(HomeController.getLink()));
+        //ObservableList<Test> listMessage = FXCollections.observableArrayList(model.getChatMessage(HomeController.getLink()));
         //chat.setItems(listMessage);
         //chatMessageField.setText("");
     }
@@ -184,7 +184,7 @@ public class PollController {
 
         /*
         //Get chat message
-        //List<String> listMessage = model.getChatMessage(HomeController.getLink());
+        //List<Test> listMessage = model.getChatMessage(HomeController.getLink());
 
         //Get and put all informations about poll and textArea become not editable
         this.name.setText(this.opinionPoll.getTitle());
@@ -202,7 +202,7 @@ public class PollController {
         LOGGER.debug(this.opinionPoll);
         if (this.opinionPoll.getTimeSlots() != null) {
             for (TimeSlot timeSlot : this.opinionPoll.getTimeSlots()) {
-                String newNameColumn = timeSlot.toString();
+                Test newNameColumn = timeSlot.toString();
                 LOGGER.debug("-> " + newNameColumn);
                 TableColumn column = new TableColumn(newNameColumn);
                 column.setCellValueFactory(new PropertyValueFactory<TableItem, Boolean>(newNameColumn));

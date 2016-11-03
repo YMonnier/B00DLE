@@ -15,7 +15,7 @@ RSpec.describe Api::OpinionPollsController, :type => :controller do
             title: @opinion_poll.title,
             description: @opinion_poll.description,
             place: @opinion_poll.place,
-            emails: [@invitation.email],
+            invitations: [@invitation.email],
             time_slots: [{from: @time.from, to: @time.to}]
         }
 
@@ -51,7 +51,7 @@ RSpec.describe Api::OpinionPollsController, :type => :controller do
             title: @opinion_poll.title,
             description: @opinion_poll.description,
             place: @opinion_poll.place,
-            emails: [@invitation.email],
+            invitations: [@invitation.email],
             time_slots: [{from: @time.from, to: @time.to}]
         }
 
@@ -76,7 +76,7 @@ RSpec.describe Api::OpinionPollsController, :type => :controller do
             title: @opinion_poll.title,
             description: @opinion_poll.description,
             place: @opinion_poll.place,
-            emails: [@invitation.email],
+            invitations: [@invitation.email],
             time_slots: [{from: @time.from, to: @time.to}]
         }
 

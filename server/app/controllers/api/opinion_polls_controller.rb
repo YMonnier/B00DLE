@@ -26,7 +26,7 @@ class Api::OpinionPollsController < ApplicationController
     @opinion_poll = OpinionPoll.new(opinion_params)
     @opinion_poll.user_id = current_user.id
     if @opinion_poll.valid?
-      invitation_models = validate_emails params[:emails]; return if performed?
+      invitation_models = validate_emails params[:invitations]; return if performed?
       time_models = validate_time_slots params[:time_slots]; return if performed?
 
       if @opinion_poll.save

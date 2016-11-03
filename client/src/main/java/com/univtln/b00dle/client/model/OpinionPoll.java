@@ -1,5 +1,7 @@
 package com.univtln.b00dle.client.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,14 +14,17 @@ import java.util.List;
  * https://github.com/YMonnier
  */
 public class OpinionPoll {
-    private int id;
+    transient private int id;
     private String title;
     private String description;
     private String place;
     private boolean close;
+
+    @SerializedName("time_slots")
     private List<TimeSlot> timeSlots;
-    private List<Invitation> invitations;
-    private List<Answer> answers;
+    private List<String> invitations;
+
+    transient private List<Answer> answers;
 
     private OpinionPoll(Builder builder) {
         this.title = builder.title;
@@ -55,7 +60,7 @@ public class OpinionPoll {
         return timeSlots;
     }
 
-    public List<Invitation> getInvitations() {
+    public List<String> getInvitations() {
         return invitations;
     }
 
@@ -83,7 +88,7 @@ public class OpinionPoll {
         this.timeSlots = timeSlots;
     }
 
-    public void setInvitations(List<Invitation> invitations) {
+    public void setInvitations(List<String> invitations) {
         this.invitations = invitations;
     }
 
@@ -97,7 +102,7 @@ public class OpinionPoll {
         private String place;
         private boolean close = false;
         private List<TimeSlot> timeSlots = new ArrayList<>();
-        private List<Invitation> invitations = new ArrayList<>();
+        private List<String> invitations = new ArrayList<>();
         private List<Answer> answers;
 
 
@@ -130,7 +135,7 @@ public class OpinionPoll {
             return this;
         }
 
-        public Builder setInvitations(List<Invitation> invitations) {
+        public Builder setInvitations(List<String> invitations) {
             this.invitations = invitations;
             return this;
         }

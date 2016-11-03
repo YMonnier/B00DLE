@@ -141,7 +141,7 @@ public class LoginController {
     /**
      * Parse parameters to JSON
      *
-     * @return String json.
+     * @return Test json.
      */
     private String userParameters() {
         Gson gson = new Gson();
@@ -155,7 +155,7 @@ public class LoginController {
     /**
      * Return current mail
      *
-     * @return static String mail
+     * @return static Test mail
      */
     public static String getMail() {
         return mail;

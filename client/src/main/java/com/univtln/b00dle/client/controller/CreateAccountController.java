@@ -128,7 +128,7 @@ public class CreateAccountController {
 
     /**
      * Parse parameters to JSON
-     * @return String json.
+     * @return Test json.
      */
     private String userParameters() {
         Gson gson = new Gson();

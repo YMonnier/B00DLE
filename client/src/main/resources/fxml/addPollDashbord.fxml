@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import org.tbee.javafx.scene.layout.fxml.MigPane?>
-
-<?import javafx.geometry.Insets?>
-
 <MigPane id="addPollDashbord"
          styleClass="main-panel"
          xmlns:fx="http://javafx.com/fxml">
@@ -57,7 +49,7 @@
                         <Label text="Date from: " >
                            <padding><Insets right="5"/></padding>
                         </Label>
-                        <TextField fx:id="departureDateField" prefHeight="100.0" prefWidth="100.0" promptText="aaaa/mm/jj"/>
+                        <TextField fx:id="departureDateField" prefHeight="100.0" prefWidth="100.0" promptText="aaaa-mm-jj"/>
                         <Label text="Time from: " >
                            <padding><Insets left="5"/></padding>
                         </Label>
@@ -69,7 +61,7 @@
                         <Label text="Date to: " >
                            <padding><Insets right="5"/></padding>
                         </Label>
-                        <TextField fx:id="endDateField" prefHeight="100.0" prefWidth="100.0" promptText="aaaa/mm/jj"/>
+                        <TextField fx:id="endDateField" prefHeight="100.0" prefWidth="100.0" promptText="aaaa-mm-jj"/>
                         <Label text="Time to: " >
                            <padding><Insets left="5"/></padding>
                         </Label>
@@ -78,7 +70,7 @@
                      </children>
                   </HBox>
                   <TableView fx:id="tableViewPoll" prefHeight="200.0" prefWidth="200.0" />
-                  <Button fx:id="sendButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Validate" />
+                  <Button fx:id="validateButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Validate" />
                </children>
             </VBox>
          </center>
