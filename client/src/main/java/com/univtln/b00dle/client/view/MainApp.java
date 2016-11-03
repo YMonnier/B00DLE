@@ -11,47 +11,24 @@ import java.io.IOException;
 
 public class MainApp extends Application {
 
+    public static Stage mainStage;
     @Override
     public void start(Stage stage) throws Exception{
+        mainStage = stage;
         stage.setTitle("B00DLE");
-        stage.setScene(createScene(loadMainPane()));
+
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource(
+                        ViewNavigator.HOME
+                )
+        );
+
+        stage.setScene(
+                new Scene(
+                        loader.load()
+                )
+        );
         stage.show();
-    }
-
-    /**
-     * Loads the main fxml layout.
-     * Sets up the vista switching ViewNavigator.
-     * Load fxml file into main.fxml.
-     *
-     * @return the loaded pane.
-     * @throws IOException if the pane could not be loaded.
-     */
-    private Pane loadMainPane() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-
-        Pane mainPane = (Pane) loader.load(getClass().getResourceAsStream(ViewNavigator.MAIN));
-
-        MainController mainController = loader.getController();
-
-        ViewNavigator.setMainController(mainController);
-        ViewNavigator.loadFXMLFile(ViewNavigator.HOME);
-
-        return mainPane;
-    }
-
-    /**
-     * Creates the main application scene.
-     *
-     * @param mainPane the main application layout.
-     *
-     * @return the created scene.
-     */
-    private Scene createScene(Pane mainPane) {
-        Scene scene = new Scene(mainPane);
-
-        //scene.getStylesheets().setAll(getClass().getResource("main/resources/styles/homeStyle.css").toExternalForm());
-
-        return scene;
     }
 
     public static void main(String[] args) {

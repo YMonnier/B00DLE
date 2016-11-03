@@ -1,5 +1,6 @@
 package com.univtln.b00dle.client.view;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 import com.univtln.b00dle.client.controller.MainController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -67,5 +68,4 @@ public class ViewNavigator {
             e.printStackTrace();
         }
     }
-
 }

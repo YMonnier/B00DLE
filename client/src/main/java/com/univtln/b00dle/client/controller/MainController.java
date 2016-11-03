@@ -1,5 +1,6 @@
 package com.univtln.b00dle.client.controller;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
@@ -24,5 +25,4 @@ public class MainController {
     public void setStackPane(Node node) {
         stackPane.getChildren().setAll(node);
     }
-
 }

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import org.tbee.javafx.scene.layout.fxml.MigPane?>
 <?import com.univtln.b00dle.client.model.boodle.poll.Response?>
-<MigPane id="sondagePane" fx:controller="com.univtln.b00dle.client.controller.PollController"
+<MigPane id="sondagePane"
          styleClass="main-panel"
          xmlns:fx="http://javafx.com/fxml">
 
@@ -21,8 +21,8 @@
          <right>
             <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button onAction="#nextPaneHome" mnemonicParsing="false" prefHeight="46.0" prefWidth="86.0" text="HOME" />
-                  <Button onAction="#nextPaneLogin" mnemonicParsing="false" prefHeight="46.0" prefWidth="86.0" text="LOGIN" />
+                  <Button fx:id="homeButton"  mnemonicParsing="false" prefHeight="46.0" prefWidth="86.0" text="HOME" />
+                  <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="86.0" text="LOGIN" />
                </children>
             </HBox>
          </right>
@@ -48,7 +48,7 @@
                <children>
                   <TextField fx:id="chatNameField" prefHeight="63.0" prefWidth="200.0" promptText="Votre nom" />
                   <TextField fx:id="chatMessageField" prefHeight="63.0" prefWidth="200.0" promptText="Votre message..." />
-                  <Button onAction="#sendMessage" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" text="Envoyer" />
+                  <Button fx:id="sendButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" text="Send" />
                </children>
             </VBox>
          </bottom>
@@ -78,7 +78,7 @@
                   <Label fx:id="place" prefWidth="500.0" />
                </children>
             </HBox>
-            <TableView fx:id="tableViewResponsePoll" editable="true" prefHeight="200.0" prefWidth="200.0">
+            <TableView fx:id="tableView" editable="true" prefHeight="200.0" prefWidth="200.0">
               <columns>
                 <TableColumn fx:id="tableColumnName" editable="true" prefWidth="75.0" text="Nom" >
                  </TableColumn>

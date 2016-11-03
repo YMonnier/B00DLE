@@ -1,6 +1,6 @@
 package com.univtln.b00dle.client.controller;
 
-import com.univtln.b00dle.client.model.Model;
+import com.univtln.b00dle.client.model.*;
 import com.univtln.b00dle.client.model.boodle.poll.Date;
 import com.univtln.b00dle.client.model.boodle.poll.Poll;
 import com.univtln.b00dle.client.model.boodle.poll.Response;
@@ -13,26 +13,29 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import org.apache.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static javafx.scene.control.cell.CheckBoxTableCell.*;
 
 /**
  * Created by Stéphen on 15/10/2016.
  * Controller of viewPoll.fxml
  */
-public class PollController{
+public class PollController {
+    private static final Logger LOGGER = Logger.getLogger(PollController.class);
 
-    /**
-     * Controller can use Model -> MVC
-     */
-    private Model model;
+    private OpinionPoll opinionPoll;
 
     /**
      * Variable FXML
      * are instanciate when fxml file is load
      */
     @FXML
-    private TableView<TableItem> tableViewResponsePoll;
+    private TableView<Person> tableView;
+    //private TableView<Answer> tableView;
 
     @FXML
     private TableColumn tableColumnName;
@@ -55,18 +58,31 @@ public class PollController{
     @FXML
     private Label name;
 
-    /** The constructor. The constructor is called before the initialize()
-      * method.
-      */
-    public PollController(){
-        this.model = new Model();
+    @FXML
+    private Button loginButton;
+
+    @FXML
+    private Button homeButton;
+
+    @FXML
+    private Button sendButton;
+
+    private final ObservableList<Person> data = FXCollections.observableArrayList();
+
+    /**
+     * The constructor. The constructor is called before the initialize()
+     * method.
+     */
+    public PollController(OpinionPoll opinionPoll) {
+        this.opinionPoll = opinionPoll;
     }
+
 
     /**
      * Event load home.fxml
      */
     @FXML
-    public void nextPaneHome() {
+    public void viewHomeAction() {
         ViewNavigator.loadFXMLFile(ViewNavigator.HOME);
     }
 
@@ -74,7 +90,7 @@ public class PollController{
      * Event load login.fxml
      */
     @FXML
-    public void nextPaneLogin(){
+    public void viewLoginAction() {
         ViewNavigator.loadFXMLFile(ViewNavigator.LOGIN);
     }
 
@@ -82,14 +98,41 @@ public class PollController{
      * Add a message into chat poll
      */
     @FXML
-    public void sendMessage(){
+    public void sendMessage() {
         String name = chatNameField.getText();
         String message = chatMessageField.getText();
         String chatMessage = name + " : " + message;
-        model.addChatMessage(HomeController.getLink(), chatMessage);
-        ObservableList<String> listMessage = FXCollections.observableArrayList(model.getChatMessage(HomeController.getLink()));
-        chat.setItems(listMessage);
-        chatMessageField.setText("");
+        //model.addChatMessage(HomeController.getLink(), chatMessage);
+        //ObservableList<String> listMessage = FXCollections.observableArrayList(model.getChatMessage(HomeController.getLink()));
+        //chat.setItems(listMessage);
+        //chatMessageField.setText("");
+    }
+
+
+    private List<TableColumn<Person, ? extends Object>> columns() {
+        final List<TableColumn<Person, ?>> columns = new ArrayList<>();
+
+        final TableColumn<Person, String> columnName = new TableColumn<>("Name");
+        columnName.setCellValueFactory(cell -> cell.getValue().nameProperty());
+        columnName.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        final TableColumn<Person, Boolean> columnClose = new TableColumn<>("Close?");
+        columnClose.setCellValueFactory(cell -> cell.getValue().closeProperty());
+        columnClose.setCellFactory(CheckBoxTableCell.forTableColumn(param -> this.tableView.getItems().get(param).closeProperty()));
+
+
+
+        columns.add(columnName);
+        columns.add(columnClose);
+
+
+
+        /*final TableColumn<Person, Integer> idFast = new TableColumn<>("Age");
+        idFast.setCellValueFactory(cell -> cell.getValue().ageProperty());
+        columns.add(idFast);
+        */
+
+        return columns;
     }
 
     /**
@@ -98,64 +141,115 @@ public class PollController{
      */
     @FXML
     public void initialize() {
+        this.loginButton.setOnAction(e -> this.viewLoginAction());
+        this.homeButton.setOnAction(e -> this.viewHomeAction());
+        this.sendButton.setOnAction(e -> this.sendMessage());
 
+        List<Person> persons = new ArrayList<>();
+        persons.add(new Person("Jpds", 12));
+        persons.add(new Person("Jzedezzz", 12));
+        persons.add(new Person("&ézed", 12));
+        data.addAll(persons);
+
+
+        this.tableView.getColumns().addAll(columns());
+        this.tableView.setItems(data);
+        this.tableView.setEditable(true);
+
+        this.tableView.setOnMouseClicked(event -> this.data.forEach(person -> System.out.println(person.toString())));
+
+
+
+        /*
         //Get chat message
-        List<String> listMessage = model.getChatMessage(HomeController.getLink());
+        //List<String> listMessage = model.getChatMessage(HomeController.getLink());
 
         //Get and put all informations about poll and textArea become not editable
-        Poll poll = model.getPollByLink(HomeController.getLink());
-        name.setText(poll.getName());
-        description.setText(poll.getDescription());
-        place.setText(poll.getPlace());
+        this.name.setText(this.opinionPoll.getTitle());
+        this.description.setText(this.opinionPoll.getDescription());
+        this.place.setText(opinionPoll.getPlace());
 
         //Makes the table editable
-        tableViewResponsePoll.setEditable(true);
+        tableView.setEditable(true);
 
         //Makes the name editable column
         tableColumnName.setCellFactory(TextFieldTableCell.<TableItem>forTableColumn());
 
         //Add date in table
-        if(poll.getDates() != null) {
-            for(Date date : poll.getDates()){
-                String newNameColumn = date.toString();
+        LOGGER.debug("ADD COLUMNS...");
+        LOGGER.debug(this.opinionPoll);
+        if (this.opinionPoll.getTimeSlots() != null) {
+            for (TimeSlot timeSlot : this.opinionPoll.getTimeSlots()) {
+                String newNameColumn = timeSlot.toString();
+                LOGGER.debug("-> " + newNameColumn);
                 TableColumn column = new TableColumn(newNameColumn);
                 column.setCellValueFactory(new PropertyValueFactory<TableItem, Boolean>(newNameColumn));
                 column.setMinWidth(newNameColumn.length());
-                tableViewResponsePoll.getColumns().add(column);
-                column.setCellFactory(CheckBoxTableCell.forTableColumn(column));
+                tableView.getColumns().add(column);
+                column.setCellFactory(forTableColumn(column));
             }
         }
 
         //Add empty line response
 
         //Makes the table editable
-        tableViewResponsePoll.setEditable(true);
+        tableView.setEditable(true);
 
-        final ObservableList<TableItem> data =
+        final ObservableList<Answer> data =
                 FXCollections.observableArrayList(
-                    new Response()
+                        new Answer.Builder().build()
                 );
-        tableViewResponsePoll.setItems(data);
+        tableView.setItems(data);
 
-        //Add prevouisy answer poll
-        if(tableViewResponsePoll.getColumns() != null){
-            for(int i = 0; i < tableViewResponsePoll.getColumns().size(); i++){
-                for(Response response : poll.getResponses()){
-                    if(tableViewResponsePoll.getColumns().get(i).getText().equals(response.getDate().toString())){
-                        System.out.println("1 reponse");
+
+        if (this.opinionPoll.getAnswers() != null) {
+            LOGGER.debug("ADD LINE...");
+            for (Answer answer : this.opinionPoll.getAnswers()) {
+                //tableView.getItems().add(new Item());
+                //Answer aw = new Answer.Builder().build();
+                this.tableView.getItems().add(answer);
+                LOGGER.debug("DONE");
+                if (tableView.getColumns() != null) {
+                    for (int i = 1; i < this.tableView.getColumns().size(); i++) {
+                        TimeSlot currentTimeSlot = this.opinionPoll.getTimeSlots().get(i-1);
+
+                        LOGGER.debug("----");
+                        LOGGER.debug(answer.getTimeSlots());
+                        LOGGER.debug("contains");
+                        LOGGER.debug(currentTimeSlot);
+
+                        if (answer.getTimeSlots().contains(currentTimeSlot.getId())) {
+                            LOGGER.debug(currentTimeSlot + " found!");
+
+                        }
                     }
                 }
+
             }
         }
 
 
+
         //Answer poll
-        tableViewResponsePoll.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-                TablePosition tablePosition = tableViewResponsePoll.getSelectionModel().getSelectedCells().get(0);
+                TablePosition tablePosition = tableView.getSelectionModel().getSelectedCells().get(0);
+
                 System.out.println(tablePosition.getColumn());
             }
         });
+        */
     }
 
+
+    private TimeSlot parseDate(String s) {
+        LOGGER.debug("parseDate: " + s);
+        String[] tab = s.split("\n");
+        assert tab.length == 2;
+
+        return new TimeSlot.Builder()
+                .setFrom(tab[0])
+                .setTo(tab[1])
+                .build();
+    }
 }

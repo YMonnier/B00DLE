@@ -19,6 +19,7 @@ public class OpinionPoll {
     private boolean close;
     private List<TimeSlot> timeSlots;
     private List<Invitation> invitations;
+    private List<Answer> answers;
 
     private OpinionPoll(Builder builder) {
         this.title = builder.title;
@@ -27,6 +28,7 @@ public class OpinionPoll {
         this.close = builder.close;
         this.timeSlots = builder.timeSlots;
         this.invitations = builder.invitations;
+        this.answers = builder.answers;
     }
 
     public int getId() {
@@ -85,6 +87,10 @@ public class OpinionPoll {
         this.invitations = invitations;
     }
 
+    public List<Answer> getAnswers() {
+        return answers;
+    }
+
     public static class Builder {
         private String title;
         private String description;
@@ -92,6 +98,8 @@ public class OpinionPoll {
         private boolean close = false;
         private List<TimeSlot> timeSlots = new ArrayList<>();
         private List<Invitation> invitations = new ArrayList<>();
+        private List<Answer> answers;
+
 
         public OpinionPoll build() {
             return new OpinionPoll(this);
@@ -117,6 +125,11 @@ public class OpinionPoll {
             return this;
         }
 
+        public Builder setAnswers(List<Answer> answers) {
+            this.answers = answers;
+            return this;
+        }
+
         public Builder setInvitations(List<Invitation> invitations) {
             this.invitations = invitations;
             return this;
@@ -133,6 +146,7 @@ public class OpinionPoll {
                 ", close=" + close +
                 ", timeSlots=" + timeSlots +
                 ", invitations=" + invitations +
+                ", answers=" + answers +
                 '}';
     }
 }

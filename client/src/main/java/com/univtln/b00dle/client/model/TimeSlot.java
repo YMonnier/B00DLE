@@ -43,6 +43,10 @@ public class TimeSlot {
         return to;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public static class Builder {
         private String from;
         private String to;
@@ -60,5 +64,29 @@ public class TimeSlot {
             this.to = to;
             return this;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TimeSlot timeSlot = (TimeSlot) o;
+
+        if (from != null ? !from.equals(timeSlot.from) : timeSlot.from != null) return false;
+        return to != null ? to.equals(timeSlot.to) : timeSlot.to == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = from != null ? from.hashCode() : 0;
+        result = 31 * result + (to != null ? to.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return this.from + "\n" + this.to;
     }
 }

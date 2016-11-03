@@ -18,7 +18,7 @@
          <right>
             <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button onAction="#nextPaneLogin" mnemonicParsing="false" prefHeight="46.0" prefWidth="86.0" text="LOGIN" />
+                  <Button onAction="#viewLoginAction" mnemonicParsing="false" prefHeight="46.0" prefWidth="86.0" text="LOGIN" />
                </children>
             </HBox>
          </right>
@@ -36,7 +36,7 @@
          <padding><Insets top="150" right="25" bottom="10" left="25"/></padding>
          <children>
             <TextField fx:id="linkField" alignment="TOP_LEFT" prefHeight="31.0" prefWidth="200.0" promptText="Your opinion poll link..." />
-            <Button onAction="#nextPaneViewPoll" mnemonicParsing="false" text="View!">
+            <Button onAction="#viewOpinionPollAction" mnemonicParsing="false" text="View!">
             <VBox.margin>
                <Insets top="10" />
             </VBox.margin>/>
