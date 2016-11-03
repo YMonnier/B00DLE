@@ -2,7 +2,6 @@ package com.univtln.b00dle.client.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.univtln.b00dle.client.model.Model;
 import com.univtln.b00dle.client.utilities.network.api.API;
 import com.univtln.b00dle.client.view.Dialog;
 import com.univtln.b00dle.client.view.MainApp;
@@ -52,10 +51,11 @@ public class LoginController {
     public LoginController() {}
 
     /**
-     * Event load createAccount.fxml
+     * Event load createAccount.fxml in stage
      */
     @FXML
     public void nextPaneCreateAccount() {
+        LOGGER.info("viewCreateAccountAction:: run view");
         FXMLLoader loader = new FXMLLoader(getClass().getResource(ViewNavigator.CREATE_ACCOUNT));
 
         try {
@@ -69,11 +69,12 @@ public class LoginController {
 
     /**
      * Event which allows to go to the Home view.
-     * Event load home.fxml
+     * Event load home.fxml in stage
      *
      */
     @FXML
     public void nextPaneHome() {
+        LOGGER.info("viewHomeAction:: run view");
         FXMLLoader loader = new FXMLLoader(getClass().getResource(ViewNavigator.HOME));
 
         try {

@@ -1,8 +1,6 @@
 package com.univtln.b00dle.client.controller;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.univtln.b00dle.client.utilities.network.api.API;
 import com.univtln.b00dle.client.view.Dialog;
@@ -22,7 +20,6 @@ import org.apache.log4j.Logger;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Created by sbellange845 on 15/10/16.
@@ -50,10 +47,11 @@ public class CreateAccountController {
 
     /**
      * Event load home.fxml
+     * Add home.fxml in mainStage instanciate in MainApp
      */
     @FXML
     public void nextPaneHome() {
-        LOGGER.debug("viewLoginAction::run view");
+        LOGGER.debug("viewHomeAction::run view");
         FXMLLoader loader = new FXMLLoader(getClass().getResource(ViewNavigator.HOME));
 
         try {

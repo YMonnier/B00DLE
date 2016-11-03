@@ -1,12 +1,8 @@
 package com.univtln.b00dle.client.controller;
 
-import com.univtln.b00dle.client.model.Model;
 import com.univtln.b00dle.client.model.OpinionPoll;
-import com.univtln.b00dle.client.model.boodle.poll.Poll;
 import com.univtln.b00dle.client.view.MainApp;
 import com.univtln.b00dle.client.view.ViewNavigator;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -42,7 +38,7 @@ public class DashbordController {
     private ListView<OpinionPoll> listViewPoll;
 
     /**
-     * Constructor
+     * Default Constructor
      */
     public DashbordController(){}
 
@@ -51,7 +47,7 @@ public class DashbordController {
      */
     @FXML
     public void nextPaneHome() {
-        LOGGER.debug("viewLoginAction::run view");
+        LOGGER.debug("viewHomeAction::run view");
         FXMLLoader loader = new FXMLLoader(getClass().getResource(ViewNavigator.HOME));
 
         try {
@@ -87,6 +83,7 @@ public class DashbordController {
      */
     @FXML
     public void viewPollFormAction() throws IOException {
+        LOGGER.info("viewPollFormAction:: add view in pane");
         AddPollController addPollController =
                 new AddPollController(listViewPoll);
 
@@ -107,6 +104,7 @@ public class DashbordController {
      */
     @FXML
     public void viewModifyPollAction(MouseEvent arg) throws IOException {
+        LOGGER.info("viewModifyPollAction:: add view in pane");
         OpinionPoll opinionPoll = listViewPoll.getSelectionModel().getSelectedItem();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(ViewNavigator.MODIFY_POLL));
         ModifyPollController m = new ModifyPollController(opinionPoll);
@@ -121,6 +119,7 @@ public class DashbordController {
      */
     @FXML
     public void initialize(){
+        LOGGER.info("Initialize DashbordController");
         //ObservableList<Poll> listPoll = FXCollections.observableArrayList(model.getPoll(LoginController.getMail()));
         //listViewPoll.setItems(listPoll);
     }

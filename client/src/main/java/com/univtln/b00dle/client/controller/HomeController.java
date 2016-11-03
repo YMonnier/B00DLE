@@ -8,16 +8,13 @@ import com.univtln.b00dle.client.view.MainApp;
 import com.univtln.b00dle.client.view.ViewNavigator;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -48,7 +45,7 @@ public class HomeController {
     private Button viewOpinionButton;
 */
     /**
-     * Event load login.fxml
+     * Event load login.fxml in stage
      */
     public void viewLoginAction() {
         LOGGER.debug("viewLoginAction::run view");
@@ -65,7 +62,7 @@ public class HomeController {
 
     /**
      * Instanciate link get by linkField
-     * Event load viewPoll.fxml
+     * Event load viewPoll.fxml in stage
      */
     public void viewOpinionPollAction() {
         LOGGER.debug("viewOpinionPollAction");
@@ -131,7 +128,7 @@ public class HomeController {
 
     @FXML
     public void initialize() {
-        LOGGER.debug("initialize");
+        LOGGER.info("Initialize HomeController");
         //this.loginButton.setOnAction(e -> this.viewLoginAction());
         //this.viewOpinionButton.setOnAction(e -> this.viewOpinionPollAction());
     }
