@@ -31,11 +31,7 @@
          <bottom>
             <VBox alignment="CENTER">
                <padding><Insets top="10" bottom="10" /></padding>
-<<<<<<< HEAD
-               <Button fx:id="send" prefWidth="100" text="Send">
-=======
                <Button fx:id="sendButton" prefWidth="100" text="Send">
->>>>>>> 52581787bcfa1024cdaaebd604fa222ec23fc7dc
                </Button>
             </VBox>
 

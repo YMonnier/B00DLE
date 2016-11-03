@@ -49,7 +49,7 @@
                         <Label text="Date from: " >
                            <padding><Insets right="5"/></padding>
                         </Label>
-                        <TextField fx:id="departureDateField" prefHeight="100.0" prefWidth="100.0" promptText="aaaa/mm/jj"/>
+                        <TextField fx:id="departureDateField" prefHeight="100.0" prefWidth="100.0" promptText="aaaa-mm-jj"/>
                         <Label text="Time from: " >
                            <padding><Insets left="5"/></padding>
                         </Label>
@@ -61,7 +61,7 @@
                         <Label text="Date to: " >
                            <padding><Insets right="5"/></padding>
                         </Label>
-                        <TextField fx:id="endDateField" prefHeight="100.0" prefWidth="100.0" promptText="aaaa/mm/jj"/>
+                        <TextField fx:id="endDateField" prefHeight="100.0" prefWidth="100.0" promptText="aaaa-mm-jj"/>
                         <Label text="Time to: " >
                            <padding><Insets left="5"/></padding>
                         </Label>
@@ -70,11 +70,7 @@
                      </children>
                   </HBox>
                   <TableView fx:id="tableViewPoll" prefHeight="200.0" prefWidth="200.0" />
-<<<<<<< HEAD
                   <Button fx:id="validateButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Validate" />
-=======
-                  <Button fx:id="sendButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Validate" />
->>>>>>> 52581787bcfa1024cdaaebd604fa222ec23fc7dc
                </children>
             </VBox>
          </center>

@@ -1,13 +1,24 @@
 package com.univtln.b00dle.client.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.univtln.b00dle.client.model.Invitation;
 import com.univtln.b00dle.client.model.OpinionPoll;
+import com.univtln.b00dle.client.utilities.network.api.API;
 import com.univtln.b00dle.client.view.Dialog;
+import com.univtln.b00dle.client.view.MainApp;
+import com.univtln.b00dle.client.view.ViewNavigator;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -81,11 +92,31 @@ public class MailsDialogController {
     @FXML
     public void sendOpinionPollAction() throws IOException {
         LOGGER.info("sendOpinionPollAction");
-        //1. Send mails
-        //2. Add poll in list
-        Dialog.getStage().close();
-        //4. Display in modify template poll
-        listView.getItems().add(this.opinionPoll);
+        Gson gson = new Gson();
+        String parameters = gson.toJson(this.opinionPoll);
+
+        HttpResponse response = API.post(API.Resources.OPINION_POLLS, parameters);
+        int status = response.getStatusLine().getStatusCode();
+        LOGGER.debug("HTTP Status code: " + status);
+        String json = EntityUtils.toString(response.getEntity(), "UTF-8");
+
+        JsonObject jsonObject = gson.fromJson(json, JsonObject.class);
+
+        if (status == HttpStatus.SC_CREATED) {
+            JsonObject jsonDataObject = jsonObject.get("data").getAsJsonObject();
+            LOGGER.info("Created: " + jsonDataObject);
+            Dialog.showAlert("Opinion Poll",
+                    "Opinion poll created!",
+                    Alert.AlertType.INFORMATION);
+
+            listView.getItems().add(this.opinionPoll);
+            Dialog.getStage().close();
+        } else {
+            LOGGER.warn("The HTTP status code is invalid: " + status);
+            Dialog.showAlert("Opinion Poll",
+                    "Oops! Please try again later.",
+                    Alert.AlertType.WARNING);
+        }
     }
 
     /**
