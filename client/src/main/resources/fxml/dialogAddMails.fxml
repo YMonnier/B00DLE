@@ -17,7 +17,7 @@
                   <padding><Insets right="65" left="10"></Insets> </padding>
                </Label>
                <TextField fx:id="mailTextField"></TextField>
-               <Button text="Add" ></Button>
+               <Button fx:id="add" text="Add" ></Button>
             </HBox>
          </top>
          <center>
@@ -31,7 +31,7 @@
          <bottom>
             <VBox alignment="CENTER">
                <padding><Insets top="10" bottom="10" /></padding>
-               <Button prefWidth="100" text="Send">
+               <Button fx:id="sendButton" prefWidth="100" text="Send">
                </Button>
             </VBox>
 

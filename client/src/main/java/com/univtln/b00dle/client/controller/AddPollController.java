@@ -2,7 +2,6 @@ package com.univtln.b00dle.client.controller;
 
 import com.univtln.b00dle.client.model.OpinionPoll;
 import com.univtln.b00dle.client.model.TimeSlot;
-import com.univtln.b00dle.client.model.boodle.poll.Poll;
 import com.univtln.b00dle.client.view.Dialog;
 import com.univtln.b00dle.client.view.ViewNavigator;
 import javafx.fxml.FXML;
@@ -62,11 +61,18 @@ public class AddPollController {
     @FXML
     private Button addButton;
 
+    @FXML
+    private Button sendButton;
+
     public AddPollController() {
     }
 
+    /**
+     * Constructor
+     *
+     * @param listView reference of the ListView instance in DashbordController.
+     */
     public AddPollController(ListView listView) {
-        LOGGER.info("AddPollController...");
         this.listView = listView;
         this.opinionPoll = new OpinionPoll.Builder().build();
     }
@@ -132,10 +138,21 @@ public class AddPollController {
         }
     }
 
+    /**
+     * Fonction initialize when fxml file is load
+     */
     @FXML
     public void initialize() {
+        LOGGER.info("Initialize AddPollController");
         tableViewPoll.setEditable(true);
         addButton.setOnAction(e -> this.addTimeSlotAction());
+        sendButton.setOnAction(e -> {
+            try {
+                this.viewEmailFormAction();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
 
     }
 }

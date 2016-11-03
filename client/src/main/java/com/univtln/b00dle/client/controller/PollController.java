@@ -1,10 +1,8 @@
 package com.univtln.b00dle.client.controller;
 
-import com.univtln.b00dle.client.model.*;
-import com.univtln.b00dle.client.model.boodle.poll.Date;
-import com.univtln.b00dle.client.model.boodle.poll.Poll;
-import com.univtln.b00dle.client.model.boodle.poll.Response;
-import com.univtln.b00dle.client.model.boodle.poll.TableItem;
+import com.univtln.b00dle.client.model.OpinionPoll;
+import com.univtln.b00dle.client.model.Person;
+import com.univtln.b00dle.client.model.TimeSlot;
 import com.univtln.b00dle.client.view.MainApp;
 import com.univtln.b00dle.client.view.ViewNavigator;
 import javafx.collections.FXCollections;
@@ -14,7 +12,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.Pane;
 import org.apache.log4j.Logger;
@@ -23,15 +20,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javafx.scene.control.cell.CheckBoxTableCell.*;
-
 /**
  * Created by Stéphen on 15/10/2016.
  * Controller of viewPoll.fxml
  */
 public class PollController {
+
     private static final Logger LOGGER = Logger.getLogger(PollController.class);
 
+    /**
+     * Reference of the model
+     */
     private OpinionPoll opinionPoll;
 
     /**
@@ -84,7 +83,7 @@ public class PollController {
 
 
     /**
-     * Event load home.fxml
+     * Event load home.fxml in stage
      */
     @FXML
     public void viewHomeAction() {
