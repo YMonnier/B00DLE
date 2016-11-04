@@ -40,7 +40,7 @@
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <padding><Insets top="50" right="25" bottom="10" left="25"/></padding>
          <children>
-            <Label text="Création d'un compte">
+            <Label text="Create account">
                <padding>
                   <Insets bottom="80.0" />
                </padding>

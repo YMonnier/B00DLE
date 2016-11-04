@@ -33,7 +33,11 @@
                         <Label text="Description:" >
                            <padding><Insets right="15"/></padding>
                         </Label>
-                        <TextField fx:id="descriptionPollField" prefHeight="300.0" prefWidth="400.0" />
+                        <TextField fx:id="descriptionPollField" prefHeight="300.0" prefWidth="400.0" >
+                        <HBox.margin>
+                           <Insets left="20.00" />
+                        </HBox.margin>
+                        </TextField>
                      </children>
                   </HBox>
                   <HBox prefHeight="200.0" prefWidth="600.0">
