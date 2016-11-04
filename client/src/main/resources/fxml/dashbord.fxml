@@ -37,8 +37,16 @@
             <HBox prefHeight="25.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <padding><Insets top="5" bottom="5"/></padding>
                <children>
-                  <Label prefHeight="21.0" prefWidth="71.0" text="Opinion Polls" />
-                  <Button fx:id="viewPollButton"  mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="Add" />
+                  <Label prefHeight="21.0" prefWidth="71.0" text="Opinion Polls" >
+                     <HBox.margin>
+                        <Insets right="10.00" />
+                     </HBox.margin>
+                  </Label>
+                  <Button fx:id="viewPollButton"  mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="Add" >
+                     <HBox.margin>
+                        <Insets right="10.00" />
+                     </HBox.margin>
+                  </Button>
                </children>
             </HBox>
          </top>
