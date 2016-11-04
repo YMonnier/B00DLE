@@ -179,6 +179,11 @@ public class PollController {
         this.sendButton.setOnAction(e -> this.sendMessage());
         this.sendAnswerButton.setOnAction(e -> this.sendAnswerAction());
 
+        this.name.setText(this.opinionPoll.getTitle());
+        this.description.setText(this.opinionPoll.getDescription());
+        this.place.setText(this.opinionPoll.getPlace());
+
+
         List<Person> persons = new ArrayList<>();
         persons.add(new Person("Jpds", "OK", "OK"));
         persons.add(new Person("Jzedezzz", "", "OK"));

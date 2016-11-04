@@ -95,6 +95,9 @@ public class AddPollController {
                 .setTo(dateTo + " " + timeTo)
                 .build();
         this.opinionPoll.getTimeSlots().add(timeSlot);
+        this.departureTimeField.setText("");
+        this.endTimeField.setText("");
+
         LOGGER.debug("current opinion poll: " + opinionPoll.toString());
         // Add colomn to the tableView
         String newNameColumn = dateFrom + " - " + timeFrom + "\n" + dateTo + " - " + timeTo;
