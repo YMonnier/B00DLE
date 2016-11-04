@@ -141,6 +141,7 @@ public class ModifyPollController {
                         "Removing worked!",
                         Alert.AlertType.INFORMATION);
                 this.opinionPollListView.getItems().remove(this.index);
+                this.reset();
             } else {
                 LOGGER.warn("The HTTP status code is invalid: " + status);
                 Dialog.showAlert("Opinion Poll",
@@ -175,6 +176,15 @@ public class ModifyPollController {
             this.opinionPoll.setClose(this.closeCheckBox.selectedProperty().get());
             this.setCloseStatus();
         });
+    }
+
+    private void reset() {
+        this.namePollLabel.setText("");
+        this.namePollField.setText("");
+        this.pollDescriptionField.setText("");
+        this.pollPlaceField.setText("");
+        this.listView.getItems().removeAll(this.observableList);
+        this.observableList.removeAll();
     }
 
     private void setCloseStatus() {
