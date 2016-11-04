@@ -1,6 +1,7 @@
 package com.univtln.b00dle.client.model;
 
 import javafx.beans.property.*;
+import javafx.collections.ObservableList;
 
 /**
  * Project client.
@@ -12,14 +13,14 @@ import javafx.beans.property.*;
  */
 public class Person {
     StringProperty name;
-    IntegerProperty age;
-    BooleanProperty close;
-    ListProperty<BooleanProperty> lb;
+    StringProperty name2;
+    StringProperty name3;
 
-    public Person(String name, int age) {
+
+    public Person(String name, String name2, String name3) {
         this.name = new SimpleStringProperty(name);
-        this.age = new SimpleIntegerProperty(age);
-        this.close = new SimpleBooleanProperty(false);
+        this.name2 = new SimpleStringProperty(name2);
+        this.name3 = new SimpleStringProperty(name3);
     }
 
     public String getName() {
@@ -34,36 +35,36 @@ public class Person {
         this.name.set(name);
     }
 
-    public int getAge() {
-        return age.get();
+    public String getName2() {
+        return name2.get();
     }
 
-    public IntegerProperty ageProperty() {
-        return age;
+    public StringProperty name2Property() {
+        return name2;
     }
 
-    public void setAge(int age) {
-        this.age.set(age);
+    public void setName2(String name2) {
+        this.name2.set(name2);
     }
 
-    public boolean isClose() {
-        return close.get();
+    public String getName3() {
+        return name3.get();
     }
 
-    public BooleanProperty closeProperty() {
-        return close;
+    public StringProperty name3Property() {
+        return name3;
     }
 
-    public void setClose(boolean close) {
-        this.close.set(close);
+    public void setName3(String name3) {
+        this.name3.set(name3);
     }
 
     @Override
     public String toString() {
         return "Person{" +
                 "name=" + name +
-                ", age=" + age +
-                ", close=" + close +
+                ", name2=" + name2 +
+                ", name3=" + name3 +
                 '}';
     }
 }
