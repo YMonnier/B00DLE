@@ -17,6 +17,7 @@ import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Stéphen on 20/10/2016.
@@ -28,7 +29,11 @@ public class ModifyPollController {
 
     private OpinionPoll opinionPoll;
 
+    private ListView<OpinionPoll> opinionPollListView;
+
     private ObservableList<TimeSlot> observableList;
+
+    private int index;
 
     /**
      * Variable FXML
@@ -53,20 +58,33 @@ public class ModifyPollController {
     @FXML
     private Button modifyButton;
 
+    @FXML
+    private Button deleteButton;
+
+    @FXML
+    private CheckBox closeCheckBox;
+
     /**
      * Constructor
      * @param opinionPoll reference of the model
      */
-    public ModifyPollController(OpinionPoll opinionPoll){
-        assert opinionPoll != null;
-        this.opinionPoll = opinionPoll;
+    public ModifyPollController(ListView<OpinionPoll> opinionPolls, int index){
+        this.index = index;
+        assert opinionPolls!= null;
+        this.opinionPollListView = opinionPolls;
+        this.opinionPoll = opinionPollListView.getItems().get(index);
+        assert this.opinionPoll != null;
         this.observableList = FXCollections.observableArrayList(this.opinionPoll.getTimeSlots());
     }
 
+    /**
+     * Method which allows to modify the opinion poll selected.
+     */
     private void sendModificationAction() {
-        String description = pollDescriptionField.getText();
-        String title = namePollField.getText();
-        String place = pollPlaceField.getText();
+        String description = this.pollDescriptionField.getText();
+        String title = this.namePollField.getText();
+        String place = this.pollPlaceField.getText();
+        boolean close = this.closeCheckBox.selectedProperty().get();
 
         if(!description.isEmpty()
                 && !title.isEmpty()
@@ -75,6 +93,7 @@ public class ModifyPollController {
             this.opinionPoll.setTitle(title);
             this.opinionPoll.setDescription(description);
             this.opinionPoll.setPlace(place);
+            this.opinionPoll.setClose(close);
             int id = this.opinionPoll.getId();
 
             try {
@@ -88,6 +107,7 @@ public class ModifyPollController {
 
                 if (status == HttpStatus.SC_OK) {
                     LOGGER.debug("JSON: " + jsonObject);
+                    this.setCloseStatus();
                     Dialog.showAlert("Modify Opinion Poll",
                             "The modification is succeed.",
                             Alert.AlertType.INFORMATION);
@@ -100,9 +120,35 @@ public class ModifyPollController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         } else {
+            Dialog.showAlert("Modify Opinion Poll",
+                    "Oops! Please try again later.",
+                    Alert.AlertType.WARNING);
+        }
+    }
 
+    private void deleteOpinionPollAction() {
+        try {
+            int id = this.opinionPoll.getId();
+
+            HttpResponse response = API.delete(API.Resources.OPINION_POLLS + "/" + id);
+            int status = response.getStatusLine().getStatusCode();
+            LOGGER.debug("HTTP Status code: " + status);
+
+            if (status == HttpStatus.SC_NO_CONTENT) {
+                this.setCloseStatus();
+                Dialog.showAlert("Opinion Poll",
+                        "Removing worked!",
+                        Alert.AlertType.INFORMATION);
+                this.opinionPollListView.getItems().remove(this.index);
+            } else {
+                LOGGER.warn("The HTTP status code is invalid: " + status);
+                Dialog.showAlert("Opinion Poll",
+                        "Oops! Please try again later.",
+                        Alert.AlertType.WARNING);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -112,15 +158,39 @@ public class ModifyPollController {
     @FXML
     public void initialize() {
         LOGGER.info("Initialize ModifyPollController");
-        namePollLabel.setText(this.opinionPoll.getTitle());
-        namePollField.setText(this.opinionPoll.getTitle());
-        pollDescriptionField.setText(this.opinionPoll.getDescription());
-        pollPlaceField.setText(this.opinionPoll.getPlace());
+
+        this.setCloseStatus();
+
+        this.namePollLabel.setText(this.opinionPoll.getTitle());
+        this.namePollField.setText(this.opinionPoll.getTitle());
+        this.pollDescriptionField.setText(this.opinionPoll.getDescription());
+        this.pollPlaceField.setText(this.opinionPoll.getPlace());
 
         this.listView.setCellFactory(param -> new CustomCell());
         this.listView.getItems().addAll(this.observableList);
 
         this.modifyButton.setOnAction(e -> this.sendModificationAction());
+        this.deleteButton.setOnAction(e -> this.deleteOpinionPollAction());
+        this.closeCheckBox.setOnAction(e -> {
+            this.opinionPoll.setClose(this.closeCheckBox.selectedProperty().get());
+            this.setCloseStatus();
+        });
+    }
+
+    private void setCloseStatus() {
+        if (this.opinionPoll.isClose()) {
+            this.namePollField.setEditable(false);
+            this.pollDescriptionField.setEditable(false);
+            this.pollPlaceField.setEditable(false);
+            this.modifyButton.setDisable(true);
+            this.closeCheckBox.setDisable(true);
+        } else {
+            this.namePollField.setEditable(true);
+            this.pollDescriptionField.setEditable(true);
+            this.pollPlaceField.setEditable(true);
+            this.modifyButton.setDisable(false);
+            this.closeCheckBox.setDisable(false);
+        }
     }
 
     private static class CustomCell extends ListCell<TimeSlot> {

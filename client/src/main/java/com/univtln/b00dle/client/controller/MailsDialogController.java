@@ -72,11 +72,12 @@ public class MailsDialogController {
      */
     @FXML
     public void addMailAction() {
-        String email = mailTextField.getText();
+        String email = this.mailTextField.getText();
         LOGGER.info("addMailsAction");
         if (!email.isEmpty()) {
             this.opinionPoll.getInvitations().add(email);
             this.listViewMails.getItems().add(email);
+            this.mailTextField.setText("");
         } else {
             Dialog.showAlert("Opinion Poll",
                     "Oops! Please check your input data.",
@@ -110,7 +111,7 @@ public class MailsDialogController {
                     "Opinion poll created!",
                     Alert.AlertType.INFORMATION);
             this.opinionPoll.setId(opinionPollId);
-            listView.getItems().add(this.opinionPoll);
+            this.listView.getItems().add(this.opinionPoll);
             Dialog.getStage().close();
         } else {
             LOGGER.warn("The HTTP status code is invalid: " + status);
@@ -132,7 +133,7 @@ public class MailsDialogController {
 
         sendButton.setOnAction(e -> {
             try {
-                sendOpinionPollAction();
+                this.sendOpinionPollAction();
             } catch (IOException e1) {
                 e1.printStackTrace();
             }

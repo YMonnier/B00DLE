@@ -58,7 +58,7 @@
                         <TextField fx:id="pollPlaceField" prefHeight="100.0" prefWidth="400.0"/>
                     </children>
                 </HBox>
-                <CheckBox text="Close" >
+                <CheckBox fx:id="closeCheckBox" text="Close" >
                     <VBox.margin>
                         <Insets left="10.00" bottom="10.00"/>
                     </VBox.margin>

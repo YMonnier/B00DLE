@@ -104,7 +104,6 @@ public class DashboardController {
      *
      * @throws IOException
      */
-    @FXML
     public void viewPollFormAction() {
         LOGGER.info("viewPollFormAction:: add view in pane");
         AddPollController addPollController =
@@ -130,13 +129,14 @@ public class DashboardController {
      *
      * @throws IOException
      */
-    @FXML
     public void viewModifyPollAction() {
         LOGGER.info("viewModifyPollAction:: add view in pane");
+        List<Integer> indices = listView.getSelectionModel().getSelectedIndices();
         OpinionPoll opinionPoll = listView.getSelectionModel().getSelectedItem();
-        if (opinionPoll != null) {
+        LOGGER.debug(indices);
+        if (opinionPoll != null && indices.size() > 0) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(ViewNavigator.MODIFY_POLL));
-            ModifyPollController m = new ModifyPollController(opinionPoll);
+            ModifyPollController m = new ModifyPollController(this.listView, indices.get(0));
             loader.setController(m);
             pane.getChildren().clear();
             try {
