@@ -39,10 +39,14 @@
                     <children>
                         <Label text="Description:">
                             <padding>
-                                <Insets left="5" right="25"/>
+                                <Insets left="5"/>
                             </padding>
                         </Label>
-                        <TextField fx:id="pollDescriptionField" prefHeight="300.0" prefWidth="400.0"/>
+                        <TextField fx:id="pollDescriptionField" prefHeight="300.0" prefWidth="400.0" >
+                        <HBox.margin>
+                            <Insets left="35.00"/>
+                        </HBox.margin>
+                        </TextField>
                     </children>
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0">

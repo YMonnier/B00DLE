@@ -36,7 +36,7 @@
 
 		\title{Rapport de projet - Planificateur de réunions}
 		
-		\author{BELLANGER Stephen \and
+		\author{BELLANGER Stéphen \and
 			MONNIER Ysée \and
 			VIALLA Maxence}
 		\date{Septembre 2016 - Novembre 2016}
@@ -363,7 +363,7 @@ L'accès aux données nécessaires au fonctionnement de B00DLE se fera par le bi
 
 \par La priorité des cas d'utilisation est détaillée dans la figure \ref{tableau_casDUtilisation}. La principale fonctionnalité du logiciel est d'assurer la possibilité de créer un sondage et d'y ajouter des réponses.
 
-	\begin{figure}[h]
+	\begin{figure}
 	\caption{Priorité des cas d'utilisation}
 	\label{tableau_casDUtilisation}
 	\centering
@@ -815,6 +815,13 @@ Authorization
 	\end{tabular}
 \end{center}
 
+\par $ Authorization $ : Token de l'utilisateur
+\par $ title $ : Titre du sondage, non nul
+\par $ description $ : Description du sondage, non nul
+\par $ place $ : Localité de l’événement, non nul
+\par $ emails $ : Liste d’emails d’invitation au sondage
+\par $ time_slots $ : Créneaux d’horaires ($from:$ date de départ, $to:$ date de fin)
+
 
 \section{Réponse}
 
@@ -823,7 +830,49 @@ Authorization
 		\hline
 		Statut & Réponse \\
 		\hline
-		
+		$ 200 $ & \begin{lstlisting}
+{
+	" data ": {
+		"id": 1,
+		"title": "IT Meeting",
+		"description": "IT Meeting to speak about the new
+Swift programming language...",
+		"place": "San Francisco",
+		"close": false,
+		"time_slots": [
+			{
+				"id": 2,
+				"from": "2016-12-15 13:00",
+				"to": "2016-12-15 16:00",
+			}, {
+				"id": 3,
+				"from": "2016-12-16 09:00",
+				"to": "2016-12-16 12:00",
+			}
+		],
+		"invitations": [{
+			"id", 2,
+			"email", "paul@mail.com",
+		}],
+		"answers": []
+	}
+}		\end{lstlisting} \\ 
+		\hline
+		$ 400 $ & \begin{lstlisting}
+{
+	"succeed":false,
+	"message":{
+		"title": ["should not be empty"],
+		"description": ["should not be empty"],
+		"email": ["not valid"],
+		...
+	}
+}		\end{lstlisting} \\
+		\hline
+		$ 401 $ & \\
+		\hline
+		$ 500 $ & \\
+		\hline
 	\end{tabular}
 \end{center}
 
@@ -832,12 +881,19 @@ Authorization
 
 \section{Requête}
 
+\paragraph{}Permet de récupérer la liste des sondages du système.
+
 \begin{center}
 	\begin{tabular}{|c|c|}
 		\hline
 		Méthode & URL \\
 		\hline
-		
+		$ GET $ 
+		&
+		\begin{lstlisting}
+api/opinion-polls/
+		\end{lstlisting} 
+		\\ \hline
 	\end{tabular}
 \end{center}
 
@@ -845,27 +901,55 @@ Authorization
 \begin{center}
 	\begin{tabular}{|c|c|c|}
 		\hline
-		Type & Paramètres & Valeurs \\
-		\hline
-		
+		Type & Paramètres & Valeurs 
+		\\ \hline
+		$ HEAD $ & 	
+		\begin{lstlisting}
+Authorization
+		\end{lstlisting} &
+		$ String $
+		\\ \hline
 	\end{tabular}
 \end{center}
 
+\par $ Authorization $ : Token de l'utilisateur
 
 \section{Réponse}
 
 \begin{center}
-	\begin{tabular}{|c|c|}
-		\hline
-		Statut & Réponse \\
-		\hline
-		
-	\end{tabular}
+		\begin{tabular}{|c|c|}
+			\hline
+			Statut & Réponse \\
+			\hline
+			$ 200 $ & \begin{lstlisting}
+{
+	" data ": {
+		"id": 1,
+		"name": "FFaker",
+		"email": "admin1@b00dle.com",
+		"opinion_polls": [{
+			"id": 1,
+			"title": "Mon sondage",
+			"description": "Ma description",
+			"place": "MY PLace...",
+			"close": false
+		}, ...]
+	}
+}			
+			\end{lstlisting} \\ 
+			\hline
+			$ 401 $ & \\
+			\hline
+			$ 500 $ & \\
+			\hline
+		\end{tabular}
 \end{center}
 
 
 \chapter{Sondage}
 
+\paragraph{} Permet de récupérer un sondage spécifique selon son identifiant (ID).
+
 \section{Requête}
 
 \begin{center}
@@ -873,35 +957,90 @@ Authorization
 		\hline
 		Méthode & URL \\
 		\hline
-		
+		$ GET $ 
+		&
+		\begin{lstlisting}
+api/opinion-polls/:id
+		\end{lstlisting} 
+		\\ \hline
 	\end{tabular}
 \end{center}
 
 
 \begin{center}
-	\begin{tabular}{|c|c|c|}
-		\hline
-		Type & Paramètres & Valeurs \\
-		\hline
-		
-	\end{tabular}
+\begin{tabular}{|c|c|c|}
+	\hline
+	Type & Paramètres & Valeurs 
+	\\ \hline
+	$ URL\_PARAM $ & 	
+	\begin{lstlisting}
+id
+	\end{lstlisting} &
+	$ Number $
+	\\ \hline
+\end{tabular}
 \end{center}
 
+\par $ id $ : Identifiant du sondage voulu
 
 \section{Réponse}
 
 \begin{center}
-	\begin{tabular}{|c|c|}
-		\hline
-		Statut & Réponse \\
-		\hline
-		
-	\end{tabular}
+		\begin{tabular}{|c|c|}
+			\hline
+			Statut & Réponse \\
+			\hline
+			$ 200 $ & \begin{lstlisting}
+{
+	"data": {
+		"id": 46,
+		"title": "IT Meeting",
+		"description": "IT Meeting to speak about the new
+Swift programming language...",
+		"place": "San Francisco",
+		"close": false,
+		"time_slots": [
+			{
+				"id": 34,
+				"from": "2016-12-15 13:00",
+				"to": "2016-12-15 16:00",
+			}, {
+				"id": 35,
+				"from": "2016-12-16 09:00",
+				"to": "2016-12-16 12:00",
+			}
+		],
+		"answer": [{
+			"id": 46,
+			"app_id": 5E:FF:56:A2:AF:15,
+			"name": "John",
+			"time_slots": [{
+				"id": 34,
+				"from": "2016-12-15 13:00",
+				"to": "2016-12-15 16:00"
+			}]
+		}]
+	}
+}		
+			\end{lstlisting} \\ 
+			\hline
+			$ 404 $ &\begin{lstlisting}
+{
+	"errors ": {"opinion_poll": "Record not found"}
+}						
+			\end{lstlisting}
+			 \\
+			\hline
+			$ 500 $ & \\
+			\hline
+		\end{tabular}
 \end{center}
 
 
 \chapter{Mise à jour d'un sondage}
 
+\paragraph{} Permet de mettre à jour un sondage spécifique selon un identifiant ID dans le système. Cette ressource est contrainte par un token d'authentication $<Authorization>$ qui a été donnée par la ressource $api/login/$.
+
 \section{Requête}
 
 \begin{center}
@@ -909,20 +1048,58 @@ Authorization
 		\hline
 		Méthode & URL \\
 		\hline
-		
+		$ PUT $ 
+		&
+		\begin{lstlisting}
+api/opinion-polls/:id
+		\end{lstlisting} 
+		\\ \hline
 	\end{tabular}
 \end{center}
 
 
 \begin{center}
-	\begin{tabular}{|c|c|c|}
-		\hline
-		Type & Paramètres & Valeurs \\
-		\hline
-		
-	\end{tabular}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Type & Paramètres & Valeurs \\
+			\hline
+			$ HEAD $ & 
+			\begin{lstlisting}
+Application/json
+			\end{lstlisting} &
+			$ String $ \\ 
+			\hline
+			$ HEAD $ & 
+			\begin{lstlisting}
+Authorization
+			\end{lstlisting} &
+			$ String $ \\
+			\hline	
+			$ URL\_PARAM $ & 
+			\begin{lstlisting}
+id
+			\end{lstlisting} &
+			$ Number $ \\
+			\hline				
+			$ JSON $ & 
+			\begin{lstlisting}
+{
+	"title": "my title",
+	"description": "my desc",
+	"place": "my place",
+	"close": true,
+}
+			\end{lstlisting} & \makecell{$ String $ \\ $ String $ \\ $ String $ \\ $ Boolean $ } \\
+			\hline
+		\end{tabular}
 \end{center}
 
+\par $ Authorization $ : Token de l’utilisateur
+\par $ id $ : Identifiant du sondage voulu
+\par $ title $ : Titre du sondage, non nul
+\par $ description $ : Description du sondage, non nul
+\par $ place $ : Localité de l'événement, non nul
+\par $ close $ : Etat du sondage
 
 \section{Réponse}
 
@@ -931,13 +1108,59 @@ Authorization
 		\hline
 		Statut & Réponse \\
 		\hline
-		
+		$ 200 $ & \begin{lstlisting}
+{
+	"data": {
+		"id": 46,
+		"title": "IT Meeting",
+		"description": "IT Meeting to speak about the new
+Swift programming language...",
+		"place": "San Francisco",
+		"close": false,
+		"time_slots": [
+			{
+				"id": 34,
+				"from": "2016-12-15 13:00",
+				"to": "2016-12-15 16:00",
+			}, {
+				"id": 35,
+				"from": "2016-12-16 09:00",
+				"to": "2016-12-16 12:00",
+			}
+		],
+		"answer": [{
+			"id": 46,
+			"app_id": 5E:FF:56:A2:AF:15,
+			"name": "John",
+			"time_slots": [{
+				"id": 34,
+				"from": "2016-12-15 13:00",
+				"to": "2016-12-15 16:00"
+			}]
+		}]
+	}
+}		
+		\end{lstlisting} \\ 
+		\hline
+		$ 401 $ & \\
+		\hline
+		$ 404 $ &\begin{lstlisting}
+{
+	"errors": {"opinion_poll": "Record not found"}
+}						
+		\end{lstlisting}
+		\\
+		\hline
+		$ 500 $ & \\
+		\hline
 	\end{tabular}
 \end{center}
 
 
 \chapter{Suppression d'un sondage}
 
+\paragraph{} Permet de supprimer un sondage spécifique selon un identifiant ID dans le système. Cette ressource est contrainte par un token d'authentification $<Authorization>$ qui a été donnée par la ressource $api/login/$.
+
 \section{Requête}
 
 \begin{center}
@@ -945,7 +1168,12 @@ Authorization
 		\hline
 		Méthode & URL \\
 		\hline
-		
+		$ DELETE $ 
+		&
+		\begin{lstlisting}
+api/opinion-polls/:id
+		\end{lstlisting} 
+		\\ \hline
 	\end{tabular}
 \end{center}
 
@@ -955,9 +1183,23 @@ Authorization
 		\hline
 		Type & Paramètres & Valeurs \\
 		\hline
-		
+		$ HEAD $ & 
+		\begin{lstlisting}
+Authorization
+		\end{lstlisting} &
+		$ String $ \\ 
+		\hline
+		$ URL\_PARAM $ & 
+		\begin{lstlisting}
+id
+		\end{lstlisting} &
+		$ Number $ \\
+		\hline	
 	\end{tabular}
 \end{center}
+
+\par $Authorization$ : Token de l’utilisateur
+\par $id$ : Identifiant du sondage voulu
 
 
 \section{Réponse}
@@ -967,12 +1209,26 @@ Authorization
 		\hline
 		Statut & Réponse \\
 		\hline
-		
+		$ 204 $ &  \\ 
+		\hline
+		$ 401 $ & \\
+		\hline
+		$ 404 $ &\begin{lstlisting}
+{
+	"errors": {"opinion_poll": "Record not found"}
+}						
+		\end{lstlisting}
+		\\
+		\hline
+		$ 500 $ & \\
+		\hline
 	\end{tabular}
 \end{center}
 
 \chapter{Ajout d'une réponse dans un sondage}
 
+\paragraph{} Permet d’ajouter une nouvelle réponse à un sondage dans le système.
+
 \section{Requête}
 
 \begin{center}
@@ -980,7 +1236,12 @@ Authorization
 		\hline
 		Méthode & URL \\
 		\hline
-		
+		$ POST $ 
+		&
+		\begin{lstlisting}
+/api/answers
+		\end{lstlisting} 
+		\\ \hline
 	\end{tabular}
 \end{center}
 
@@ -990,10 +1251,30 @@ Authorization
 		\hline
 		Type & Paramètres & Valeurs \\
 		\hline
-		
+		$ HEAD $ & 
+		\begin{lstlisting}
+Application/json
+		\end{lstlisting} &
+		$ String $ \\ 
+		\hline
+		$ JSON $ & 
+		\begin{lstlisting}
+{
+	"name": "my title",
+	"app_id": "5E:FF:56:A2:AF:15",
+	"opinion\_poll\_id": 12,
+	"times": [1,3,2]
+}
+		\end{lstlisting} &
+		\makecell{$ String $ \\ $ String $ \\ $ String $ \\ $ [Number] $ } \\
+		\hline	
 	\end{tabular}
 \end{center}
 
+\par $name$ : Nom de la personne qui répond
+\par $app\_id$ : Identifiant unique de l’émetteur ($app\_id$ = adresse MAC)
+\par $opinion\_poll\_id$ : Identifiant du sondage auquel l’utilisateur répond
+\par $times$ : Liste d’identifiants des horaires/créneaux($time\_slot\_id$)
 
 \section{Réponse}
 
@@ -1002,12 +1283,27 @@ Authorization
 		\hline
 		Statut & Réponse \\
 		\hline
-		
+		$ 201 $ &  \\ 
+		\hline
+		$ 400 $ &\begin{lstlisting}
+{
+	"errors":{
+		"opinion_poll": ["must exist"],
+		...
+	}
+}						
+		\end{lstlisting}
+		\\
+		\hline
+		$ 500 $ & \\
+		\hline
 	\end{tabular}
 \end{center}
 
 \chapter{Mise à jour d'une réponse}
 
+\paragraph{} Permet de mettre à jour une réponse dans un sondage dans le système.
+
 \section{Requête}
 
 \begin{center}
@@ -1015,7 +1311,12 @@ Authorization
 		\hline
 		Méthode & URL \\
 		\hline
-		
+		$ PUT $ 
+		&
+		\begin{lstlisting}
+/api/answers/:id
+		\end{lstlisting} 
+		\\ \hline
 	\end{tabular}
 \end{center}
 
@@ -1025,10 +1326,29 @@ Authorization
 		\hline
 		Type & Paramètres & Valeurs \\
 		\hline
-		
+		$ HEAD $ & 
+		\begin{lstlisting}
+Application/json
+		\end{lstlisting} &
+		$ String $ \\ 
+		\hline
+		$ JSON $ & 
+		\begin{lstlisting}
+{
+	"name": "my title",
+	"app_id": "5E:FF:56:A2:AF:15",
+	"times": [1,3,2]
+}
+		\end{lstlisting} &
+		\makecell{$ String $ \\ $ String $ \\ $ [Number] $ } \\
+		\hline	
 	\end{tabular}
 \end{center}
 
+\par $id$ : Identifiant de la réponse
+\par $name$ : Nom de la personne qui répond
+\par $app\_id$ : Identifiant unique de l’émetteur ($app\_id$ = adresse MAC)
+\par $times$ : Liste d’identifiants des horaires/créneaux($time\_slot\_id$)
 
 \section{Réponse}
 
@@ -1037,13 +1357,18 @@ Authorization
 		\hline
 		Statut & Réponse \\
 		\hline
-		
+		$ 200 $ &  \\ 
+		\hline
+		$ 500 $ & \\
+		\hline
 	\end{tabular}
 \end{center}
 
 
 \chapter{Suppression d'une réponse}
 
+\paragraph{} Permet de supprimer une réponse dans un sondage dans le système.
+
 \section{Requête}
 
 \begin{center}
@@ -1051,7 +1376,12 @@ Authorization
 		\hline
 		Méthode & URL \\
 		\hline
-		
+		$ DELETE $ 
+		&
+		\begin{lstlisting}
+/api/answers/:id
+		\end{lstlisting} 
+		\\ \hline
 	\end{tabular}
 \end{center}
 
@@ -1061,10 +1391,25 @@ Authorization
 		\hline
 		Type & Paramètres & Valeurs \\
 		\hline
-		
+		$ HEAD $ & 
+		\begin{lstlisting}
+Application/json
+		\end{lstlisting} &
+		$ String $ \\ 
+		\hline
+		$ JSON $ & 
+		\begin{lstlisting}
+{
+	"app_id": "5E:FF:56:A2:AF:15",
+}
+		\end{lstlisting} &
+		$ String $ \\
+		\hline	
 	\end{tabular}
 \end{center}
 
+\par $id$ : Identifiant de la réponse
+\par $app\_id$ : Identifiant unique de l’émetteur ($app\_id$ = adresse MAC)
 
 \section{Réponse}
 
@@ -1073,41 +1418,12 @@ Authorization
 		\hline
 		Statut & Réponse \\
 		\hline
-		
+		$ 204 $ &  \\ 
+		\hline
+		$ 500 $ & \\
+		\hline
 	\end{tabular}
 \end{center}
-
-
-\lstset{language=XML} 
-
-\begin{lstlisting}[frame=single]
-{
-	"data": {
-		"id": 1,
-		"title": "IT Meeting",
-		"description": "IT Meeting to speak about...",
-		"place": "San Francisco",
-		"close": false,
-		"time_slots": [
-		{
-			"id": 2,
-			"from": "2016-12-15 13:00",
-			"to": "2016-12-15 16:00",
-		}, {
-		"id": 3,
-		"from": "2016-12-16 09:00",
-		"to": "2016-12-16 12:00",
-	}
-	],
-	"invitations": [{
-		"id", 2,
-		"email", "paul@mail.com",
-	}],
-	"answers": []
-}
-}
-
-\end{lstlisting}
 
 
 \part{Annexes - Diagrammes UML}
