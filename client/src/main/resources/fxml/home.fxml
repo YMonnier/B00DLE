@@ -36,7 +36,7 @@
          <padding><Insets top="150" right="25" bottom="10" left="25"/></padding>
          <children>
             <TextField fx:id="linkField" alignment="TOP_LEFT" prefHeight="31.0" prefWidth="200.0" promptText="Your opinion poll link..." />
-            <Button onAction="#viewOpinionPollAction" mnemonicParsing="false" text="View!">
+            <Button onAction="#viewOpinionPollAction" mnemonicParsing="false" text="View">
             <VBox.margin>
                <Insets top="10" />
             </VBox.margin>/>

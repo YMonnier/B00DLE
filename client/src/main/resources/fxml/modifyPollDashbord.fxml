@@ -21,11 +21,15 @@
                     </padding>
                     <children>
                         <Label text="Name:" alignment="CENTER">
-                            <padding>
-                                <Insets left="5"/>
-                            </padding>
+                            <HBox.margin>
+                                <Insets left="5" />
+                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="namePollField" prefHeight="100.0" prefWidth="400.0"/>
+                        <TextField fx:id="namePollField" prefHeight="100.0" prefWidth="400.0" >
+                                <HBox.margin>
+                                    <Insets left="60.00"/>
+                                </HBox.margin>
+                        </TextField>
                     </children>
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0">
@@ -54,13 +58,25 @@
                         <TextField fx:id="pollPlaceField" prefHeight="100.0" prefWidth="400.0"/>
                     </children>
                 </HBox>
+                <CheckBox text="Close" >
+                    <VBox.margin>
+                        <Insets left="10.00" bottom="10.00"/>
+                    </VBox.margin>
+                </CheckBox>
                 <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER"/>
             </children>
-            <Button fx:id="modifyButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Modify">
-                <VBox.margin>
-                    <Insets top="20.0"/>
-                </VBox.margin>
-            </Button>
+            <HBox>
+                <Button fx:id="modifyButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Modify">
+                    <HBox.margin>
+                        <Insets top="20.00" left="20.00" />
+                    </HBox.margin>
+                </Button>
+                <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Delete">
+                    <HBox.margin>
+                        <Insets top="20.00" left="80.00" />
+                    </HBox.margin>
+                </Button>
+            </HBox>
         </VBox>
     </center>
 </BorderPane>
