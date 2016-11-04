@@ -1,6 +1,8 @@
 package com.univtln.b00dle.client.model;
 
 import com.google.gson.annotations.SerializedName;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.List;
  * https://github.com/YMonnier
  */
 public class OpinionPoll {
-    transient private int id;
+    private int id;
     private String title;
     private String description;
     private String place;
@@ -23,8 +25,7 @@ public class OpinionPoll {
     @SerializedName("time_slots")
     private List<TimeSlot> timeSlots;
     private List<String> invitations;
-
-    transient private List<Answer> answers;
+    private List<Answer> answers;
 
     private OpinionPoll(Builder builder) {
         this.title = builder.title;
@@ -40,52 +41,52 @@ public class OpinionPoll {
         return id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getPlace() {
-        return place;
-    }
-
-    public boolean isClose() {
-        return close;
-    }
-
-    public List<TimeSlot> getTimeSlots() {
-        return timeSlots;
-    }
-
-    public List<String> getInvitations() {
-        return invitations;
-    }
-
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPlace() {
+        return place;
     }
 
     public void setPlace(String place) {
         this.place = place;
     }
 
+    public boolean isClose() {
+        return close;
+    }
+
     public void setClose(boolean close) {
         this.close = close;
     }
 
+    public List<TimeSlot> getTimeSlots() {
+        return timeSlots;
+    }
+
     public void setTimeSlots(List<TimeSlot> timeSlots) {
         this.timeSlots = timeSlots;
+    }
+
+    public List<String> getInvitations() {
+        return invitations;
     }
 
     public void setInvitations(List<String> invitations) {
@@ -94,6 +95,10 @@ public class OpinionPoll {
 
     public List<Answer> getAnswers() {
         return answers;
+    }
+
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
     }
 
     public static class Builder {

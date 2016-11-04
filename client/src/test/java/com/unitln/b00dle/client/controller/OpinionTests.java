@@ -81,9 +81,13 @@ public class OpinionTests extends TestCase
     public void testObjectToJson() {
         Gson gson = new Gson();
         String json = gson.toJson(opinionPoll);
-        System.out.println(json);
 
         OpinionPoll op = gson.fromJson(json, OpinionPoll.class);
-        System.out.println(op);
+
+        assertFalse(op.isClose());
+        assertEquals("title should be the same", title, op.getTitle());
+        assertEquals("description should be the same", description, op.getDescription());
+        assertEquals("place should be the same", place, op.getPlace());
+        assertEquals("The timeSlots size should be 2", 2, op.getTimeSlots().size());
     }
 }

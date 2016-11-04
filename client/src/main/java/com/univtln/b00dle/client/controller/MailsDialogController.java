@@ -104,11 +104,12 @@ public class MailsDialogController {
 
         if (status == HttpStatus.SC_CREATED) {
             JsonObject jsonDataObject = jsonObject.get("data").getAsJsonObject();
+            int opinionPollId = jsonDataObject.get("id").getAsInt();
             LOGGER.info("Created: " + jsonDataObject);
             Dialog.showAlert("Opinion Poll",
                     "Opinion poll created!",
                     Alert.AlertType.INFORMATION);
-
+            this.opinionPoll.setId(opinionPollId);
             listView.getItems().add(this.opinionPoll);
             Dialog.getStage().close();
         } else {
