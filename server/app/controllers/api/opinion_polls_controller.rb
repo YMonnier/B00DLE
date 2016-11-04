@@ -56,7 +56,7 @@ class Api::OpinionPollsController < ApplicationController
   #
   ##
   def index
-    ok_request current_user
+    ok_request current_user, %w(user, opinion_polls, opinion_polls.time_slots)
   end
 
 
