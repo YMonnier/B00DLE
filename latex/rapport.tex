@@ -668,31 +668,58 @@ Application/json
 	\end{tabular}
 \end{center}
 
-\par $ Authorization ( string ) $ - Tous les autres appel nécessitant une
+\par $ Authorization ( string ) $ - Tous les autres appels nécessitant une
 authentification doivent avoir cette clé dans le Header.
 
 \chapter{Inscription}
 
 \section{Requête}
 
+\paragraph{} Enregistrement d'un utilisateur dans le système.
+
 \begin{center}
 	\begin{tabular}{|c|c|}
-		\hline
-		Méthode & URL \\
-		\hline
-		
+	\hline
+	Méthode & URL \\
+	\hline
+	$ POST $ 
+	&
+	\begin{lstlisting}
+api/users/
+	\end{lstlisting} 
+	\\ \hline
 	\end{tabular}
 \end{center}
 
 
 \begin{center}
 	\begin{tabular}{|c|c|c|}
-		\hline
-		Type & Paramètres & Valeurs \\
-		\hline
-		
+	\hline
+	Type & Paramètres & Valeurs \\
+	\hline
+	$ HEAD $ & 
+	\begin{lstlisting}
+Application/json
+	\end{lstlisting} &
+	$ String $ \\ \hline
+	$ JSON $ & 
+	\begin{lstlisting}
+{
+"id": 4,
+"name": "john",
+"email": "mail@mail.com",
+"opinion_polls": []
+}
+	\end{lstlisting} & \makecell{$ Number $ \\ $ String $ \\ $ String $ \\ $ [Object] $} \\
+	\hline
+	
 	\end{tabular}
 \end{center}
+
+\par $ id $ : ID de l'utilisateur
+\par $ email $ : email de l'utilisateur non nul et valide
+\par $ name $ : nom de l'utilisateur
+\par $ opinion_polls $ : tableau des sondages créés par l'utilisateur courant
 
 
 \section{Réponse}
@@ -702,43 +729,30 @@ authentification doivent avoir cette clé dans le Header.
 		\hline
 		Statut & Réponse \\
 		\hline
-		
-	\end{tabular}
-\end{center}
-
-
-\chapter{Inscription}
-
-\section{Requête}
-
-\begin{center}
-	\begin{tabular}{|c|c|}
+		$ 200 $ & \begin{lstlisting}
+{
+	"data": {
+		"id": 4,
+		"name": "john",
+		"email": "mail@mail.com",
+		"opinion_polls": []
+	}
+}
+		\end{lstlisting} \\ 
 		\hline
-		Méthode & URL \\
+		$ 400 $ & \begin{lstlisting}
+{
+	" errors ": {
+		"email": ["is invalid"],
+		"name": ["must be not empty"]
+	}
+}
+		\end{lstlisting} \\
 		\hline
-		
-	\end{tabular}
-\end{center}
-
-
-\begin{center}
-	\begin{tabular}{|c|c|c|}
+		$ 401 $ & \\
 		\hline
-		Type & Paramètres & Valeurs \\
+		$ 500 $ & \\
 		\hline
-		
-	\end{tabular}
-\end{center}
-
-
-\section{Réponse}
-
-\begin{center}
-	\begin{tabular}{|c|c|}
-		\hline
-		Statut & Réponse \\
-		\hline
-		
 	\end{tabular}
 \end{center}
 
