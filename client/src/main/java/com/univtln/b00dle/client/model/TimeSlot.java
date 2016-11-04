@@ -87,6 +87,10 @@ public class TimeSlot {
 
     @Override
     public String toString() {
-        return this.from + "\n" + this.to;
+        return "TimeSlot{" +
+                "id=" + id +
+                ", from='" + from + '\'' +
+                ", to='" + to + '\'' +
+                '}';
     }
 }

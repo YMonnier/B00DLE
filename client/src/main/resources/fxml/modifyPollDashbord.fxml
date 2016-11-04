@@ -56,7 +56,7 @@
                 </HBox>
                 <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER"/>
             </children>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Modify">
+            <Button fx:id="modifyButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Modify">
                 <VBox.margin>
                     <Insets top="20.0"/>
                 </VBox.margin>

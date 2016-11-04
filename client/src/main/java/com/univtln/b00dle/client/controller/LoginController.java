@@ -146,7 +146,7 @@ public class LoginController {
         } else {
             Dialog.showAlert("Authentication",
                     "Please check your input data.",
-                    Alert.AlertType.INFORMATION);
+                    Alert.AlertType.WARNING);
         }
     }
 
