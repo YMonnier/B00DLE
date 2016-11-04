@@ -3,8 +3,15 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[francais]{babel}
+\usepackage{listings} %listings for code
 \usepackage{graphicx} % can modify title style
 \usepackage{titling} % can use pretitle to have a picture on title page
+\usepackage{chngcntr} % permits to reset chapter numerization in each part
+\usepackage{hyperref} % makes table of contents and list of figures clickable 
+
+\hypersetup{colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
+
+\counterwithin*{chapter}{part}
 
 \addtolength{\oddsidemargin}{-2cm}
 \addtolength{\evensidemargin}{-2cm}
@@ -537,15 +544,334 @@ En effet, étant donné que ce projet était notre première réalisation mêlan
 
 \chapter{Conclusion}
 
+\paragraph{}TODO
+
 \clearpage
 \part{Modélisation du serveur}
 \label{part_modelServer}
 
-\par TODO
+\chapter{Introduction}
+
+\section{Conventions}
+\begin{itemize}
+	\item \textbf{Client} : Application client.
+	\item \textbf{Statut} : Code réponse de la requête HTTP
+	\item Toutes les réponses possibles sont listés sous la catégorie 'Réponse'
+	\item Toutes les réponses sont du format JSON
+\end{itemize}
+
+
+\section{Codes statut}
+
+\paragraph{} Tous les codes de statut sont des standards HTTP. Cette API utilisera les suivants : 
+\begin{itemize}
+	\item $ 2XX $ - Succès de la requête
+	\item $ 4XX $ - Erreur du côté client
+	\item $ 5XX $ - Erreur du côté serveur		
+\end{itemize}
+
+\paragraph{}
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		Code statut & Description \\
+		\hline \hline
+		$ 200 $ & Requête traitée avec succès \\
+		\hline 
+		$ 201 $ & Requête traitée avec succès et création d'un document \\	
+		\hline 
+		$ 202 $ & Requête traitée avec succès mais pas d'information à renvoyer \\
+		\hline \hline 
+		$ 400 $ & La syntaxe de la requête est erronée \\	
+		\hline 
+		$ 401 $ & Une authentification est nécessaire pour accéder à la ressource \\	
+		\hline
+		$ 404 $ & Ressource non trouvée \\
+		\hline \hline
+		$ 500 $ & Erreur interne du serveur \\
+		\hline
+		$ 503 $ & Service temporairement indisponible ou en maintenance \\ 	
+		\hline
+	\end{tabular}
+\end{center}
+
+\chapter{Authentification}
+
+\lstset{language=XML} 
+
+\begin{lstlisting}[frame=single]
+{
+	"data": {
+		"id": 1,
+		"title": "IT Meeting",
+		"description": "IT Meeting to speak about...",
+		"place": "San Francisco",
+		"close": false,
+		"time_slots": [
+		{
+			"id": 2,
+			"from": "2016-12-15 13:00",
+			"to": "2016-12-15 16:00",
+		}, {
+		"id": 3,
+		"from": "2016-12-16 09:00",
+		"to": "2016-12-16 12:00",
+	}
+	],
+	"invitations": [{
+		"id", 2,
+		"email", "paul@mail.com",
+	}],
+	"answers": []
+}
+}
+
+\end{lstlisting}
+
 
 \part{Annexes - Diagrammes UML}
 \label{part_allUML}
 
-\par TODO
+\chapter{Diagrammes généraux}
+
+\begin{figure}[h]
+	\caption{Diagramme de contexte statique}
+	\label{annexe_diagramme_contexteStatique}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/contexteStatique.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme des cas d'utilisation}
+	\label{annexe_diagramme_casDUtilisation}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/casDUtilisation.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme de classes}
+	\label{annexe_diagramme_classes}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/classes.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme d'entité-association de la base de données}
+	\label{annexe_diagramme_entiteAssociation}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/entiteAssociation.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme de navigabilité}
+	\label{annexe_diagramme_navigabilite}
+	\centering
+	\includegraphics[scale=1]{figures/diagrammes/navigabilite.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme d'états d'un sondage}
+	\label{annexe_diagramme_etat}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/etat.png}
+\end{figure}
+
+\clearpage
+
+\chapter{Modélisation serveur}
+
+\section{Modélisation générale}
+
+\begin{figure}[h]
+	\caption{Diagramme d'architecture de l'API serveur}
+	\label{annexe_diagramme_architectureAPI}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/architectureAPI.png}
+\end{figure}
+
+\clearpage
+\section{Diagrammes de séquence serveur}
+
+\begin{figure}[h]
+	\caption{Diagramme de séquence serveur - Fonctionnement général}
+	\label{annexe_diagramme_sequence_serveur}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_serveur.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme de séquence serveur - Connexion}
+	\label{annexe_diagramme_sequence_serveur_connexion}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_serveur_connexion.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme de séquence serveur - Créer un sondage}
+	\label{annexe_diagramme_sequence_serveur_creerSondage}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_serveur_creerSondage.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme de séquence serveur - Inscription}
+	\label{annexe_diagramme_sequence_serveur_inscription}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_serveur_inscription.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme de séquence serveur - Répondre à un sondage}
+	\label{annexe_diagramme_sequence_serveur_repondreSondage}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_serveur_repondreSondage.png}
+\end{figure}
+
+\clearpage
+\chapter{Diagrammes de séquence}
+
+\begin{figure}[h]
+	\caption{Diagramme de séquence - Afficher dashboard}
+	\label{annexe_diagramme_sequence_afficherDashboard}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_afficherDashboard.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme de séquence - Afficher un sondage}
+	\label{annexe_diagramme_sequence_afficherSondage}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_afficherSondage.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme de séquence - Chat}
+	\label{annexe_diagramme_sequence_chat}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_Chat.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme de séquence - Connexion}
+	\label{annexe_diagramme_sequence_connexion}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_connexion.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme de séquence - Créer un sondage}
+	\label{annexe_diagramme_sequence_creerSondage}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_creerSondage.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme de séquence - Inscription}
+	\label{annexe_diagramme_sequence_inscription}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_inscription.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme de séquence - Modifier une réponse}
+	\label{annexe_diagramme_sequence_modifierReponse}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_modifierReponse.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme de séquence - Modifier un sondage}
+	\label{annexe_diagramme_modifierSondage}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_modifierSondage.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme de séquence - Répondre à un sondage}
+	\label{annexe_diagramme_repondreSondage}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_repondreSondage.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme de séquence - Supprimer une réponse}
+	\label{annexe_diagramme_supprimerReponse}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_supprimerReponse.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme de séquence - Supprimer un sondage}
+	\label{annexe_diagramme_sequence_supprimerSondage}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/sequence_supprimerSondage.png}
+\end{figure}
+
+\clearpage
+\chapter{Diagrammes d'activité}
+
+\begin{figure}[h]
+	\caption{Diagramme d'activité - Chat}
+	\label{annexe_diagramme_activite_Chat}
+	\centering
+	\includegraphics[scale=1]{figures/diagrammes/activite_Chat.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme d'activité - Connexion}
+	\label{annexe_diagramme_activite_connexion}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/activite_connexion.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme d'activité - Créer un sondage}
+	\label{annexe_diagramme_activite_creerSondage}
+	\centering
+	\includegraphics[scale=1]{figures/diagrammes/activite_creerSondage.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme d'activité - Inscription}
+	\label{annexe_diagramme_activite_inscription}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/activite_inscription.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme d'activité - Modifier une réponse}
+	\label{annexe_diagramme_activite_modifierReponse}
+	\centering
+	\includegraphics[scale=0.7]{figures/diagrammes/activite_modifierReponse.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme d'activité - Modifier un sondage}
+	\label{annexe_diagramme_activite_modifierSondage}
+	\centering
+	\includegraphics[scale=0.7]{figures/diagrammes/activite_modifierSondage.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme d'activité - Répondre à un sondage}
+	\label{annexe_diagramme_activite_repondreSondage}
+	\centering
+	\includegraphics[scale=1]{figures/diagrammes/activite_repondreSondage.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme d'activité - Supprimer une réponse}
+	\label{annexe_diagramme_activite_supprimerReponse}
+	\centering
+	\includegraphics[width=\textwidth]{figures/diagrammes/activite_supprimerReponse.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Diagramme d'activité - Supprimer un sondage}
+	\label{annexe_diagramme_activite_supprimerSondage}
+	\centering
+	\includegraphics[scale=0.7]{figures/diagrammes/activite_supprimerSondage.png}
+\end{figure}
 
 \end{document}          
