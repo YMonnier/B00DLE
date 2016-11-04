@@ -28,9 +28,7 @@ import static jdk.nashorn.internal.objects.NativeFunction.call;
  */
 
 public class DashboardController {
-
     private static final Logger LOGGER = Logger.getLogger(LoginController.class);
-
     /**
      * Variable FXML
      * are instanciate when fxml file is load
@@ -161,12 +159,11 @@ public class DashboardController {
         this.listView.getItems().addAll(this.observableList);
 
         this.listView.setOnMouseClicked(e -> this.viewModifyPollAction());
-        
+
         this.viewPollButton.setOnAction(e -> this.viewPollFormAction());
         this.logoutButton.setOnAction(e -> this.logoutAction());
         this.homeButton.setOnAction(e -> this.viewHomeAction());
     }
-
 
     private final static class CustomCell extends ListCell<OpinionPoll> {
         @Override
