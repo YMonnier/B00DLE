@@ -2,6 +2,7 @@
 
 [![Java 8](https://img.shields.io/badge/Java-8-blue.svg?style=flat)](https://www.java.com/)
 [![Rails 5.0.0.1](https://img.shields.io/badge/Rails-5.0.0.1-red.svg?style=flat)](http://rubyonrails.org)
+[![LateX 3](https://img.shields.io/badge/LateX-3-green.svg?style=flat)](https://www.latex-project.org)
 
 B00DLE application... written in Java with a Rails API backend.
 
