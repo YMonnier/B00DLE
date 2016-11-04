@@ -75,12 +75,9 @@
                </children>
             </HBox>
             <TableView fx:id="tableView" editable="true" prefHeight="200.0" prefWidth="200.0">
-              <columns>
-                <TableColumn fx:id="tableColumnName" editable="true" prefWidth="75.0" text="Nom" >
-                 </TableColumn>
-              </columns>
+
             </TableView>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Enregistrer">
+            <Button fx:id="sendAnswerButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Enregistrer">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>

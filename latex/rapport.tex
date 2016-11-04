@@ -8,6 +8,7 @@
 \usepackage{titling} % can use pretitle to have a picture on title page
 \usepackage{chngcntr} % permits to reset chapter numerization in each part
 \usepackage{hyperref} % makes table of contents and list of figures clickable 
+\usepackage{makecell} % can create newline in a table cell easily
 
 \hypersetup{colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
 
@@ -550,6 +551,10 @@ En effet, étant donné que ce projet était notre première réalisation mêlan
 \part{Modélisation du serveur}
 \label{part_modelServer}
 
+\lstset{language=XML,
+	basicstyle=\ttfamily,
+	breaklines=true} 
+
 \chapter{Introduction}
 
 \section{Conventions}
@@ -597,6 +602,481 @@ En effet, étant donné que ce projet était notre première réalisation mêlan
 \end{center}
 
 \chapter{Authentification}
+
+\section{Requête}
+
+\paragraph{} Authentifie l'utilisateur au système et retourne le token d'identification
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		Méthode & URL \\
+		\hline
+		$ POST $ 
+		&
+		\begin{lstlisting}
+api/login/auth_token
+		\end{lstlisting} 
+		\\ \hline
+	\end{tabular}
+\end{center}
+
+
+\begin{center}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		Type & Paramètres & Valeurs \\
+		\hline
+		$ HEAD $ & 
+		\begin{lstlisting}
+Application/json
+		\end{lstlisting} &
+		$ String $ \\ \hline
+		$ JSON $ & 
+		\begin{lstlisting}
+{
+	"auth": {
+		"email": "mail@mail.com",
+		"password": "FZ,f235nDE",
+	}
+}
+		\end{lstlisting} & \makecell{$ String $ \\ $ String $} \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+\par $ email $ : correspond à l'adresse mail valide de l'utilisateur
+\par $ password $ : mot de passe de l'utilisateur
+
+
+\section{Réponse}
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		Statut & Réponse \\
+		\hline
+		$ 200 $ & \begin{lstlisting}
+{ "jwt": <Authorization> }
+		\end{lstlisting} \\ 
+		\hline
+		$ 401 $ & \\
+		\hline
+		$ 500 $ & \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\par $ Authorization ( string ) $ - Tous les autres appels nécessitant une
+authentification doivent avoir cette clé dans le Header.
+
+\chapter{Inscription}
+
+\section{Requête}
+
+\paragraph{} Enregistrement d'un utilisateur dans le système.
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+	\hline
+	Méthode & URL \\
+	\hline
+	$ POST $ 
+	&
+	\begin{lstlisting}
+api/users/
+	\end{lstlisting} 
+	\\ \hline
+	\end{tabular}
+\end{center}
+
+
+\begin{center}
+	\begin{tabular}{|c|c|c|}
+	\hline
+	Type & Paramètres & Valeurs \\
+	\hline
+	$ HEAD $ & 
+	\begin{lstlisting}
+Application/json
+	\end{lstlisting} &
+	$ String $ \\ \hline
+	$ JSON $ & 
+	\begin{lstlisting}
+{
+"id": 4,
+"name": "john",
+"email": "mail@mail.com",
+"opinion_polls": []
+}
+	\end{lstlisting} & \makecell{$ Number $ \\ $ String $ \\ $ String $ \\ $ [Object] $} \\
+	\hline
+	
+	\end{tabular}
+\end{center}
+
+\par $ id $ : ID de l'utilisateur
+\par $ email $ : email de l'utilisateur non nul et valide
+\par $ name $ : nom de l'utilisateur
+\par $ opinion_polls $ : tableau des sondages créés par l'utilisateur courant
+
+
+\section{Réponse}
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		Statut & Réponse \\
+		\hline
+		$ 200 $ & \begin{lstlisting}
+{
+	"data": {
+		"id": 4,
+		"name": "john",
+		"email": "mail@mail.com",
+		"opinion_polls": []
+	}
+}
+		\end{lstlisting} \\ 
+		\hline
+		$ 400 $ & \begin{lstlisting}
+{
+	" errors ": {
+		"email": ["is invalid"],
+		"name": ["must be not empty"]
+	}
+}
+		\end{lstlisting} \\
+		\hline
+		$ 401 $ & \\
+		\hline
+		$ 500 $ & \\
+		\hline
+	\end{tabular}
+\end{center}
+
+
+\chapter{Ajout d'un sondage}
+
+\paragraph{} Permet d’ajouter un nouveau sondage dans le système. Cette ressource est contrainte d’un token d'authentification $<Authorization>$ qui a été donnée avec la ressource $api/login/$ .
+
+\section{Requête}
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		Méthode & URL \\
+		\hline
+		$ POST $ 
+		&
+		\begin{lstlisting}
+api/opinion-polls/
+		\end{lstlisting} 
+		\\ \hline
+	\end{tabular}
+\end{center}
+
+
+\begin{center}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		Type & Paramètres & Valeurs \\
+		\hline
+		$ HEAD $ & 
+		\begin{lstlisting}
+Application/json
+		\end{lstlisting} &
+		$ String $ \\ 
+		\hline
+		$ HEAD $ & 
+		\begin{lstlisting}
+Authorization
+		\end{lstlisting} &
+		$ String $ \\
+		\hline		
+		$ JSON $ & 
+		\begin{lstlisting}
+{
+	"title": "my title",
+	"description": "my desc",
+	"place": "my place",
+	"emails": ["email1@mail.com", "..."],
+	"time_slots": [
+		{
+			"from": "2016-10-24 15:12",
+			"to": "2016-10-24 17:30"
+		}, ...
+	]
+}
+		\end{lstlisting} & \makecell{$ String $ \\ $ String $ \\ $ String $ \\ $ [String]$ \\ $ [Object] $ \\ \\ $ String $ \\ $ String $ \\ \\ } \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+
+\section{Réponse}
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		Statut & Réponse \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+
+\chapter{Liste des sondages}
+
+\section{Requête}
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		Méthode & URL \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+
+\begin{center}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		Type & Paramètres & Valeurs \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+
+\section{Réponse}
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		Statut & Réponse \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+
+\chapter{Sondage}
+
+\section{Requête}
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		Méthode & URL \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+
+\begin{center}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		Type & Paramètres & Valeurs \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+
+\section{Réponse}
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		Statut & Réponse \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+
+\chapter{Mise à jour d'un sondage}
+
+\section{Requête}
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		Méthode & URL \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+
+\begin{center}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		Type & Paramètres & Valeurs \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+
+\section{Réponse}
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		Statut & Réponse \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+
+\chapter{Suppression d'un sondage}
+
+\section{Requête}
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		Méthode & URL \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+
+\begin{center}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		Type & Paramètres & Valeurs \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+
+\section{Réponse}
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		Statut & Réponse \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+\chapter{Ajout d'une réponse dans un sondage}
+
+\section{Requête}
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		Méthode & URL \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+
+\begin{center}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		Type & Paramètres & Valeurs \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+
+\section{Réponse}
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		Statut & Réponse \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+\chapter{Mise à jour d'une réponse}
+
+\section{Requête}
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		Méthode & URL \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+
+\begin{center}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		Type & Paramètres & Valeurs \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+
+\section{Réponse}
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		Statut & Réponse \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+
+\chapter{Suppression d'une réponse}
+
+\section{Requête}
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		Méthode & URL \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+
+\begin{center}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		Type & Paramètres & Valeurs \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
+
+\section{Réponse}
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		Statut & Réponse \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
 
 \lstset{language=XML} 
 
