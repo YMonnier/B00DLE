@@ -1,16 +1,24 @@
 package com.univtln.b00dle.client.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.univtln.b00dle.client.model.Answer;
 import com.univtln.b00dle.client.model.OpinionPoll;
 import com.univtln.b00dle.client.model.TimeSlot;
 import com.univtln.b00dle.client.model.boodle.exception.PollNotFoundException;
+import com.univtln.b00dle.client.utilities.network.api.API;
+import com.univtln.b00dle.client.view.Dialog;
 import com.univtln.b00dle.client.view.MainApp;
 import com.univtln.b00dle.client.view.ViewNavigator;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -44,6 +52,7 @@ public class HomeController {
     @FXML
     private Button viewOpinionButton;
 */
+
     /**
      * Event load login.fxml in stage
      */
@@ -52,7 +61,7 @@ public class HomeController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(ViewNavigator.LOGIN));
 
         try {
-            MainApp.mainStage.setScene(new Scene((Pane)loader.load()));
+            MainApp.mainStage.setScene(new Scene((Pane) loader.load()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -65,65 +74,57 @@ public class HomeController {
      * Event load viewPoll.fxml in stage
      */
     public void viewOpinionPollAction() {
-        LOGGER.debug("viewOpinionPollAction");
+        String link = this.linkField.getText();
+        LOGGER.debug("viewOpinionPollAction: " + link);
+        if (!link.isEmpty()) {
+            try {
+                HttpResponse response = API.get(API.Resources.OPINION_POLLS + "/" + link);
+                int status = response.getStatusLine().getStatusCode();
+                LOGGER.debug("HTTP Status code: " + status);
+                Gson gson = new Gson();
+                String json = EntityUtils.toString(response.getEntity(), "UTF-8");
+                JsonObject jsonObject = gson.fromJson(json, JsonObject.class);
 
-        TimeSlot t1 = new TimeSlot.Builder()
-                .setFrom("2016-10-04 10:30")
-                .setTo("2016-10-04 11:30")
-                .build();
-        t1.setId(1);
-
-
-        TimeSlot t2 = new TimeSlot.Builder()
-                .setFrom("2016-10-05 10:30")
-                .setTo("2016-10-05 11:30")
-                .build();
-        t2.setId(2);
-
-
-        List<Integer> ts = new ArrayList<>();
-        ts.add(1);
-        ts.add(2);
-        Answer answer = new Answer.Builder()
-                .setName("John")
-                .setTimeSlots(ts)
-                .build();
-
-        List<Answer> answers = new ArrayList<>();
-        answers.add(answer);
+                if (status == HttpStatus.SC_OK) {
+                    LOGGER.debug("JSON: " + jsonObject);
+                    JsonObject data = jsonObject.get("data").getAsJsonObject();
+                    OpinionPoll opinionPoll = gson.fromJson(data, OpinionPoll.class);
+                    LOGGER.debug("JSON: " + opinionPoll);
 
 
-        OpinionPoll opinionPoll = new OpinionPoll.Builder()
-                .setDescription("My decriptipon")
-                .setPlace("Paris")
-                .setTitle("Amazing")
-                .setAnswers(answers)
-                .build();
-        opinionPoll.getTimeSlots().add(t1);
-        opinionPoll.getTimeSlots().add(t2);
+                    FXMLLoader loader = new FXMLLoader(
+                            getClass().getResource(
+                                    ViewNavigator.VIEW_POLL
+                            )
+                    );
+                    PollController m = new PollController(opinionPoll);
+                    loader.setController(m);
+                    try {
+                        MainApp.mainStage.setScene(
+                                new Scene(
+                                        loader.load()
+                                )
+                        );
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
-        LOGGER.debug("viewOpinionPollAction::next view");
+                    MainApp.mainStage.show();
 
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource(
-                        ViewNavigator.VIEW_POLL
-                )
-        );
-
-        PollController m = new PollController(opinionPoll);
-        loader.setController(m);
-
-        try {
-            MainApp.mainStage.setScene(
-                    new Scene(
-                            (Pane)loader.load()
-                    )
-            );
-        } catch (IOException e) {
-            e.printStackTrace();
+                } else {
+                    LOGGER.warn("The HTTP status code is invalid: " + status);
+                    Dialog.showAlert("B00DLE App",
+                            "Oops! Please try again later.",
+                            Alert.AlertType.WARNING);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Dialog.showAlert("B00DLE App",
+                    "Oops! Please put your link.",
+                    Alert.AlertType.WARNING);
         }
-
-        MainApp.mainStage.show();
     }
 
     @FXML
@@ -136,6 +137,7 @@ public class HomeController {
 
     /**
      * Return current link
+     *
      * @return Static Test
      * @throws PollNotFoundException
      */
