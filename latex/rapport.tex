@@ -33,7 +33,6 @@
 	
 	\posttitle{\end{center}}
 
-
 		\title{Rapport de projet - Planificateur de réunions}
 		
 		\author{BELLANGER Stéphen \and
@@ -45,12 +44,12 @@
 
 \begin{document}
 	
-	\maketitle
-
+\maketitle
 
 \tableofcontents
 
 \listoffigures 
+
 \part{Client B00DLE}
 
 \chapter{Introduction}
@@ -74,7 +73,7 @@ Les diagrammes de séquence et d'activité ont été répartis entre nous, puis 
 
 \par Lors de la phase de développement, nous avons réparti les rôles de la manière suivante : \begin{itemize}
 	\item Ysée : développement du serveur
-	\item Stephen : développement du client
+	\item Stéphen : développement du client
 	\item Maxence : rédaction du rapport
 \end{itemize}
 \par Toutefois, vu l'objectif du projet, nous avons tous participé au développement du client, mais à un niveau d'implication différent.
@@ -345,7 +344,7 @@ Cette séparation nous permet d'autoriser une utilisation de l'application sans 
 	\caption{Diagramme de contexte statique}
 	\label{diagramme_contexteStatique}
 	\centering
-	\includegraphics[scale=0.7]{figures/diagrammes/contexteStatique.png}
+	\includegraphics[width=\textwidth]{figures/diagrammes/contexteStatique.png}
 \end{figure}
 
 L'accès aux données nécessaires au fonctionnement de B00DLE se fera par le biais d'un serveur codé en Ruby dont le fonctionnement est détaillé en annexe. C'est ce serveur qui communiquera avec la base de données.
@@ -358,7 +357,7 @@ L'accès aux données nécessaires au fonctionnement de B00DLE se fera par le bi
 	\caption{Diagramme des cas d'utilisation}
 	\label{diagramme_casDUtilisation}
 	\centering
-	\includegraphics[scale=0.8]{figures/diagrammes/casDUtilisation.png}
+	\includegraphics[width=\textwidth]{figures/diagrammes/casDUtilisation.png}
 \end{figure}
 
 \par La priorité des cas d'utilisation est détaillée dans la figure \ref{tableau_casDUtilisation}. La principale fonctionnalité du logiciel est d'assurer la possibilité de créer un sondage et d'y ajouter des réponses.
@@ -391,7 +390,7 @@ L'accès aux données nécessaires au fonctionnement de B00DLE se fera par le bi
 \par Chaque utilisateur sera identifié par l'adresse MAC de son ordinateur afin qu'il puisse modifier ou supprimer ses propres réponses même en ayant fermé le logiciel auparavant. 
 Cependant, s'il accède à un sondage depuis un autre ordinateur, B00DLE le considérera comme un nouvel utilisateur. Nous avons ce choix car nous devions permettre une utilisation du logiciel sans authentification.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 	\caption{Diagramme de classe}
 	\label{diagramme_classes}
 	\centering
@@ -418,7 +417,7 @@ Le diagramme entité association détaillé de cette base de données est prése
 \subsection{Généralités}
 
 \par Tous les diagrammes de séquence et d'activité présentés ci-dessous seront depuis le point de vue du client.
-\par Une rapide modélisation du serveur sera présentée dans la partie \ref{part_shortModelServer} (page \pageref{shortModelServer}). Les diagrammes de séquence client font pour la plupart référence au diagramme de séquence présenté figure \ref{diagramme_sequence_serveur} page \pageref{diagramme_sequence_serveur}.
+\par Une rapide modélisation du serveur sera présentée dans la partie \ref{part_shortModelServer} (page \pageref{part_shortModelServer}). Les diagrammes de séquence client font pour la plupart référence au diagramme de séquence présenté figure \ref{diagramme_sequence_serveur} page \pageref{diagramme_sequence_serveur}.
 
 \paragraph{} Tous les cas d'utilisation d'administration débutent par une connexion de l'utilisateur, décrite dans le diagramme de séquence en figure \ref{diagramme_sequence_connexion}. Ce diagramme illustre notre choix de déléguer tout le traitement et toute la vérification des données à notre serveur.
 
